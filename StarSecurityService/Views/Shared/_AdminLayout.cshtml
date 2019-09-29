@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="/Content/Custom.css">
+    <link rel="stylesheet" href="/Content/font-awesome.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <a href="@Url.Action("Dashboard", "Admin")" class="logo">
+                <span class="logo-mini"><b class="fa fa-star"></b>SS</span>
+                <span class="logo-lg"><b>Star Security</b> Service</span>
+            </a>
+            <nav class="navbar navbar-static-top" role="navigation">
+                <a href="" class="sidebar-toggle" data-toggle="push-menu" role="button"><span class="sr-only">Toggle navigation</span></a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- DROPDOWN MESSAGES -->
+                        <!-- DROPDOWN NOTIFICATIONS -->
+                        <!-- DROPDOWN TASKS -->
+                        <li class="dropdown user user-menu">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/admin-lte/img/avatar-default.jpg" class="user-image" alt="User Image">
+                                @*<span class="hidden-xs">Username</span>*@
+                                @{
+                                    var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
+                                }
+                                <span class="hidden-xs">@session.UserName</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-header">
+                                    <img src="~/admin-lte/img/avatar-default.jpg" class="img-circle" alt="User Image">
+                                    <p>@session.UserName</p>
+                                </li>
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="" style="color:black" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        @*<a href="" class="btn btn-default btn-flat">Sign out</a>*@
+                                        <div style="color:black"> @Html.ActionLink("Sign out", "Logout", "Login")</div>
+                                       
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="active"><a href="@Url.Action("Dashboard", "Admin")"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+                    <li class="treeview">
+                        <a href="">
+                            <i class="fa fa-user-circle"></i> <span>Employee</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("EmployeeList", "Admin")"><i class="fa fa-list"></i> Employee list</a></li>
+                            <li><a href="@Url.Action("EmployeeInsert", "Admin")"><i class="fa fa-plus-circle"></i> Add new employee</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>@ViewBag.Title</h1>
+            </section>
+            <section class="content container-fluid">
+                @RenderBody()
+            </section>
+        </div>
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 1.0
+            </div>
+            <b><a href="@Url.Action("Contact", "Home")">Star Security Service</a> &copy;</b> 2019.
+        </footer>
+        <!-- CONTROL SIDEBAR -->   
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/admin-lte/js")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(".textarea").wysihtml5();
+        $("#datatable").DataTable();
+    </script>
+    <script>
+        var url = window.location;
+
+        // for sidebar menu entirely but not cover treeview
+        $('ul.sidebar-menu a').filter(function () {
+            return this.href != url;
+        }).parent().siblings().removeClass('active').end().addClass('active');
+
+        // for treeview
+        $('ul.treeview-menu a').filter(function () {
+            return this.href == url;
+        }).parentsUntil(".sidebar-menu > .treeview-menu").siblings().removeClass('active').end().addClass('active');
+    </script>
+</body>
+</html>

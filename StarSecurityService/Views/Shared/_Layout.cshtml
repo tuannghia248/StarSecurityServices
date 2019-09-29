@@ -1,0 +1,147 @@
+﻿@*@model StarSecurityService.Models.Account*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,500,600,700&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Big+Shoulders+Display&display=swap" rel="stylesheet">
+    <link href="/Content/Custom.css" rel="stylesheet" />
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/Site.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="background">
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+
+    <div class="container">
+        <p style="font-size:25px;color: #fff;cursor:pointer;margin-bottom: 20px;">STAR SECURITY SERVICES</p>
+        <div class="banner"></div>
+        <div style="margin-top: 18px;" class="row">
+            @*<div class="col-md-2">
+                            <p style="font-size:18px;color: #fff;cursor:pointer">Home</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p style="position: absolute;
+                left: -45%;cursor:pointer;font-size:18px">Services</p>
+                        </div>*@
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-2">
+                        <p style="font-size:18px;color: #fff;cursor:pointer">Home</p>
+                    </div>
+                    <div class="col-md-2">
+                        <p style="cursor:pointer;font-size:18px">Services</p>
+                    </div>
+                    <div class="col-md-2">
+                        <p style="cursor:pointer;font-size:18px">Contact</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-offset-8 col-md-4">
+                        <div class="col-md-2">
+                            @*<p data-dismiss="modal" data-toggle="modal" data-target="#myModal-login" class="login-top">Log In</p>*@
+                            <div class="login-top">
+                                @Html.ActionLink("Log In", "Login", "Login")
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*@if (Session[StarSecurityService.Common.CommonConstants.USER_SESSION] == null)
+                {
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-offset-8 col-md-4">
+                                <div class="col-md-2">
+                                    <p data-dismiss="modal" data-toggle="modal" data-target="#myModal-login" class="login-top">Log In</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-offset-8 col-md-4">
+                                <div class="col-md-2">
+                                    @{
+                                        var session = Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
+                                    }
+                                    <p>Xin chào :</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        }*@
+
+
+        </div>
+    </div>
+    @*<div id="myModal-login" class="modal fade modal-open" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <form >
+                    <div class="modal-content modal-sm">
+
+                        <p style="color:red;font-size: 20px;
+        text-align: center;
+        margin-left: -13px;
+        margin-top: 30px;">Đăng nhập chỉ dành cho nhân viên</p>
+
+                        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                        {
+                            <input type="email"  placeholder="Email Adress" class="mail-submit email-input" required="">
+                            @Html.TextBoxFor(model=>username, new)
+                            <input type="password" placeholder="Password" class="mail-submit" required="">
+                            <div class="mail-checkbox">
+
+                                <a href="#" class="text-checkbox-pass">Quên mật khẩu</a>
+                            </div>
+
+                            <button type="submit" class="sign-up-email-final-2">Đăng nhập</button>
+                        }
+
+
+                    </div>
+                </form>
+
+            </div>
+        </div>*@
+    <div class="container body-content">
+        @RenderBody()
+
+        <footer></footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

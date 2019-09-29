@@ -1,0 +1,151 @@
+﻿.container{
+    width:1350px !important;
+}
+
+* {
+    font-family: 'Big Shoulders Display', sans-serif;
+    padding: 0;
+}
+
+body {
+    background-color: black;
+}
+
+.background {
+    background-color: black !important;
+    color: #fff !important;
+}
+
+.login-top a {
+    color: #fff !important;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #000 !important;
+}
+
+.banner{
+    border-top:solid 1px #fff;
+    width:100%;
+}
+
+.banner1 {
+    border: 1px solid transparent;
+    width: 48.6% !important;
+    height: 820px;
+}
+
+.font_4 {
+    font: normal normal normal 72px/1.25em brandon-grot-w01-light,sans-serif;
+    color: #000000;
+}
+
+.head-title {
+    font-size: 133px;
+    margin-top: 120px;
+    text-align: center;
+    line-height: 1.25em;
+}
+
+.banner2 {
+    border: 1px solid transparent;
+    width: 100%;
+    height: 400px;
+}
+
+.banner3 {
+    border: 1px solid transparent;
+    width: 48.6% !important;
+    height: 440px;
+}
+
+/*login*/
+/*login-signupbutton*/
+
+
+.text-checkbox {
+    font-size: 14px;
+    padding-left: 85px;
+    line-height: 2;
+    top: 65%;
+}
+
+
+
+#myModal-login .modal-sm {
+    width: 398px;
+    height: 356px;
+    border-radius: 0;
+    left: 65px;
+}
+
+#myModal-login .close {
+    font-size: 43px;
+    font-weight: 100;
+    padding-right: 4px;
+    line-height: 0.75;
+}
+
+.text-checkbox-pass {
+    font-size: 14px;
+    display: inline-block;
+    color: #444;
+    width: 100%;
+    text-align: right;
+    padding-right: 63px
+}
+
+.sign-up-email-final-2 {
+    border: 1px solid transparent;
+    background: #473D6F;
+    color: #fff;
+    width: 281px;
+    height: 57px;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-left: 57px;
+    margin-top: 20px;
+}
+
+.text-danger-1 {
+    color: #a94442;
+    position: relative;
+    top: -17px;
+    left: 57px;
+}
+
+.text-danger {
+    color: #a94442;
+    position: relative;
+    top: -19px;
+    left: 57px;
+}
+
+.modal-open {
+    padding-right: 0px !important;
+}
+
+.mail-submit {
+    border: 1px solid #707070;
+    background: #fff;
+    font-size: 14px;
+    color: #444;
+    width: 378px;
+    height: 50px;
+    border-radius: 5px;
+    margin: -8px 0 25px 56px;
+    padding-left: 15px;
+}
+
+.login-top {
+    cursor: pointer;
+    font-size: 18px;
+    white-space: nowrap;
+    padding-left: 135px;
+}
+
+.email-input {
+    margin-top: 17px;
+}
