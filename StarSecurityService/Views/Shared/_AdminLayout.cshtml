@@ -4,12 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" href="/Content/Custom.css">
-    <link rel="stylesheet" href="/Content/font-awesome.css">
+    <link rel="stylesheet" href="~/Content/AdminLTE.css">
+    <link rel="stylesheet" href="~/Content/bootstrap3-wysihtml5.css">
+    <link rel="stylesheet" href="~/Content/font-awesome.css">
+    <link rel="stylesheet" href="~/Content/skin-blue.css">
+    <link rel="stylesheet" href="~/Content/dataTables.bootstrap.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -28,8 +30,7 @@
                         <!-- DROPDOWN TASKS -->
                         <li class="dropdown user user-menu">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="~/admin-lte/img/avatar-default.jpg" class="user-image" alt="User Image">
-                                @*<span class="hidden-xs">Username</span>*@
+                                <img src="~/Upload/avatar-default.jpg" class="user-image" alt="User Image">
                                 @{
                                     var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
                                 }
@@ -37,17 +38,15 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="user-header">
-                                    <img src="~/admin-lte/img/avatar-default.jpg" class="img-circle" alt="User Image">
+                                    <img src="~/Upload/avatar-default.jpg" class="img-circle" alt="User Image">
                                     <p>@session.UserName</p>
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="" style="color:black" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        @*<a href="" class="btn btn-default btn-flat">Sign out</a>*@
-                                        <div style="color:black"> @Html.ActionLink("Sign out", "Logout", "Login")</div>
-                                       
+                                        @Html.ActionLink("Sign Out", "Logout", "Login", "", new { @class = "btn btn-default btn-flat" })
                                     </div>
                                 </li>
                             </ul>
@@ -92,7 +91,10 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/admin-lte/js")
+    <script src="~/Scripts/adminlte.js"></script>
+    <script src="~/Scripts/bootstrap3-wysihtml5.all.js"></script>
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap.js"></script>
     @RenderSection("scripts", required: false)
     <script>
         $(".textarea").wysihtml5();
@@ -100,13 +102,9 @@
     </script>
     <script>
         var url = window.location;
-
-        // for sidebar menu entirely but not cover treeview
         $('ul.sidebar-menu a').filter(function () {
             return this.href != url;
         }).parent().siblings().removeClass('active').end().addClass('active');
-
-        // for treeview
         $('ul.treeview-menu a').filter(function () {
             return this.href == url;
         }).parentsUntil(".sidebar-menu > .treeview-menu").siblings().removeClass('active').end().addClass('active');

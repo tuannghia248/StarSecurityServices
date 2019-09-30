@@ -22,18 +22,8 @@ namespace StarSecurityService
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new ScriptBundle("~/admin-lte/js").Include(
-             "~/admin-lte/js/adminlte.js",
-             "~/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js",
-             "~/admin-lte/plugins/datatables.net/jquery.dataTables.min.js",
-             "~/admin-lte/plugins/datatables.net/dataTables.bootstrap.min.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/admin-lte/css/AdminLTE.css",
-                      "~/admin-lte/css/skins/skin-blue.css",
-                      "~/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css",
-                      "~/admin-lte/css/dataTables.bootstrap.css"));
+                      "~/Content/bootstrap.css"));
         }
     }
 }
