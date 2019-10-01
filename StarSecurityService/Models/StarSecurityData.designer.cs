@@ -21,9 +21,9 @@ namespace StarSecurityService.Models
 	using System.Runtime.Serialization;
 	using System.ComponentModel;
 	using System;
-	
-	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="StarSecurity")]
+    using System.ComponentModel.DataAnnotations;
+
+    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="StarSecurity")]
 	public partial class StarSecurityDataDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -944,7 +944,7 @@ namespace StarSecurityService.Models
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Contract")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class Contract : INotifyPropertyChanging, INotifyPropertyChanged
+    public partial class Contract : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1503,7 +1503,8 @@ namespace StarSecurityService.Models
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Employee")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
+    [MetadataType(typeof(EmployeeMetaData))]
+    public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);

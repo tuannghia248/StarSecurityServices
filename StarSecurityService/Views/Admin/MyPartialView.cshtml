@@ -1,0 +1,5 @@
+﻿@model StarSecurityService.Models.Client
+
+@Html.LabelFor(model => model.number)
+@Html.EditorFor(model => model.number, new { htmlAttributes = new { @class = "form-control" } })
+@Html.ValidationMessageFor(model => model.number, "", new { @class = "text-danger" })

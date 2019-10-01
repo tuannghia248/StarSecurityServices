@@ -64,6 +64,9 @@
                         @Html.DisplayFor(modelItem => item.description)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.status)
+                    </td>
+                    <td>
                         @Html.ActionLink("New Contact", "ClientToContact", new { id = item.id }, new { @class = "btn btn-primary" })
                     </td>
                     <td>
