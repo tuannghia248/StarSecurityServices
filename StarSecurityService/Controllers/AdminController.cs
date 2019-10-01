@@ -11,12 +11,36 @@ namespace StarSecurityService.Controllers
     {
         StarSecurityDataDataContext db = new StarSecurityDataDataContext();
 
-        void DepartmentList()
+        void DepartmentDropDownList()
         {
             Department dep = new Department();
             var query = db.Departments.ToList();
             SelectList list = new SelectList(query, "id", "name");
             ViewBag.deplist = list;
+        }
+
+        void ServiceDropDownList()
+        {
+            Service ser = new Service();
+            var query = db.Services.ToList();
+            SelectList list = new SelectList(query, "id", "name");
+            ViewBag.serlist = list;
+        }
+
+        void ClientDropDownList()
+        {
+            Client cli = new Client();
+            var query = db.Clients.ToList();
+            SelectList list = new SelectList(query, "id", "name");
+            ViewBag.clilist = list;
+        }
+
+        void ClientDropDownListSelected(int id)
+        {
+            Client cli = new Client();
+            var query = db.Clients.ToList();
+            SelectList list = new SelectList(query, "id", "name", id);
+            ViewBag.clilist = list;
         }
 
         public ActionResult Dashboard()
@@ -32,14 +56,14 @@ namespace StarSecurityService.Controllers
 
         public ActionResult EmployeeInsert()
         {
-            DepartmentList();
+            DepartmentDropDownList();
             return View();
         }
 
         [HttpPost]
         public ActionResult EmployeeInsert(Employee employee)
         {
-            DepartmentList();
+            DepartmentDropDownList();
             try
             {
                 db.Employees.InsertOnSubmit(employee);
@@ -60,7 +84,7 @@ namespace StarSecurityService.Controllers
 
         public ActionResult EmployeeEdit(int id)
         {
-            DepartmentList();
+            DepartmentDropDownList();
             var empdetails = db.Employees.Single(e => e.id == id);
             return View(empdetails);
         }
@@ -68,7 +92,7 @@ namespace StarSecurityService.Controllers
         [HttpPost]
         public ActionResult EmployeeEdit(int id, Employee employee)
         {
-            DepartmentList();
+            DepartmentDropDownList();
             try
             {
                 Employee emptoedit = db.Employees.Single(e => e.id == id);
@@ -107,6 +131,60 @@ namespace StarSecurityService.Controllers
         {
             var contracts = db.Contracts.ToList();
             return View(contracts);
+        }
+
+        public ActionResult ContractInsert()
+        {
+            ServiceDropDownList();
+            ClientDropDownList();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ContractInsert(Contract contract)
+        {
+            ServiceDropDownList();
+            ClientDropDownList();
+            try
+            {
+                db.Contracts.InsertOnSubmit(contract);
+                db.SubmitChanges();
+                return RedirectToAction("ContractList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult ClientList()
+        {
+            var clients = db.Clients.ToList();
+            return View(clients);
+        }
+
+        public ActionResult ClientToContact(int id)
+        {
+            ServiceDropDownList();
+            ClientDropDownListSelected(id);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ClientToContact(int id, Contract contract)
+        {
+            ServiceDropDownList();
+            ClientDropDownListSelected(id);
+            try
+            {
+                db.Contracts.InsertOnSubmit(contract);
+                db.SubmitChanges();
+                return RedirectToAction("ContractList");
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

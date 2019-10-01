@@ -21,9 +21,9 @@ namespace StarSecurityService.Models
 	using System.Runtime.Serialization;
 	using System.ComponentModel;
 	using System;
-    using System.ComponentModel.DataAnnotations;
-
-    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="StarSecurity")]
+	
+	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="StarSecurity")]
 	public partial class StarSecurityDataDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -662,6 +662,8 @@ namespace StarSecurityService.Models
 		
 		private string _description;
 		
+		private string _status;
+		
 		private EntitySet<Contract> _Contracts;
 		
 		private bool serializing;
@@ -684,6 +686,8 @@ namespace StarSecurityService.Models
     partial void OnserviceChanged();
     partial void OndescriptionChanging(string value);
     partial void OndescriptionChanged();
+    partial void OnstatusChanging(string value);
+    partial void OnstatusChanged();
     #endregion
 		
 		public Client()
@@ -838,8 +842,29 @@ namespace StarSecurityService.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NVarChar(255)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
+		public string status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Client_Contract", Storage="_Contracts", ThisKey="id", OtherKey="client_id")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8, EmitDefaultValue=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9, EmitDefaultValue=false)]
 		public EntitySet<Contract> Contracts
 		{
 			get
@@ -1478,8 +1503,7 @@ namespace StarSecurityService.Models
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Employee")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-    [MetadataType(typeof(EmployeeMetaData))]
-    public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);

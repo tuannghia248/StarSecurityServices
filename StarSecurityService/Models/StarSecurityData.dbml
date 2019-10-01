@@ -33,6 +33,7 @@
       <Column Name="email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="service" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="status" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="Client_Contract" Member="Contracts" ThisKey="id" OtherKey="client_id" Type="Contract" />
     </Type>
   </Table>
