@@ -21,7 +21,7 @@ namespace StarSecurityService.Models
         public string address { get; set; }
         [Required]
         [Display(Name = "Phone Number")]
-        public string number { get; set; }
+        public string phone { get; set; }
         [Required]
         [Display(Name = "Birthday")]
         public string birthday { get; set; }
@@ -30,6 +30,8 @@ namespace StarSecurityService.Models
         public string position { get; set; }
         [Display(Name = "Image")]
         public string image { get; set; }
+        [Display(Name = "Salary")]
+        public float salary { get; set; }
         [Display(Name = "Qualification")]
         public string qualification { get; set; }
         [Display(Name = "Achievement")]
@@ -40,5 +42,7 @@ namespace StarSecurityService.Models
         public int account_id { get; set; }
         [Display(Name = "Contract")]
         public int contract_id { get; set; }
+        [Display(Name = "Status")]
+        public string status { get; set; }
     }
 }

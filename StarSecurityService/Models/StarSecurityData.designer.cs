@@ -34,9 +34,9 @@ namespace StarSecurityService.Models
     partial void InsertAbout(About instance);
     partial void UpdateAbout(About instance);
     partial void DeleteAbout(About instance);
-    partial void InsertService(Service instance);
-    partial void UpdateService(Service instance);
-    partial void DeleteService(Service instance);
+    partial void InsertVacancy(Vacancy instance);
+    partial void UpdateVacancy(Vacancy instance);
+    partial void DeleteVacancy(Vacancy instance);
     partial void InsertAccount(Account instance);
     partial void UpdateAccount(Account instance);
     partial void DeleteAccount(Account instance);
@@ -55,9 +55,9 @@ namespace StarSecurityService.Models
     partial void InsertNetwork(Network instance);
     partial void UpdateNetwork(Network instance);
     partial void DeleteNetwork(Network instance);
-    partial void InsertVacancy(Vacancy instance);
-    partial void UpdateVacancy(Vacancy instance);
-    partial void DeleteVacancy(Vacancy instance);
+    partial void InsertService(Service instance);
+    partial void UpdateService(Service instance);
+    partial void DeleteService(Service instance);
     #endregion
 		
 		public StarSecurityDataDataContext() : 
@@ -98,11 +98,11 @@ namespace StarSecurityService.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Service> Services
+		public System.Data.Linq.Table<Vacancy> Vacancies
 		{
 			get
 			{
-				return this.GetTable<Service>();
+				return this.GetTable<Vacancy>();
 			}
 		}
 		
@@ -154,11 +154,11 @@ namespace StarSecurityService.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Vacancy> Vacancies
+		public System.Data.Linq.Table<Service> Services
 		{
 			get
 			{
-				return this.GetTable<Vacancy>();
+				return this.GetTable<Service>();
 			}
 		}
 	}
@@ -289,24 +289,22 @@ namespace StarSecurityService.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Service")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vacancy")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class Service : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Vacancy : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _id;
 		
-		private string _name;
+		private string _job;
 		
-		private string _description;
+		private string _position;
 		
-		private string _image;
+		private int _quantity;
 		
-		private EntitySet<Contract> _Contracts;
-		
-		private bool serializing;
+		private string _deadline;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -314,15 +312,17 @@ namespace StarSecurityService.Models
     partial void OnCreated();
     partial void OnidChanging(int value);
     partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OndescriptionChanging(string value);
-    partial void OndescriptionChanged();
-    partial void OnimageChanging(string value);
-    partial void OnimageChanged();
+    partial void OnjobChanging(string value);
+    partial void OnjobChanged();
+    partial void OnpositionChanging(string value);
+    partial void OnpositionChanged();
+    partial void OnquantityChanging(int value);
+    partial void OnquantityChanged();
+    partial void OndeadlineChanging(string value);
+    partial void OndeadlineChanged();
     #endregion
 		
-		public Service()
+		public Vacancy()
 		{
 			this.Initialize();
 		}
@@ -348,85 +348,87 @@ namespace StarSecurityService.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_job", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-		public string name
+		public string job
 		{
 			get
 			{
-				return this._name;
+				return this._job;
 			}
 			set
 			{
-				if ((this._name != value))
+				if ((this._job != value))
 				{
-					this.OnnameChanging(value);
+					this.OnjobChanging(value);
 					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
+					this._job = value;
+					this.SendPropertyChanged("job");
+					this.OnjobChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_position", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
-		public string description
+		public string position
 		{
 			get
 			{
-				return this._description;
+				return this._position;
 			}
 			set
 			{
-				if ((this._description != value))
+				if ((this._position != value))
 				{
-					this.OndescriptionChanging(value);
+					this.OnpositionChanging(value);
 					this.SendPropertyChanging();
-					this._description = value;
-					this.SendPropertyChanged("description");
-					this.OndescriptionChanged();
+					this._position = value;
+					this.SendPropertyChanged("position");
+					this.OnpositionChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="NVarChar(255)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quantity", DbType="Int NOT NULL")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
-		public string image
+		public int quantity
 		{
 			get
 			{
-				return this._image;
+				return this._quantity;
 			}
 			set
 			{
-				if ((this._image != value))
+				if ((this._quantity != value))
 				{
-					this.OnimageChanging(value);
+					this.OnquantityChanging(value);
 					this.SendPropertyChanging();
-					this._image = value;
-					this.SendPropertyChanged("image");
-					this.OnimageChanged();
+					this._quantity = value;
+					this.SendPropertyChanged("quantity");
+					this.OnquantityChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_Contract", Storage="_Contracts", ThisKey="id", OtherKey="service_id")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5, EmitDefaultValue=false)]
-		public EntitySet<Contract> Contracts
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_deadline", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+		public string deadline
 		{
 			get
 			{
-				if ((this.serializing 
-							&& (this._Contracts.HasLoadedOrAssignedValues == false)))
-				{
-					return null;
-				}
-				return this._Contracts;
+				return this._deadline;
 			}
 			set
 			{
-				this._Contracts.Assign(value);
+				if ((this._deadline != value))
+				{
+					this.OndeadlineChanging(value);
+					this.SendPropertyChanging();
+					this._deadline = value;
+					this.SendPropertyChanged("deadline");
+					this.OndeadlineChanged();
+				}
 			}
 		}
 		
@@ -450,21 +452,8 @@ namespace StarSecurityService.Models
 			}
 		}
 		
-		private void attach_Contracts(Contract entity)
-		{
-			this.SendPropertyChanging();
-			entity.Service = this;
-		}
-		
-		private void detach_Contracts(Contract entity)
-		{
-			this.SendPropertyChanging();
-			entity.Service = null;
-		}
-		
 		private void Initialize()
 		{
-			this._Contracts = new EntitySet<Contract>(new Action<Contract>(this.attach_Contracts), new Action<Contract>(this.detach_Contracts));
 			OnCreated();
 		}
 		
@@ -473,20 +462,6 @@ namespace StarSecurityService.Models
 		public void OnDeserializing(StreamingContext context)
 		{
 			this.Initialize();
-		}
-		
-		[global::System.Runtime.Serialization.OnSerializingAttribute()]
-		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerializing(StreamingContext context)
-		{
-			this.serializing = true;
-		}
-		
-		[global::System.Runtime.Serialization.OnSerializedAttribute()]
-		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerialized(StreamingContext context)
-		{
-			this.serializing = false;
 		}
 	}
 	
@@ -842,7 +817,7 @@ namespace StarSecurityService.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7)]
 		public string description
 		{
@@ -963,11 +938,13 @@ namespace StarSecurityService.Models
 		
 		private string _end_at;
 		
+		private string _status;
+		
 		private EntitySet<Employee> _Employees;
 		
-		private EntityRef<Service> _Service;
-		
 		private EntityRef<Client> _Client;
+		
+		private EntityRef<Service> _Service;
 		
 		private bool serializing;
 		
@@ -989,6 +966,8 @@ namespace StarSecurityService.Models
     partial void Oncreated_atChanged();
     partial void Onend_atChanging(string value);
     partial void Onend_atChanged();
+    partial void OnstatusChanging(string value);
+    partial void OnstatusChanged();
     #endregion
 		
 		public Contract()
@@ -1151,8 +1130,29 @@ namespace StarSecurityService.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NVarChar(255)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
+		public string status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contract_Employee", Storage="_Employees", ThisKey="id", OtherKey="contract_id")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8, EmitDefaultValue=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9, EmitDefaultValue=false)]
 		public EntitySet<Employee> Employees
 		{
 			get
@@ -1167,40 +1167,6 @@ namespace StarSecurityService.Models
 			set
 			{
 				this._Employees.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_Contract", Storage="_Service", ThisKey="service_id", OtherKey="id", IsForeignKey=true)]
-		public Service Service
-		{
-			get
-			{
-				return this._Service.Entity;
-			}
-			set
-			{
-				Service previousValue = this._Service.Entity;
-				if (((previousValue != value) 
-							|| (this._Service.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Service.Entity = null;
-						previousValue.Contracts.Remove(this);
-					}
-					this._Service.Entity = value;
-					if ((value != null))
-					{
-						value.Contracts.Add(this);
-						this._service_id = value.id;
-					}
-					else
-					{
-						this._service_id = default(int);
-					}
-					this.SendPropertyChanged("Service");
-				}
 			}
 		}
 		
@@ -1234,6 +1200,40 @@ namespace StarSecurityService.Models
 						this._client_id = default(int);
 					}
 					this.SendPropertyChanged("Client");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_Contract", Storage="_Service", ThisKey="service_id", OtherKey="id", IsForeignKey=true)]
+		public Service Service
+		{
+			get
+			{
+				return this._Service.Entity;
+			}
+			set
+			{
+				Service previousValue = this._Service.Entity;
+				if (((previousValue != value) 
+							|| (this._Service.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Service.Entity = null;
+						previousValue.Contracts.Remove(this);
+					}
+					this._Service.Entity = value;
+					if ((value != null))
+					{
+						value.Contracts.Add(this);
+						this._service_id = value.id;
+					}
+					else
+					{
+						this._service_id = default(int);
+					}
+					this.SendPropertyChanged("Service");
 				}
 			}
 		}
@@ -1273,8 +1273,8 @@ namespace StarSecurityService.Models
 		private void Initialize()
 		{
 			this._Employees = new EntitySet<Employee>(new Action<Employee>(this.attach_Employees), new Action<Employee>(this.detach_Employees));
-			this._Service = default(EntityRef<Service>);
 			this._Client = default(EntityRef<Client>);
+			this._Service = default(EntityRef<Service>);
 			OnCreated();
 		}
 		
@@ -1479,7 +1479,7 @@ namespace StarSecurityService.Models
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Employee")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
     [MetadataType(typeof(EmployeeMetaData))]
-	public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
+    public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1490,13 +1490,15 @@ namespace StarSecurityService.Models
 		
 		private string _address;
 		
-		private string _number;
+		private string _phone;
 		
 		private string _birthday;
 		
 		private string _position;
 		
 		private string _image;
+		
+		private System.Nullable<double> _salary;
 		
 		private string _qualification;
 		
@@ -1507,6 +1509,8 @@ namespace StarSecurityService.Models
 		private System.Nullable<int> _account_id;
 		
 		private System.Nullable<int> _contract_id;
+		
+		private string _status;
 		
 		private EntityRef<Department> _Department;
 		
@@ -1524,14 +1528,16 @@ namespace StarSecurityService.Models
     partial void OnnameChanged();
     partial void OnaddressChanging(string value);
     partial void OnaddressChanged();
-    partial void OnnumberChanging(string value);
-    partial void OnnumberChanged();
+    partial void OnphoneChanging(string value);
+    partial void OnphoneChanged();
     partial void OnbirthdayChanging(string value);
     partial void OnbirthdayChanged();
     partial void OnpositionChanging(string value);
     partial void OnpositionChanged();
     partial void OnimageChanging(string value);
     partial void OnimageChanged();
+    partial void OnsalaryChanging(System.Nullable<double> value);
+    partial void OnsalaryChanged();
     partial void OnqualificationChanging(string value);
     partial void OnqualificationChanged();
     partial void OnachievementChanging(string value);
@@ -1542,6 +1548,8 @@ namespace StarSecurityService.Models
     partial void Onaccount_idChanged();
     partial void Oncontract_idChanging(System.Nullable<int> value);
     partial void Oncontract_idChanged();
+    partial void OnstatusChanging(string value);
+    partial void OnstatusChanged();
     #endregion
 		
 		public Employee()
@@ -1612,23 +1620,23 @@ namespace StarSecurityService.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_number", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
-		public string number
+		public string phone
 		{
 			get
 			{
-				return this._number;
+				return this._phone;
 			}
 			set
 			{
-				if ((this._number != value))
+				if ((this._phone != value))
 				{
-					this.OnnumberChanging(value);
+					this.OnphoneChanging(value);
 					this.SendPropertyChanging();
-					this._number = value;
-					this.SendPropertyChanged("number");
-					this.OnnumberChanged();
+					this._phone = value;
+					this.SendPropertyChanged("phone");
+					this.OnphoneChanged();
 				}
 			}
 		}
@@ -1696,8 +1704,29 @@ namespace StarSecurityService.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_qualification", DbType="NVarChar(255)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_salary", DbType="Float")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
+		public System.Nullable<double> salary
+		{
+			get
+			{
+				return this._salary;
+			}
+			set
+			{
+				if ((this._salary != value))
+				{
+					this.OnsalaryChanging(value);
+					this.SendPropertyChanging();
+					this._salary = value;
+					this.SendPropertyChanged("salary");
+					this.OnsalaryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_qualification", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
 		public string qualification
 		{
 			get
@@ -1718,7 +1747,7 @@ namespace StarSecurityService.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_achievement", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
 		public string achievement
 		{
 			get
@@ -1739,7 +1768,7 @@ namespace StarSecurityService.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_depantment_id", DbType="Int")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=11)]
 		public System.Nullable<int> depantment_id
 		{
 			get
@@ -1764,7 +1793,7 @@ namespace StarSecurityService.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_account_id", DbType="Int")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=11)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=12)]
 		public System.Nullable<int> account_id
 		{
 			get
@@ -1789,7 +1818,7 @@ namespace StarSecurityService.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contract_id", DbType="Int")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=12)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=13)]
 		public System.Nullable<int> contract_id
 		{
 			get
@@ -1809,6 +1838,27 @@ namespace StarSecurityService.Models
 					this._contract_id = value;
 					this.SendPropertyChanged("contract_id");
 					this.Oncontract_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NVarChar(255)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=14)]
+		public string status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
 				}
 			}
 		}
@@ -1964,7 +2014,7 @@ namespace StarSecurityService.Models
 		
 		private string _address;
 		
-		private string _number;
+		private string _phone;
 		
 		private string _contract_person;
 		
@@ -1978,8 +2028,8 @@ namespace StarSecurityService.Models
     partial void OnnameChanged();
     partial void OnaddressChanging(string value);
     partial void OnaddressChanged();
-    partial void OnnumberChanging(string value);
-    partial void OnnumberChanged();
+    partial void OnphoneChanging(string value);
+    partial void OnphoneChanged();
     partial void Oncontract_personChanging(string value);
     partial void Oncontract_personChanged();
     #endregion
@@ -2052,28 +2102,28 @@ namespace StarSecurityService.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_number", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
-		public string number
+		public string phone
 		{
 			get
 			{
-				return this._number;
+				return this._phone;
 			}
 			set
 			{
-				if ((this._number != value))
+				if ((this._phone != value))
 				{
-					this.OnnumberChanging(value);
+					this.OnphoneChanging(value);
 					this.SendPropertyChanging();
-					this._number = value;
-					this.SendPropertyChanged("number");
-					this.OnnumberChanged();
+					this._phone = value;
+					this.SendPropertyChanged("phone");
+					this.OnphoneChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contract_person", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contract_person", DbType="NVarChar(255)")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
 		public string contract_person
 		{
@@ -2127,22 +2177,26 @@ namespace StarSecurityService.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vacancy")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Service")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class Vacancy : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Service : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _id;
 		
-		private string _job;
+		private string _name;
 		
-		private string _position;
+		private string _description;
 		
-		private int _quantity;
+		private string _image;
 		
-		private string _deadline;
+		private string _status;
+		
+		private EntitySet<Contract> _Contracts;
+		
+		private bool serializing;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2150,17 +2204,17 @@ namespace StarSecurityService.Models
     partial void OnCreated();
     partial void OnidChanging(int value);
     partial void OnidChanged();
-    partial void OnjobChanging(string value);
-    partial void OnjobChanged();
-    partial void OnpositionChanging(string value);
-    partial void OnpositionChanged();
-    partial void OnquantityChanging(int value);
-    partial void OnquantityChanged();
-    partial void OndeadlineChanging(string value);
-    partial void OndeadlineChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OndescriptionChanging(string value);
+    partial void OndescriptionChanged();
+    partial void OnimageChanging(string value);
+    partial void OnimageChanged();
+    partial void OnstatusChanging(string value);
+    partial void OnstatusChanged();
     #endregion
 		
-		public Vacancy()
+		public Service()
 		{
 			this.Initialize();
 		}
@@ -2186,87 +2240,106 @@ namespace StarSecurityService.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_job", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-		public string job
+		public string name
 		{
 			get
 			{
-				return this._job;
+				return this._name;
 			}
 			set
 			{
-				if ((this._job != value))
+				if ((this._name != value))
 				{
-					this.OnjobChanging(value);
+					this.OnnameChanging(value);
 					this.SendPropertyChanging();
-					this._job = value;
-					this.SendPropertyChanged("job");
-					this.OnjobChanged();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_position", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
-		public string position
+		public string description
 		{
 			get
 			{
-				return this._position;
+				return this._description;
 			}
 			set
 			{
-				if ((this._position != value))
+				if ((this._description != value))
 				{
-					this.OnpositionChanging(value);
+					this.OndescriptionChanging(value);
 					this.SendPropertyChanging();
-					this._position = value;
-					this.SendPropertyChanged("position");
-					this.OnpositionChanged();
+					this._description = value;
+					this.SendPropertyChanged("description");
+					this.OndescriptionChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quantity", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="NVarChar(255)")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
-		public int quantity
+		public string image
 		{
 			get
 			{
-				return this._quantity;
+				return this._image;
 			}
 			set
 			{
-				if ((this._quantity != value))
+				if ((this._image != value))
 				{
-					this.OnquantityChanging(value);
+					this.OnimageChanging(value);
 					this.SendPropertyChanging();
-					this._quantity = value;
-					this.SendPropertyChanged("quantity");
-					this.OnquantityChanged();
+					this._image = value;
+					this.SendPropertyChanged("image");
+					this.OnimageChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_deadline", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NVarChar(255)")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
-		public string deadline
+		public string status
 		{
 			get
 			{
-				return this._deadline;
+				return this._status;
 			}
 			set
 			{
-				if ((this._deadline != value))
+				if ((this._status != value))
 				{
-					this.OndeadlineChanging(value);
+					this.OnstatusChanging(value);
 					this.SendPropertyChanging();
-					this._deadline = value;
-					this.SendPropertyChanged("deadline");
-					this.OndeadlineChanged();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_Contract", Storage="_Contracts", ThisKey="id", OtherKey="service_id")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6, EmitDefaultValue=false)]
+		public EntitySet<Contract> Contracts
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._Contracts.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._Contracts;
+			}
+			set
+			{
+				this._Contracts.Assign(value);
 			}
 		}
 		
@@ -2290,8 +2363,21 @@ namespace StarSecurityService.Models
 			}
 		}
 		
+		private void attach_Contracts(Contract entity)
+		{
+			this.SendPropertyChanging();
+			entity.Service = this;
+		}
+		
+		private void detach_Contracts(Contract entity)
+		{
+			this.SendPropertyChanging();
+			entity.Service = null;
+		}
+		
 		private void Initialize()
 		{
+			this._Contracts = new EntitySet<Contract>(new Action<Contract>(this.attach_Contracts), new Action<Contract>(this.detach_Contracts));
 			OnCreated();
 		}
 		
@@ -2300,6 +2386,20 @@ namespace StarSecurityService.Models
 		public void OnDeserializing(StreamingContext context)
 		{
 			this.Initialize();
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializedAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
 		}
 	}
 }

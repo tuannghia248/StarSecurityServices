@@ -74,15 +74,17 @@ namespace StarSecurityService.Controllers
                 Employee emptoedit = db.Employees.Single(e => e.id == id);
                 emptoedit.name = employee.name;
                 emptoedit.address = employee.address;
-                emptoedit.number = employee.number;
+                emptoedit.phone = employee.phone;
                 emptoedit.birthday = employee.birthday;
                 emptoedit.position = employee.position;
                 emptoedit.image = employee.image;
+                emptoedit.salary = employee.salary;
                 emptoedit.qualification = employee.qualification;
                 emptoedit.achievement = employee.achievement;
                 emptoedit.depantment_id = employee.depantment_id;
                 emptoedit.account_id = employee.account_id;
                 emptoedit.contract_id = employee.contract_id;
+                emptoedit.status = employee.status;
                 db.SubmitChanges();
                 return RedirectToAction("EmployeeList");
             }
@@ -99,6 +101,12 @@ namespace StarSecurityService.Controllers
             db.Employees.DeleteOnSubmit(emptodelete);
             db.SubmitChanges();
             return RedirectToAction("EmployeeList");
+        }
+
+        public ActionResult ContractList()
+        {
+            var contracts = db.Contracts.ToList();
+            return View(contracts);
         }
     }
 }

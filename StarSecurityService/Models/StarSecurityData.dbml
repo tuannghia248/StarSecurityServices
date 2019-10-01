@@ -7,13 +7,13 @@
       <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
     </Type>
   </Table>
-  <Table Name="dbo.Service" Member="Services">
-    <Type Name="Service">
+  <Table Name="dbo.Vacancy" Member="Vacancies">
+    <Type Name="Vacancy">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="image" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="Service_Contract" Member="Contracts" ThisKey="id" OtherKey="service_id" Type="Contract" />
+      <Column Name="job" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="position" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="deadline" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.Account" Member="Accounts">
@@ -32,7 +32,7 @@
       <Column Name="number" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="service" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Association Name="Client_Contract" Member="Contracts" ThisKey="id" OtherKey="client_id" Type="Contract" />
     </Type>
   </Table>
@@ -45,9 +45,10 @@
       <Column Name="client_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="created_at" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="end_at" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="Contract_Employee" Member="Employees" ThisKey="id" OtherKey="contract_id" Type="Employee" />
-      <Association Name="Service_Contract" Member="Service" ThisKey="service_id" OtherKey="id" Type="Service" IsForeignKey="true" />
       <Association Name="Client_Contract" Member="Client" ThisKey="client_id" OtherKey="id" Type="Client" IsForeignKey="true" />
+      <Association Name="Service_Contract" Member="Service" ThisKey="service_id" OtherKey="id" Type="Service" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Department" Member="Departments">
@@ -63,15 +64,17 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="address" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="number" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="phone" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="birthday" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="position" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="image" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="qualification" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="salary" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="qualification" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="achievement" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="depantment_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="account_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="contract_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="status" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="Department_Employee" Member="Department" ThisKey="depantment_id" OtherKey="id" Type="Department" IsForeignKey="true" />
       <Association Name="Account_Employee" Member="Account" ThisKey="account_id" OtherKey="id" Type="Account" IsForeignKey="true" />
       <Association Name="Contract_Employee" Member="Contract" ThisKey="contract_id" OtherKey="id" Type="Contract" IsForeignKey="true" />
@@ -82,17 +85,18 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="address" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="number" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="contract_person" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="phone" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="contract_person" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Vacancy" Member="Vacancies">
-    <Type Name="Vacancy">
+  <Table Name="dbo.Service" Member="Services">
+    <Type Name="Service">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="job" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="position" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="deadline" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="image" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="status" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Service_Contract" Member="Contracts" ThisKey="id" OtherKey="service_id" Type="Contract" />
     </Type>
   </Table>
 </Database>

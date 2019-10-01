@@ -1,94 +1,94 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 8.5" name="StarSecurityData">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.375, 8.5" name="StarSecurityData">
   <DataContextMoniker Name="/StarSecurityDataDataContext" />
   <nestedChildShapes>
-    <classShape Id="fb6f9047-9c16-452c-aaa6-ac50e8820d0c" absoluteBounds="9, 2.375, 2, 1.3862939453125005">
+    <classShape Id="5a57150b-185f-4330-bca1-ca5e6e625d0e" absoluteBounds="0.875, 3.5, 2, 1.3862939453125005">
       <DataClassMoniker Name="/StarSecurityDataDataContext/About" />
       <nestedChildShapes>
-        <elementListCompartment Id="eeb58284-0c7c-4e85-9cde-814c94841291" absoluteBounds="9.015, 2.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="c74a360b-1b08-43ff-afc6-6e9fd6a4f6d4" absoluteBounds="0.88999999999999968, 3.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="cfef2464-05a8-4840-aeff-6303888293e8" absoluteBounds="0.5, 5.5, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/StarSecurityDataDataContext/Service" />
-      <nestedChildShapes>
-        <elementListCompartment Id="c5e64b23-2c7e-4c63-b4f1-164703df0232" absoluteBounds="0.51500000000000012, 5.9600000000000009, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="d57f175d-ab88-4ee2-ab77-5f7385fac2a0" absoluteBounds="3.25, 0.5, 2, 1.3862939453124996">
-      <DataClassMoniker Name="/StarSecurityDataDataContext/Account" />
-      <nestedChildShapes>
-        <elementListCompartment Id="b3507410-174c-4ed9-89da-91b7ff40e0ba" absoluteBounds="3.265, 0.96000000000000085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="8384c0ea-39b1-4252-833e-b7430acdd7f7" absoluteBounds="0.5, 2.375, 2, 2.1554996744791666">
-      <DataClassMoniker Name="/StarSecurityDataDataContext/Client" />
-      <nestedChildShapes>
-        <elementListCompartment Id="052b4f56-82d4-4e5b-9772-6d907931283b" absoluteBounds="0.515, 2.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="9bffda98-1613-4dd6-9b50-af86fc2beaff" absoluteBounds="3.25, 2.375, 2, 2.1554996744791666">
-      <DataClassMoniker Name="/StarSecurityDataDataContext/Contract" />
-      <nestedChildShapes>
-        <elementListCompartment Id="acc24276-7f42-4626-afea-b34c53167118" absoluteBounds="3.265, 2.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="b5b7abd3-a634-4ee0-8007-4ecb19741a2c" absoluteBounds="9, 0.5, 2, 1.3862939453125005">
-      <DataClassMoniker Name="/StarSecurityDataDataContext/Department" />
-      <nestedChildShapes>
-        <elementListCompartment Id="fc4b41b8-2d5a-49bf-8f53-579d2d923a33" absoluteBounds="9.015, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="3903235f-24ef-4f6e-b776-77cbc377c693" absoluteBounds="6, 0.5, 2, 3.1170068359375009">
-      <DataClassMoniker Name="/StarSecurityDataDataContext/Employee" />
-      <nestedChildShapes>
-        <elementListCompartment Id="49381b9e-3672-4b7f-8beb-2c37151b433e" absoluteBounds="6.015, 0.96, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="e300bf74-f96b-461c-86a2-42b5e472840c" absoluteBounds="6, 4.375, 2, 1.7708968098958329">
-      <DataClassMoniker Name="/StarSecurityDataDataContext/Network" />
-      <nestedChildShapes>
-        <elementListCompartment Id="dcddac29-a73a-4fd0-9aa0-32cd53c05fa8" absoluteBounds="6.0150000000000006, 4.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="92abf2ec-98a6-4d98-8722-f8df45979cb9" absoluteBounds="9, 4.375, 2, 1.7708968098958344">
+    <classShape Id="7732ae96-d807-4f0e-87af-14d410cea474" absoluteBounds="6.25, 4.5, 2, 1.7708968098958329">
       <DataClassMoniker Name="/StarSecurityDataDataContext/Vacancy" />
       <nestedChildShapes>
-        <elementListCompartment Id="110feb5a-6cde-4daa-9e0e-c04886f54807" absoluteBounds="9.015, 4.8350000000000009, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="bf0376a0-b3c0-43f8-b40c-18f7208bf169" absoluteBounds="6.2650000000000006, 4.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.5 : 6.28929768880208); (4.25 : 6.28929768880208); (4.25 : 4.53049967447917)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/StarSecurityDataDataContext/Service/Service_Contract" />
-      <nodes>
-        <classShapeMoniker Id="cfef2464-05a8-4840-aeff-6303888293e8" />
-        <classShapeMoniker Id="9bffda98-1613-4dd6-9b50-af86fc2beaff" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.5 : 3.45274983723958); (3.25 : 3.45274983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="1f7749d3-e01f-4383-8721-08e0e3f103bd" absoluteBounds="9.125, 2.625, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/StarSecurityDataDataContext/Account" />
+      <nestedChildShapes>
+        <elementListCompartment Id="97931b53-9c1d-42ba-8f19-9ab87e643809" absoluteBounds="9.14, 3.0850000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="320b70d2-2a0b-44ff-9251-fd1a5c6c4dd5" absoluteBounds="0.875, 0.5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/StarSecurityDataDataContext/Client" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5d060b8d-3602-4a62-a39d-ccde79e7bb4d" absoluteBounds="0.89, 0.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8479dbcb-17d2-4173-8293-8613a59849df" absoluteBounds="3.625, 0.5, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/StarSecurityDataDataContext/Contract" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b5ee9327-b19c-4e2d-a70d-7e7994ea265c" absoluteBounds="3.64, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="00debe0a-8618-4a43-9246-24262976f652" absoluteBounds="9.125, 0.5, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/StarSecurityDataDataContext/Department" />
+      <nestedChildShapes>
+        <elementListCompartment Id="090f7e4e-2b7a-429e-a402-10c7d5832e9a" absoluteBounds="9.14, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="40d19b19-b259-4216-aacd-1be12f1341aa" absoluteBounds="6.25, 0.5, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/StarSecurityDataDataContext/Employee" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4871c39b-89dd-4b9b-9cfb-88c5a00d81b1" absoluteBounds="6.265, 0.96, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ef2d8c2a-768c-48a9-aef5-35a8f4fd5d5c" absoluteBounds="9.125, 4.5, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/StarSecurityDataDataContext/Network" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dc17d19a-7255-4156-9b63-7643c22a73fe" absoluteBounds="9.14, 4.9600000000000009, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b7754365-a64e-4529-a8de-96c2ce41a219" absoluteBounds="3.625, 3.5, 2, 1.7708968098958329">
+      <DataClassMoniker Name="/StarSecurityDataDataContext/Service" />
+      <nestedChildShapes>
+        <elementListCompartment Id="46d51b88-7614-4447-9c95-6d00f77c2397" absoluteBounds="3.64, 3.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.875 : 1.57774983723958); (3.625 : 1.57774983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/StarSecurityDataDataContext/Client/Client_Contract" />
       <nodes>
-        <classShapeMoniker Id="8384c0ea-39b1-4252-833e-b7430acdd7f7" />
-        <classShapeMoniker Id="9bffda98-1613-4dd6-9b50-af86fc2beaff" />
+        <classShapeMoniker Id="320b70d2-2a0b-44ff-9251-fd1a5c6c4dd5" />
+        <classShapeMoniker Id="8479dbcb-17d2-4173-8293-8613a59849df" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9 : 1.19314697265625); (8 : 1.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9.125 : 1.19314697265625); (8.25 : 1.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/StarSecurityDataDataContext/Department/Department_Employee" />
       <nodes>
-        <classShapeMoniker Id="b5b7abd3-a634-4ee0-8007-4ecb19741a2c" />
-        <classShapeMoniker Id="3903235f-24ef-4f6e-b776-77cbc377c693" />
+        <classShapeMoniker Id="00debe0a-8618-4a43-9246-24262976f652" />
+        <classShapeMoniker Id="40d19b19-b259-4216-aacd-1be12f1341aa" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.25 : 1.19314697265625); (6 : 1.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9.125 : 3.31330485026042); (8.25 : 3.31330485026042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/StarSecurityDataDataContext/Account/Account_Employee" />
       <nodes>
-        <classShapeMoniker Id="d57f175d-ab88-4ee2-ab77-5f7385fac2a0" />
-        <classShapeMoniker Id="3903235f-24ef-4f6e-b776-77cbc377c693" />
+        <classShapeMoniker Id="1f7749d3-e01f-4383-8721-08e0e3f103bd" />
+        <classShapeMoniker Id="40d19b19-b259-4216-aacd-1be12f1341aa" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.25 : 2.99600341796875); (6 : 2.99600341796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.625 : 1.67390055338542); (6.25 : 1.67390055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/StarSecurityDataDataContext/Contract/Contract_Employee" />
       <nodes>
-        <classShapeMoniker Id="9bffda98-1613-4dd6-9b50-af86fc2beaff" />
-        <classShapeMoniker Id="3903235f-24ef-4f6e-b776-77cbc377c693" />
+        <classShapeMoniker Id="8479dbcb-17d2-4173-8293-8613a59849df" />
+        <classShapeMoniker Id="40d19b19-b259-4216-aacd-1be12f1341aa" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.625 : 3.5); (4.625 : 2.84780110677083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/StarSecurityDataDataContext/Service/Service_Contract" />
+      <nodes>
+        <classShapeMoniker Id="b7754365-a64e-4529-a8de-96c2ce41a219" />
+        <classShapeMoniker Id="8479dbcb-17d2-4173-8293-8613a59849df" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

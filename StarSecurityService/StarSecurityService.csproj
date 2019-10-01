@@ -177,13 +177,13 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\adminlte.css.map" />
+    <Content Include="Content\adminlte.min.css.map" />
     <Content Include="Models\StarSecurityData.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>StarSecurityData.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\adminlte.css.map" />
-    <Content Include="Content\adminlte.min.css.map" />
     <None Include="Models\StarSecurityData.dbml.layout">
       <DependentUpon>StarSecurityData.dbml</DependentUpon>
     </None>
@@ -233,6 +233,7 @@
     <Content Include="Views\Admin\EmployeeDetails.cshtml" />
     <Content Include="Views\Admin\EmployeeEdit.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Admin\ContractList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
