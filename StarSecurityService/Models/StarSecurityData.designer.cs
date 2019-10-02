@@ -21,9 +21,9 @@ namespace StarSecurityService.Models
 	using System.Runtime.Serialization;
 	using System.ComponentModel;
 	using System;
-    using System.ComponentModel.DataAnnotations;
-
-    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="StarSecurity")]
+	
+	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="StarSecurity")]
 	public partial class StarSecurityDataDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -478,6 +478,8 @@ namespace StarSecurityService.Models
 		
 		private string _password;
 		
+		private string _role;
+		
 		private EntitySet<Employee> _Employees;
 		
 		private bool serializing;
@@ -492,6 +494,8 @@ namespace StarSecurityService.Models
     partial void OnusernameChanged();
     partial void OnpasswordChanging(string value);
     partial void OnpasswordChanged();
+    partial void OnroleChanging(string value);
+    partial void OnroleChanged();
     #endregion
 		
 		public Account()
@@ -562,8 +566,29 @@ namespace StarSecurityService.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+		public string role
+		{
+			get
+			{
+				return this._role;
+			}
+			set
+			{
+				if ((this._role != value))
+				{
+					this.OnroleChanging(value);
+					this.SendPropertyChanging();
+					this._role = value;
+					this.SendPropertyChanged("role");
+					this.OnroleChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Account_Employee", Storage="_Employees", ThisKey="id", OtherKey="account_id")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4, EmitDefaultValue=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5, EmitDefaultValue=false)]
 		public EntitySet<Employee> Employees
 		{
 			get
@@ -658,13 +683,15 @@ namespace StarSecurityService.Models
 		
 		private string _email;
 		
-		private string _service;
+		private int _service_id;
 		
 		private string _description;
 		
 		private string _status;
 		
 		private EntitySet<Contract> _Contracts;
+		
+		private EntityRef<Service> _Service;
 		
 		private bool serializing;
 		
@@ -682,8 +709,8 @@ namespace StarSecurityService.Models
     partial void OnnumberChanged();
     partial void OnemailChanging(string value);
     partial void OnemailChanged();
-    partial void OnserviceChanging(string value);
-    partial void OnserviceChanged();
+    partial void Onservice_idChanging(int value);
+    partial void Onservice_idChanged();
     partial void OndescriptionChanging(string value);
     partial void OndescriptionChanged();
     partial void OnstatusChanging(string value);
@@ -800,23 +827,27 @@ namespace StarSecurityService.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_service", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_service_id", DbType="Int NOT NULL")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
-		public string service
+		public int service_id
 		{
 			get
 			{
-				return this._service;
+				return this._service_id;
 			}
 			set
 			{
-				if ((this._service != value))
+				if ((this._service_id != value))
 				{
-					this.OnserviceChanging(value);
+					if (this._Service.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onservice_idChanging(value);
 					this.SendPropertyChanging();
-					this._service = value;
-					this.SendPropertyChanged("service");
-					this.OnserviceChanged();
+					this._service_id = value;
+					this.SendPropertyChanged("service_id");
+					this.Onservice_idChanged();
 				}
 			}
 		}
@@ -882,6 +913,40 @@ namespace StarSecurityService.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_Client", Storage="_Service", ThisKey="service_id", OtherKey="id", IsForeignKey=true)]
+		public Service Service
+		{
+			get
+			{
+				return this._Service.Entity;
+			}
+			set
+			{
+				Service previousValue = this._Service.Entity;
+				if (((previousValue != value) 
+							|| (this._Service.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Service.Entity = null;
+						previousValue.Clients.Remove(this);
+					}
+					this._Service.Entity = value;
+					if ((value != null))
+					{
+						value.Clients.Add(this);
+						this._service_id = value.id;
+					}
+					else
+					{
+						this._service_id = default(int);
+					}
+					this.SendPropertyChanged("Service");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -917,6 +982,7 @@ namespace StarSecurityService.Models
 		private void Initialize()
 		{
 			this._Contracts = new EntitySet<Contract>(new Action<Contract>(this.attach_Contracts), new Action<Contract>(this.detach_Contracts));
+			this._Service = default(EntityRef<Service>);
 			OnCreated();
 		}
 		
@@ -944,7 +1010,7 @@ namespace StarSecurityService.Models
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Contract")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-    public partial class Contract : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Contract : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1503,8 +1569,7 @@ namespace StarSecurityService.Models
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Employee")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-    [MetadataType(typeof(EmployeeMetaData))]
-    public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -2219,6 +2284,8 @@ namespace StarSecurityService.Models
 		
 		private string _status;
 		
+		private EntitySet<Client> _Clients;
+		
 		private EntitySet<Contract> _Contracts;
 		
 		private bool serializing;
@@ -2349,8 +2416,27 @@ namespace StarSecurityService.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_Contract", Storage="_Contracts", ThisKey="id", OtherKey="service_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_Client", Storage="_Clients", ThisKey="id", OtherKey="service_id")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6, EmitDefaultValue=false)]
+		public EntitySet<Client> Clients
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._Clients.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._Clients;
+			}
+			set
+			{
+				this._Clients.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_Contract", Storage="_Contracts", ThisKey="id", OtherKey="service_id")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7, EmitDefaultValue=false)]
 		public EntitySet<Contract> Contracts
 		{
 			get
@@ -2388,6 +2474,18 @@ namespace StarSecurityService.Models
 			}
 		}
 		
+		private void attach_Clients(Client entity)
+		{
+			this.SendPropertyChanging();
+			entity.Service = this;
+		}
+		
+		private void detach_Clients(Client entity)
+		{
+			this.SendPropertyChanging();
+			entity.Service = null;
+		}
+		
 		private void attach_Contracts(Contract entity)
 		{
 			this.SendPropertyChanging();
@@ -2402,6 +2500,7 @@ namespace StarSecurityService.Models
 		
 		private void Initialize()
 		{
+			this._Clients = new EntitySet<Client>(new Action<Client>(this.attach_Clients), new Action<Client>(this.detach_Clients));
 			this._Contracts = new EntitySet<Contract>(new Action<Contract>(this.attach_Contracts), new Action<Contract>(this.detach_Contracts));
 			OnCreated();
 		}

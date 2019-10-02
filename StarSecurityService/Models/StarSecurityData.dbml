@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="StarSecurity" Class="StarSecurityDataDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=ADMIN-PC\SQLEXPRESS;Initial Catalog=StarSecurity;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="StarSecurityConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-FAAQ3HS;Initial Catalog=StarSecurity;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="StarSecurityConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.About" Member="Abouts">
     <Type Name="About">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -21,6 +21,7 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="username" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="password" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="role" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Association Name="Account_Employee" Member="Employees" ThisKey="id" OtherKey="account_id" Type="Employee" />
     </Type>
   </Table>
@@ -31,10 +32,11 @@
       <Column Name="address" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="number" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="service" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="service_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="status" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="Client_Contract" Member="Contracts" ThisKey="id" OtherKey="client_id" Type="Contract" />
+      <Association Name="Service_Client" Member="Service" ThisKey="service_id" OtherKey="id" Type="Service" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Contract" Member="Contracts">
@@ -97,6 +99,7 @@
       <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="image" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="status" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Service_Client" Member="Clients" ThisKey="id" OtherKey="service_id" Type="Client" />
       <Association Name="Service_Contract" Member="Contracts" ThisKey="id" OtherKey="service_id" Type="Contract" />
     </Type>
   </Table>
