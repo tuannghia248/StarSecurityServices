@@ -26,12 +26,12 @@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.service_id)
-                    @Html.DropDownListFor(model => model.service_id, ViewBag.serlist as SelectList, "", new { @class = "form-control"})
+                    @Html.DropDownListFor(model => model.service_id, ViewBag.serviceList as SelectList, "", new { @class = "form-control"})
                     @Html.ValidationMessageFor(model => model.service_id, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.client_id)
-                    @Html.DropDownListFor(model => model.client_id, ViewBag.clilist as SelectList, "", new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.client_id, ViewBag.clientList as SelectList, "", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.client_id, "", new { @class = "text-danger" })
                 </div>
                 @*<div class="form-group" id="divPartialView">

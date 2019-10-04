@@ -40,30 +40,25 @@
                     @Html.EditorFor(model => model.position, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.position, "", new { @class = "text-danger" })
                 </div>
-                @*<div class="form-group">
-                    @Html.LabelFor(model => model.qualification)
-                    @Html.EditorFor(model => model.qualification, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.qualification, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.achievement)
-                    @Html.EditorFor(model => model.achievement, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.achievement, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.depantment_id)
-                    @Html.DropDownListFor(model => model.depantment_id, ViewBag.deplist as SelectList, "", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.depantment_id, "", new { @class = "text-danger" })
-                </div>*@
                 <div class="form-group">
                     @Html.LabelFor(model => model.contract_id)
-                    @Html.EditorFor(model => model.contract_id, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.contract_id, ViewBag.contractList as SelectList, "", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.contract_id, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.status)
+                    <select class="form-control" name="status">
+                        <option>Standby</option>
+                        <option>Active</option>
+                        <option>Inactive</option>
+                        <option>Quit</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Save</button>
-                @Html.ActionLink("Back to List", "EmployeeList", "", new { @class = "btn btn-default" })
+                @Html.ActionLink("Back to List", "EmployeeList", null, new { @class = "btn btn-default" })
             </div>  
         </form>
     </div>
