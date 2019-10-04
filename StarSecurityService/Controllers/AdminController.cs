@@ -11,36 +11,36 @@ namespace StarSecurityService.Controllers
     {
         StarSecurityDataDataContext db = new StarSecurityDataDataContext();
 
-        void DepartmentDropDownList()
+        void ContractDropDownList()
         {
-            Department dep = new Department();
-            var query = db.Departments.ToList();
-            SelectList list = new SelectList(query, "id", "name");
-            ViewBag.deplist = list;
+            var query = db.Contracts.Where(c => c.status == "Hold" || c.status == "Active").Select(c => new { id = c.id, data = $"{c.id} - {c.Service.name} - {c.Client.name}" }).ToList();
+            SelectList list = new SelectList(query, "id", "data");
+            ViewBag.contractList = list;
         }
 
         void ServiceDropDownList()
         {
-            Service ser = new Service();
             var query = db.Services.ToList();
             SelectList list = new SelectList(query, "id", "name");
-            ViewBag.serlist = list;
+            ViewBag.serviceList = list;
         }
 
         void ClientDropDownList()
         {
-            Client cli = new Client();
             var query = db.Clients.ToList();
             SelectList list = new SelectList(query, "id", "name");
-            ViewBag.clilist = list;
+            ViewBag.clientList = list;
         }
 
-        void ClientDropDownListSelected(int id)
+        void ClientToContractDDLSelected(int? id)
         {
-            Client cli = new Client();
-            var query = db.Clients.ToList();
-            SelectList list = new SelectList(query, "id", "name", id);
-            ViewBag.clilist = list;
+            var client = db.Clients.Single(c => c.id == id);
+            var serviceQuery = db.Services.ToList();
+            var clientQuery = db.Clients.ToList();
+            SelectList serviceList = new SelectList(serviceQuery, "id", "name", client.service_id);
+            SelectList clientList = new SelectList(clientQuery, "id", "name", id);
+            ViewBag.serviceList = serviceList;
+            ViewBag.clientList = clientList;
         }
 
         public ActionResult Dashboard()
@@ -56,14 +56,14 @@ namespace StarSecurityService.Controllers
 
         public ActionResult EmployeeInsert()
         {
-            DepartmentDropDownList();
+            ContractDropDownList();
             return View();
         }
 
         [HttpPost]
         public ActionResult EmployeeInsert(Employee employee)
         {
-            DepartmentDropDownList();
+            ContractDropDownList();
             try
             {
                 db.Employees.InsertOnSubmit(employee);
@@ -84,7 +84,7 @@ namespace StarSecurityService.Controllers
 
         public ActionResult EmployeeEdit(int id)
         {
-            DepartmentDropDownList();
+            ContractDropDownList();
             var empdetails = db.Employees.Single(e => e.id == id);
             return View(empdetails);
         }
@@ -92,7 +92,7 @@ namespace StarSecurityService.Controllers
         [HttpPost]
         public ActionResult EmployeeEdit(int id, Employee employee)
         {
-            DepartmentDropDownList();
+            ContractDropDownList();
             try
             {
                 Employee emptoedit = db.Employees.Single(e => e.id == id);
@@ -133,23 +133,109 @@ namespace StarSecurityService.Controllers
             return View(contracts);
         }
 
-        public ActionResult ContractInsert()
+        public PartialViewResult GetEmployeeOfContract(int id)
         {
-            ServiceDropDownList();
-            ClientDropDownList();
-            return View();
+            var employeeOfContract = db.Employees.Where(e => e.contract_id == id).ToList();
+            return PartialView("EmployeePartialView", employeeOfContract);
+        }
+
+        public ActionResult ContractInsert(int? id)
+        {
+            if (id == null)
+            {
+                ServiceDropDownList();
+                ClientDropDownList();
+                return View();
+            }
+            else
+            {
+                ClientToContractDDLSelected(id);
+                return View();
+            }
         }
 
         [HttpPost]
-        public ActionResult ContractInsert(Contract contract)
+        public ActionResult ContractInsert(int? id, Contract contract)
+        {
+            if (id == null)
+            {
+                ServiceDropDownList();
+                ClientDropDownList();
+                try
+                {
+                    db.Contracts.InsertOnSubmit(contract);
+                    var clientCheck = db.Clients.Single(c => c.id == contract.client_id);
+                    clientCheck.status = "Ongoing";
+                    db.SubmitChanges();
+                    return RedirectToAction("ContractList");
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                ClientToContractDDLSelected(id);
+                try
+                {
+                    db.Contracts.InsertOnSubmit(contract);
+                    var clientCheck = db.Clients.Single(c => c.id == contract.client_id);
+                    clientCheck.status = "Ongoing";
+                    db.SubmitChanges();
+                    return RedirectToAction("ContractList");
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+        }
+
+        public ActionResult ContractDetails(int id)
+        {
+            var contractDetails = db.Contracts.Single(e => e.id == id);
+            return View(contractDetails);
+        }
+
+        public ActionResult ContractEdit(int id)
+        {
+            ServiceDropDownList();
+            ClientDropDownList();
+            var contractDetails = db.Contracts.Single(e => e.id == id);
+            return View(contractDetails);
+        }
+
+        [HttpPost]
+        public ActionResult ContractEdit(int id, Contract contract)
         {
             ServiceDropDownList();
             ClientDropDownList();
             try
             {
-                db.Contracts.InsertOnSubmit(contract);
-                db.SubmitChanges();
-                return RedirectToAction("ContractList");
+                Contract contractToEdit = db.Contracts.Single(e => e.id == id);
+                contractToEdit.duration = contract.duration;
+                contractToEdit.total = contract.total;
+                contractToEdit.service_id = contract.service_id;
+                contractToEdit.client_id = contract.client_id;
+                contractToEdit.created_at = contract.created_at;
+                contractToEdit.end_at = contract.end_at;
+                contractToEdit.status = contract.status;
+                if (contract.status == "Complete" || contract.status == "Null")
+                {
+                    var employeeOfContract = db.Employees.Where(e => e.contract_id == id).ToList();
+                    employeeOfContract.ForEach(e => {
+                        e.contract_id = null;
+                        e.status = "Standby";
+                    });
+                    db.SubmitChanges();
+                    return RedirectToAction("ContractList");
+                }
+                else
+                {
+                    db.SubmitChanges();
+                    return RedirectToAction("ContractList");
+                }
             }
             catch
             {
@@ -163,23 +249,21 @@ namespace StarSecurityService.Controllers
             return View(clients);
         }
 
-        public ActionResult ClientToContact(int id)
+        public ActionResult ClientInsert()
         {
             ServiceDropDownList();
-            ClientDropDownListSelected(id);
             return View();
         }
 
         [HttpPost]
-        public ActionResult ClientToContact(int id, Contract contract)
+        public ActionResult ClientInsert(Client client)
         {
             ServiceDropDownList();
-            ClientDropDownListSelected(id);
             try
             {
-                db.Contracts.InsertOnSubmit(contract);
+                db.Clients.InsertOnSubmit(client);
                 db.SubmitChanges();
-                return RedirectToAction("ContractList");
+                return RedirectToAction("ClientList");
             }
             catch
             {

@@ -1,0 +1,6 @@
+﻿@model IEnumerable<StarSecurityService.Models.Employee>
+
+@foreach (var item in Model)
+{
+    <div>@Html.DisplayFor(modelItem => item.name)</div>
+}

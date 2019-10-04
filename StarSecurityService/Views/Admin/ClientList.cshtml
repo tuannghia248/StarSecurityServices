@@ -58,7 +58,7 @@
                         @Html.DisplayFor(modelItem => item.email)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.service_id)
+                        @Html.DisplayFor(modelItem => item.Service.name)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.description)
@@ -67,7 +67,7 @@
                         @Html.DisplayFor(modelItem => item.status)
                     </td>
                     <td>
-                        @Html.ActionLink("New Contact", "ClientToContact", new { id = item.id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("New Contact", "ContractInsert", new { id = item.id }, new { @class = "btn btn-primary" })
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "ClientEdit", new { id = item.id }, new { @class = "btn btn-primary" })
