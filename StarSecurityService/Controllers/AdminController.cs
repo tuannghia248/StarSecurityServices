@@ -187,10 +187,10 @@ namespace StarSecurityService.Controllers
             }
         }
 
-        public PartialViewResult GetClient(int id)
-        {
-            var model = db.Clients.Single(c => c.id == id);
-            return PartialView("MyPartialView", model);
-        }
+        //public PartialViewResult GetClient(int id)
+        //{
+        //    var model = db.Clients.Single(c => c.id == id);
+        //    return PartialView("MyPartialView", model);
+        //}
     }
 }
