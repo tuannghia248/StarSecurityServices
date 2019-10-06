@@ -1,0 +1,53 @@
+﻿@model IEnumerable<StarSecurityService.Models.Account>
+
+@{
+    ViewBag.Title = "Account List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="box">
+    <div class="box-body">
+        <table id="datatable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.username)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.role)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.role)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "AccountEdit", new { id = item.id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Details", "AccountDetails", new { id = item.id }, new { @class = "btn btn-info" })
+                            @using (Html.BeginForm("AccountDelete", "Admin", new { id = item.id }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this?');", style = "display: inline-block" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

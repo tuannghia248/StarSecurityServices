@@ -192,5 +192,71 @@ namespace StarSecurityService.Controllers
             var model = db.Clients.Single(c => c.id == id);
             return PartialView("MyPartialView", model);
         }
+
+        public ActionResult AccountList()
+        {
+            var accounts = db.Accounts.ToList();
+            return View(accounts);
+        }
+
+        public ActionResult AccountInsert()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AccountInsert(Account account)
+        {
+            try
+            {
+                db.Accounts.InsertOnSubmit(account);
+                db.SubmitChanges();
+                return RedirectToAction("AccountList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult AccountDetails(int id)
+        {
+            var accDetails = db.Accounts.Single(e => e.id == id);
+            return View(accDetails);
+        }
+
+        public ActionResult AccountEdit(int id)
+        {
+            var accDetails = db.Accounts.Single(e => e.id == id);
+            return View(accDetails);
+        }
+
+        [HttpPost]
+        public ActionResult AccountEdit(int id, Account account)
+        {
+            try
+            {
+                Account accountToEdit = db.Accounts.Single(e => e.id == id);
+                accountToEdit.username = account.username;
+                accountToEdit.password = account.password;
+                accountToEdit.role = account.role;
+                accountToEdit.Employees = account.Employees;
+                db.SubmitChanges();
+                return RedirectToAction("AccountList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpDelete]
+        public ActionResult AccountDelete(int id)
+        {
+            var accToDelete = db.Accounts.Single(e => e.id == id);
+            db.Accounts.DeleteOnSubmit(accToDelete);
+            db.SubmitChanges();
+            return RedirectToAction("AccountList");
+        }
     }
 }
