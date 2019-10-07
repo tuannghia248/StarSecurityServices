@@ -20,14 +20,14 @@ namespace StarSecurityService.Controllers
 
         void ServiceDropDownList()
         {
-            var query = db.Services.ToList();
+            var query = db.Services.Where(s => s.status == "Active").ToList();
             SelectList list = new SelectList(query, "id", "name");
             ViewBag.serviceList = list;
         }
 
         void ClientDropDownList()
         {
-            var query = db.Clients.ToList();
+            var query = db.Clients.Where(c => c.status == "Waiting" || c.status == "Ongoing").ToList();
             SelectList list = new SelectList(query, "id", "name");
             ViewBag.clientList = list;
         }
@@ -35,8 +35,8 @@ namespace StarSecurityService.Controllers
         void ClientToContractDDLSelected(int? id)
         {
             var client = db.Clients.Single(c => c.id == id);
-            var serviceQuery = db.Services.ToList();
-            var clientQuery = db.Clients.ToList();
+            var serviceQuery = db.Services.Where(s => s.status == "Active").ToList();
+            var clientQuery = db.Clients.Where(c => c.status == "Waiting" || c.status == "Ongoing").ToList();
             SelectList serviceList = new SelectList(serviceQuery, "id", "name", client.service_id);
             SelectList clientList = new SelectList(clientQuery, "id", "name", id);
             ViewBag.serviceList = serviceList;
@@ -78,15 +78,15 @@ namespace StarSecurityService.Controllers
 
         public ActionResult EmployeeDetails(int id)
         {
-            var empdetails = db.Employees.Single(e => e.id == id);
-            return View(empdetails);
+            var empDetails = db.Employees.Single(e => e.id == id);
+            return View(empDetails);
         }
 
         public ActionResult EmployeeEdit(int id)
         {
             ContractDropDownList();
-            var empdetails = db.Employees.Single(e => e.id == id);
-            return View(empdetails);
+            var empDetails = db.Employees.Single(e => e.id == id);
+            return View(empDetails);
         }
 
         [HttpPost]
@@ -95,20 +95,20 @@ namespace StarSecurityService.Controllers
             ContractDropDownList();
             try
             {
-                Employee emptoedit = db.Employees.Single(e => e.id == id);
-                emptoedit.name = employee.name;
-                emptoedit.address = employee.address;
-                emptoedit.phone = employee.phone;
-                emptoedit.birthday = employee.birthday;
-                emptoedit.position = employee.position;
-                emptoedit.image = employee.image;
-                emptoedit.salary = employee.salary;
-                emptoedit.qualification = employee.qualification;
-                emptoedit.achievement = employee.achievement;
-                emptoedit.depantment_id = employee.depantment_id;
-                emptoedit.account_id = employee.account_id;
-                emptoedit.contract_id = employee.contract_id;
-                emptoedit.status = employee.status;
+                Employee empToEdit = db.Employees.Single(e => e.id == id);
+                empToEdit.name = employee.name;
+                empToEdit.address = employee.address;
+                empToEdit.phone = employee.phone;
+                empToEdit.birthday = employee.birthday;
+                empToEdit.position = employee.position;
+                empToEdit.image = employee.image;
+                empToEdit.salary = employee.salary;
+                empToEdit.qualification = employee.qualification;
+                empToEdit.achievement = employee.achievement;
+                empToEdit.depantment_id = employee.depantment_id;
+                empToEdit.account_id = employee.account_id;
+                empToEdit.contract_id = employee.contract_id;
+                empToEdit.status = employee.status;
                 db.SubmitChanges();
                 return RedirectToAction("EmployeeList");
             }
@@ -121,8 +121,8 @@ namespace StarSecurityService.Controllers
         [HttpDelete]
         public ActionResult EmployeeDelete(int id)
         {
-            var emptodelete = db.Employees.Single(e => e.id == id);
-            db.Employees.DeleteOnSubmit(emptodelete);
+            var empToDelete = db.Employees.Single(e => e.id == id);
+            db.Employees.DeleteOnSubmit(empToDelete);
             db.SubmitChanges();
             return RedirectToAction("EmployeeList");
         }
@@ -243,6 +243,20 @@ namespace StarSecurityService.Controllers
             }
         }
 
+        [HttpDelete]
+        public ActionResult ContractDelete(int id)
+        {
+            var employeeOfContract = db.Employees.Where(e => e.contract_id == id).ToList();
+            employeeOfContract.ForEach(e => {
+                e.contract_id = null;
+                e.status = "Standby";
+            });
+            var contractToDelete = db.Contracts.Single(c => c.id == id);
+            db.Contracts.DeleteOnSubmit(contractToDelete);
+            db.SubmitChanges();
+            return RedirectToAction("ContractList");
+        }
+
         public ActionResult ClientList()
         {
             var clients = db.Clients.ToList();
@@ -271,10 +285,58 @@ namespace StarSecurityService.Controllers
             }
         }
 
-        //public PartialViewResult GetClient(int id)
-        //{
-        //    var model = db.Clients.Single(c => c.id == id);
-        //    return PartialView("MyPartialView", model);
-        //}
+        public ActionResult ClientDetails(int id)
+        {
+            var clientDetails = db.Clients.Single(c => c.id == id);
+            return View(clientDetails);
+        }
+
+        public ActionResult ClientEdit(int id)
+        {
+            ServiceDropDownList();
+            var clientDetails = db.Clients.Single(c => c.id == id);
+            return View(clientDetails);
+        }
+
+        [HttpPost]
+        public ActionResult ClientEdit(int id, Client client)
+        {
+            ServiceDropDownList();
+            try
+            {
+                Client clientToEdit = db.Clients.Single(c => c.id == id);
+                clientToEdit.name = client.name;
+                clientToEdit.address = client.address;
+                clientToEdit.number = client.number;
+                clientToEdit.email = client.email;
+                clientToEdit.service_id = client.service_id;
+                clientToEdit.description = client.description;
+                clientToEdit.status = client.status;
+                db.SubmitChanges();
+                return RedirectToAction("ClientList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpDelete]
+        public ActionResult ClientDelete(int id)
+        {
+            var contractOfClient = db.Contracts.Where(c => c.client_id == id).ToList();
+            contractOfClient.ForEach(c => {
+                var employeeOfContract = db.Employees.Where(e => e.contract_id == c.id).ToList();
+                employeeOfContract.ForEach(e => {
+                    e.contract_id = null;
+                    e.status = "Standby";
+                });
+            });
+            db.Contracts.DeleteAllOnSubmit(contractOfClient);
+            var clientToDelete = db.Clients.Single(c => c.id == id);
+            db.Clients.DeleteOnSubmit(clientToDelete);
+            db.SubmitChanges();
+            return RedirectToAction("ClientList");
+        }
     }
 }
