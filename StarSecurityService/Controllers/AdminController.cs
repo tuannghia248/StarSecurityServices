@@ -338,5 +338,84 @@ namespace StarSecurityService.Controllers
             db.SubmitChanges();
             return RedirectToAction("ClientList");
         }
+
+        public ActionResult ServiceList()
+        {
+            var services = db.Services.ToList();
+            return View(services);
+        }
+
+        public ActionResult ServiceInsert()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ServiceInsert(Service service)
+        {
+            try
+            {
+                db.Services.InsertOnSubmit(service);
+                db.SubmitChanges();
+                return RedirectToAction("ServiceList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult ServiceDetails(int id)
+        {
+            var serviceDetails = db.Services.Single(s => s.id == id);
+            return View(serviceDetails);
+        }
+
+        public ActionResult ServiceEdit(int id)
+        {
+            var serviceDetails = db.Services.Single(s => s.id == id);
+            return View(serviceDetails);
+        }
+
+        [HttpPost]
+        public ActionResult ServiceEdit(int id, Service service)
+        {
+            try
+            {
+                Service serviceToEdit = db.Services.Single(s => s.id == id);
+                serviceToEdit.name = service.name;
+                serviceToEdit.description = service.description;
+                serviceToEdit.image = service.image;
+                serviceToEdit.status = service.status;
+                db.SubmitChanges();
+                return RedirectToAction("ServiceList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpDelete]
+        public ActionResult ServiceDelete(int id)
+        {
+            var clientOfService = db.Clients.Where(c => c.service_id == id).ToList();
+            clientOfService.ForEach(c => {
+                var contractOfClient = db.Contracts.Where(d => d.client_id == c.id).ToList();
+                contractOfClient.ForEach(d => {
+                    var employeeOfContract = db.Employees.Where(e => e.contract_id == d.id).ToList();
+                    employeeOfContract.ForEach(e => {
+                        e.contract_id = null;
+                        e.status = "Standby";
+                    });
+                });
+                db.Contracts.DeleteAllOnSubmit(contractOfClient);
+            });
+            db.Clients.DeleteAllOnSubmit(clientOfService);
+            var serviceToDelete = db.Services.Single(s => s.id == id);
+            db.Services.DeleteOnSubmit(serviceToDelete);
+            db.SubmitChanges();
+            return RedirectToAction("ServiceList");
+        }
     }
 }
