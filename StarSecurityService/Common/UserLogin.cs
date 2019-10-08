@@ -10,5 +10,6 @@ namespace StarSecurityService.Common
     {
         public int UserID { set; get; }
         public string UserName { set; get; }
+        public string Role { set; get; }
     }
 }

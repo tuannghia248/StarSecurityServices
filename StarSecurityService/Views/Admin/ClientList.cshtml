@@ -69,11 +69,11 @@
                     <td>
                         @if (item.status == "Fulfill")
                         {
-                            @Html.ActionLink("New Contact", "ContractInsert", new { id = item.id }, new { @class = "btn btn-primary disabled" })
+                            @Html.ActionLink("New Contract", "ContractInsert", new { id = item.id }, new { @class = "btn btn-primary disabled" })
                         }
                         else
                         {
-                            @Html.ActionLink("New Contact", "ContractInsert", new { id = item.id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("New Contract", "ContractInsert", new { id = item.id }, new { @class = "btn btn-primary" })
                         }
                     </td>
                     <td>

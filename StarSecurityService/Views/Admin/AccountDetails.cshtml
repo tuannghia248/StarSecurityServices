@@ -1,0 +1,30 @@
+﻿@model StarSecurityService.Models.Account
+
+@{
+    ViewBag.Title = "Account Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="box box-primary">
+    <div class="box-body box-profile">
+        <strong><i class="fa fa-address-card margin-r-5"></i> @Html.DisplayNameFor(model => model.id)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.id)</p>
+        <hr>
+        <strong><i class="fa fa-address-card margin-r-5"></i> @Html.DisplayNameFor(model => model.username)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.username)</p>
+        <hr>
+        <strong><i class="fa fa-address-card margin-r-5"></i> @Html.DisplayNameFor(model => model.role)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.role)</p>
+        <hr>
+    </div>
+    <div class="box-footer">
+        @{
+            var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
+        }
+        @if (session.Role == "admin")
+        {
+            @Html.ActionLink("Edit", "AccountEdit", new { id = Model.id }, new { @class = "btn btn-primary" })
+        }
+        @Html.ActionLink("Back to List", "AccountList", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
