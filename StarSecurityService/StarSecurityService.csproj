@@ -239,11 +239,16 @@
     <Content Include="Views\Admin\ContractList.cshtml" />
     <Content Include="Views\Admin\ContractInsert.cshtml" />
     <Content Include="Views\Admin\ClientList.cshtml" />
-    <Content Include="Views\Admin\MyPartialView.cshtml" />
     <Content Include="Views\Admin\ContractDetails.cshtml" />
     <Content Include="Views\Admin\EmployeePartialView.cshtml" />
     <Content Include="Views\Admin\ContractEdit.cshtml" />
     <Content Include="Views\Admin\ClientInsert.cshtml" />
+    <Content Include="Views\Admin\ClientDetails.cshtml" />
+    <Content Include="Views\Admin\ClientEdit.cshtml" />
+    <Content Include="Views\Admin\ServiceList.cshtml" />
+    <Content Include="Views\Admin\ServiceInsert.cshtml" />
+    <Content Include="Views\Admin\ServiceDetails.cshtml" />
+    <Content Include="Views\Admin\ServiceEdit.cshtml" />
     <Content Include="Views\Admin\VacancyList.cshtml" />
     <Content Include="Views\Admin\VacancyInsert.cshtml" />
     <Content Include="Views\Admin\VacancyDetails.cshtml" />

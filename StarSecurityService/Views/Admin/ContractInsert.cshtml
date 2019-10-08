@@ -3,6 +3,13 @@
 @{
     ViewBag.Title = "New Contract";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var listStatus = new SelectList(new List<SelectListItem> {
+        new SelectListItem { Text = "Hold", Value = "Hold"},
+        new SelectListItem { Text = "Active", Value = "Active"},
+        new SelectListItem { Text = "Complete", Value = "Complete"},
+        new SelectListItem { Text = "Null", Value = "Null"}
+    }, "Value", "Text");
 }
 
 @using (Html.BeginForm())
@@ -34,9 +41,6 @@
                     @Html.DropDownListFor(model => model.client_id, ViewBag.clientList as SelectList, "", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.client_id, "", new { @class = "text-danger" })
                 </div>
-                @*<div class="form-group" id="divPartialView">
-                    @Html.Partial("MyPartialView", Model)
-                </div>*@
                 <div class="form-group">
                     @Html.LabelFor(model => model.created_at)
                     @Html.EditorFor(model => model.created_at, new { htmlAttributes = new { @class = "form-control" } })
@@ -49,12 +53,7 @@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.status)
-                    <select class="form-control" name="status">
-                        <option>Hold</option>
-                        <option>Active</option>
-                        <option>Complete</option>
-                        <option>Null</option>
-                    </select>
+                    @Html.DropDownListFor(model => model.status, listStatus, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -64,22 +63,3 @@
         </form>
     </div>
 }
-
-@*@section Scripts {
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#client_id").change(function (event) {
-                var clientid = $(this).val();
-                $ajax({
-                    url: "@Url.Action("GetClient", "Admin")",
-                    data: { id: clientid },
-                    type: "Get",
-                    dataType:"html",
-                    success: function (data) {
-                        $("#divPartialView").html(data);
-                    }
-                });
-            });
-        });
-    </script>
-}*@

@@ -95,6 +95,19 @@
                     </li>
                     <li class="treeview">
                         <a href="">
+                            <i class="fa fa-cogs"></i>
+                            <span>Service</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("ServiceList", "Admin")"><i class="fa fa-list"></i> Service list</a></li>
+                            <li><a href="@Url.Action("ServiceInsert", "Admin")"><i class="fa fa-plus-circle"></i> Add new service</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="treeview">
+                        <a href="">
                             <i class="fa fa-user-circle-o"></i> <span>Vacancy</span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
@@ -106,6 +119,7 @@
                             }
                         </ul>
                     </li>
+
                     <li class="treeview">
                         <a href="">
                             <i class="fa fa-user-circle-o"></i> <span>Account</span>

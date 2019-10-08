@@ -3,6 +3,12 @@
 @{
     ViewBag.Title = "New Employee";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var listStatus = new SelectList(new List<SelectListItem> {
+        new SelectListItem { Text = "Standby", Value = "Standby"},
+        new SelectListItem { Text = "Active", Value = "Active"},
+        new SelectListItem { Text = "Resign", Value = "Resign"}
+    }, "Value", "Text");
 }
 
 @using (Html.BeginForm())
@@ -51,12 +57,7 @@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.status)
-                    <select class="form-control" name="status">
-                        <option>Standby</option>
-                        <option>Active</option>
-                        <option>Inactive</option>
-                        <option>Quit</option>
-                    </select>
+                    @Html.DropDownListFor(model => model.status, listStatus, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
                 </div>
             </div>

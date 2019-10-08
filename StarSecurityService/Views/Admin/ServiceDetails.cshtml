@@ -1,0 +1,26 @@
+﻿@model StarSecurityService.Models.Service
+
+@{
+    ViewBag.Title = "Service Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="box box-primary">
+    <div class="box-body box-profile">
+        <strong><i class="fa fa-cog margin-r-5"></i> @Html.DisplayNameFor(model => model.name)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.name)</p>
+        <hr>
+        <strong><i class="fa fa-file-text margin-r-5"></i> @Html.DisplayNameFor(model => model.description)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.description)</p>
+        <hr>
+        <strong><i class="fa fa-image margin-r-5"></i> @Html.DisplayNameFor(model => model.image)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.image)</p>
+        <hr>
+        <strong><i class="fa fa-check-circle margin-r-5"></i> @Html.DisplayNameFor(model => model.status)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.status)</p>
+    </div>
+    <div class="box-footer">
+        @Html.ActionLink("Edit", "ServiceEdit", new { id = Model.id }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Back to List", "ServiceList", null, new { @class = "btn btn-default" })
+    </div>
+</div>
