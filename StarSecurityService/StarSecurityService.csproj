@@ -51,6 +51,7 @@
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -131,12 +132,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountMetaData.cs" />
     <Compile Include="Models\EmployeeMetaData.cs" />
     <Compile Include="Models\StarSecurityData.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StarSecurityData.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\VacancyMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +244,14 @@
     <Content Include="Views\Admin\EmployeePartialView.cshtml" />
     <Content Include="Views\Admin\ContractEdit.cshtml" />
     <Content Include="Views\Admin\ClientInsert.cshtml" />
+    <Content Include="Views\Admin\VacancyList.cshtml" />
+    <Content Include="Views\Admin\VacancyInsert.cshtml" />
+    <Content Include="Views\Admin\VacancyDetails.cshtml" />
+    <Content Include="Views\Admin\VacancyEdit.cshtml" />
+    <Content Include="Views\Admin\AccountList.cshtml" />
+    <Content Include="Views\Admin\AccountInsert.cshtml" />
+    <Content Include="Views\Admin\AccountDetails.cshtml" />
+    <Content Include="Views\Admin\AccountEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

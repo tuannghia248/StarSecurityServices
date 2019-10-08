@@ -32,6 +32,13 @@ namespace StarSecurityService.Controllers
             ViewBag.clientList = list;
         }
 
+        void AccountDropDownList()
+        {
+            var query = db.Accounts.ToList();
+            SelectList list = new SelectList(query, "id", "username");
+            ViewBag.accountList = list;
+        }
+
         void ClientToContractDDLSelected(int? id)
         {
             var client = db.Clients.Single(c => c.id == id);
@@ -57,6 +64,7 @@ namespace StarSecurityService.Controllers
         public ActionResult EmployeeInsert()
         {
             ContractDropDownList();
+            AccountDropDownList();
             return View();
         }
 
@@ -64,6 +72,7 @@ namespace StarSecurityService.Controllers
         public ActionResult EmployeeInsert(Employee employee)
         {
             ContractDropDownList();
+            AccountDropDownList();
             try
             {
                 db.Employees.InsertOnSubmit(employee);
@@ -84,15 +93,25 @@ namespace StarSecurityService.Controllers
 
         public ActionResult EmployeeEdit(int id)
         {
-            ContractDropDownList();
-            var empdetails = db.Employees.Single(e => e.id == id);
-            return View(empdetails);
+            var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
+            if (session.Role == "admin")
+            {
+                ContractDropDownList();
+                AccountDropDownList();
+                var empdetails = db.Employees.Single(e => e.id == id);
+                return View(empdetails);
+            }
+            else
+            {
+                return RedirectToAction("EmployeeList");
+            }
         }
 
         [HttpPost]
         public ActionResult EmployeeEdit(int id, Employee employee)
         {
             ContractDropDownList();
+            AccountDropDownList();
             try
             {
                 Employee emptoedit = db.Employees.Single(e => e.id == id);
@@ -276,5 +295,153 @@ namespace StarSecurityService.Controllers
         //    var model = db.Clients.Single(c => c.id == id);
         //    return PartialView("MyPartialView", model);
         //}
+
+        public ActionResult VacancyList()
+        {
+            var vacancies = db.Vacancies.ToList();
+            return View(vacancies);
+        }
+
+        public ActionResult VacancyInsert()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult VacancyInsert(Vacancy vacancy)
+        {
+            try
+            {
+                db.Vacancies.InsertOnSubmit(vacancy);
+                db.SubmitChanges();
+                return RedirectToAction("VacancyList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult VacancyDetails(int id)
+        {
+            var vacancyDetails = db.Vacancies.Single(e => e.id == id);
+            return View(vacancyDetails);
+        }
+
+        public ActionResult VacancyEdit(int id)
+        {
+            var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
+            if (session.Role == "admin" || session.Role == "manager")
+            {
+                var vacancyDetails = db.Vacancies.Single(e => e.id == id);
+                return View(vacancyDetails);
+            }
+            else
+            {
+                return RedirectToAction("VacancyList");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult VacancyEdit(int id, Vacancy vacancy)
+        {
+            try
+            {
+                Vacancy vacancyToEdit = db.Vacancies.Single(e => e.id == id);
+                vacancyToEdit.job = vacancy.job;
+                vacancyToEdit.position = vacancy.position;
+                vacancyToEdit.quantity = vacancy.quantity;
+                vacancyToEdit.deadline = vacancy.deadline;
+                db.SubmitChanges();
+                return RedirectToAction("VacancyList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpDelete]
+        public ActionResult VacancyDelete(int id)
+        {
+            var vacancyToDelete = db.Vacancies.Single(e => e.id == id);
+            db.Vacancies.DeleteOnSubmit(vacancyToDelete);
+            db.SubmitChanges();
+            return RedirectToAction("VacancyList");
+        }
+
+        public ActionResult AccountList()
+        {
+            var accounts = db.Accounts.ToList();
+            return View(accounts);
+        }
+
+        public ActionResult AccountInsert()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AccountInsert(Account account)
+        {
+            try
+            {
+                db.Accounts.InsertOnSubmit(account);
+                db.SubmitChanges();
+                return RedirectToAction("AccountList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult AccountDetails(int id)
+        {
+            var accountDetails = db.Accounts.Single(e => e.id == id);
+            return View(accountDetails);
+        }
+
+        public ActionResult AccountEdit(int id)
+        {
+            var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
+            if (session.Role == "admin")
+            {
+                var accountDetails = db.Accounts.Single(e => e.id == id);
+                return View(accountDetails);
+            }
+            else
+            {
+                return RedirectToAction("AccountList");
+            }
+            
+        }
+
+        [HttpPost]
+        public ActionResult AccountEdit(int id, Account account)
+        {
+            try
+            {
+                Account accountToEdit = db.Accounts.Single(e => e.id == id);
+                accountToEdit.username = account.username;
+                accountToEdit.password = account.password;
+                accountToEdit.role = account.role;
+                db.SubmitChanges();
+                return RedirectToAction("AccountList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpDelete]
+        public ActionResult AccountDelete(int id)
+        {
+            var accountToDelete = db.Accounts.Single(e => e.id == id);
+            db.Accounts.DeleteOnSubmit(accountToDelete);
+            db.SubmitChanges();
+            return RedirectToAction("AccountList");
+        }
     }
 }
