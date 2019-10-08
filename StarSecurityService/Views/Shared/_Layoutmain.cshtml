@@ -1,4 +1,4 @@
-﻿@*@model StarSecurityService.Models.Account*@
+﻿
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,6 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,500,600,700&amp;subset=latin-ext" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link href="/Content/Custom.css" rel="stylesheet" />
     <link href="/Content/Site.css" rel="stylesheet" />
@@ -15,7 +14,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="background">
-
+   
     <div class="container">
         <p style="font-size:25px;color: #fff;cursor:pointer;margin-bottom: 20px;">STAR SECURITY SERVICES</p>
         <div class="banner"></div>
@@ -31,12 +30,7 @@
                     <div class="col-md-2">
                         <div class="header-menu"> @Html.ActionLink("Contact", "Contact", "Home")</div>
                     </div>
-                    <div class="col-md-2">
-                        <div class="header-menu"><a href="#testimony">Testimonial</a></div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="header-menu"><a style="padding-left: 38px;white-space:nowrap;" href="#aboutus">About Us</a></div>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-md-6">
@@ -53,27 +47,13 @@
             </div>
         </div>
     </div>
+               
+    <div style="background:#fff">
+    @RenderBody()
 
-    <div style="background:#fff;">
-        @RenderBody()
-
+    <footer></footer>
     </div>
-    @*<div style="background:#000;margin-top:20px">
-        
-          
-           
-                <a href="#" style="display: inline-block;">
-                    <img src="Upload/instagram_PNG3.png" alt="#" height="30" style="margin-right: 5px;
-    margin-top: -15px;">
-                    <a href="#" style="color:#3b5998 !important; display: inline-block;">
-                        <i class="fab fa-facebook-square fa-2x"></i>
-                    </a>
-                    <a href="#" style="color:red !important;display: inline-block; ">
-                        <i class="fab fa-youtube fa-2x"></i>
-                    </a>
-           
-       
-    </div>*@
+    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

@@ -18,16 +18,19 @@ namespace StarSecurityService.Dao
         {
             return db.Accounts.SingleOrDefault(x => x.username == userName);
         }
-        public bool Login(string userName, string passWord)
+        public int Login(string userName, string passWord)
         {
-            var result = db.Accounts.Count(x => x.username == userName && x.password == passWord);
-            if (result > 0)
+            var result = db.Accounts.SingleOrDefault(x => x.username == userName);
+            if (result == null)
             {
-                return true;
+                return 0;
             }
             else
             {
-                return false;
+                if (result.password == passWord)
+                    return 1;
+                else
+                    return -1;
             }
         }
     }

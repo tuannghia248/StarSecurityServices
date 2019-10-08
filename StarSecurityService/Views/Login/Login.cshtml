@@ -2,39 +2,40 @@
 
 @{
     ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layoutmain.cshtml";
 }
 
+<div style="background:#000;">
+    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm("Login", "Login", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h4 class="head-title-1">Log In is only for Employee</h4>
+            
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div style="margin-top: 50px;" class="form-group">
+                @Html.LabelFor(model => model.username, "UserName", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.username, new { Style = "width: 500px;height:30px;border-radius: 5px;color:black; ",required = "required" } )
+                    @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div class="form-horizontal">
-        <h4>Đăng nhập chỉ dành cho nhân viên</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.username, "Tên đăng nhập", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.username, new { Style = "width: 500px;height:30px;border-radius: 5px;color:black; " })
-                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.password, "Password", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.password, new { Style = "width: 500px;height:30px;border-radius: 5px;color:black; ", required = "required" })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Log In" class="btn btn-default" />
+                </div>
             </div>
         </div>
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.password, "Mật khẩu", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.PasswordFor(model => model.password, new { Style = "width: 500px;height:30px;border-radius: 5px;color:black; " })
-                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Đăng nhập" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
+</div>

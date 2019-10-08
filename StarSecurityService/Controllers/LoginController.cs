@@ -37,7 +37,7 @@ namespace StarSecurityService.Controllers
             {
                 var dao = new UserDao();
                 var result = dao.Login(model.username, model.password);
-                if (result)
+                if (result == 1)
                 {
                     var user = dao.GetById(model.username);
                     var userSession = new UserLogin();
@@ -45,6 +45,14 @@ namespace StarSecurityService.Controllers
                     userSession.UserID = user.id;
                     Session.Add(CommonConstants.USER_SESSION, userSession);
                     return RedirectToAction("Dashboard", "Admin");
+                }
+                else if(result == 0)
+                {
+                    ModelState.AddModelError("", "We cannot find an account with that UserName.");
+                }
+                else if (result == -1)
+                {
+                    ModelState.AddModelError("", "Wrong Password.");
                 }
                 else
                 {

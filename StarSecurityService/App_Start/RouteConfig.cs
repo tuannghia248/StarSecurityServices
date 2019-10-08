@@ -19,6 +19,12 @@ namespace StarSecurityService
             );
 
             routes.MapRoute(
+               name: "Service",
+               url: "dich-vu",
+               defaults: new { controller = "Home", action = "Service", id = UrlParameter.Optional }
+           );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
