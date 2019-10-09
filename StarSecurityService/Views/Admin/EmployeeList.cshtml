@@ -28,9 +28,9 @@
                     <th>
                         @Html.DisplayNameFor(model => model.position)
                     </th>
-                    <th>
+                    @*<th>
                         @Html.DisplayNameFor(model => model.account_id)
-                    </th>
+                    </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.contract_id)
                     </th>
@@ -62,9 +62,9 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.position)
                         </td>
-                        <td>
+                        @*<td>
                             @Html.DisplayFor(modelItem => item.Account.username)
-                        </td>
+                        </td>*@
                         <td>
                             @Html.DisplayFor(modelItem => item.contract_id)
                         </td>
@@ -80,10 +80,10 @@
                                 }
                             }
                             @Html.ActionLink("Details", "EmployeeDetails", new { id = item.id }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("Edit", "EmployeeEdit", new { id = item.id }, new { @class = "btn btn-primary" })
                             @if (session.Role == "admin")
                             {
-                                @Html.ActionLink("Edit", "EmployeeEdit", new { id = item.id }, new { @class = "btn btn-primary" })
-                                @Html.BeginForm("EmployeeDelete", "Admin", new { id = item.id }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this?');", style = "display: inline-block" })
+                                using (Html.BeginForm("EmployeeDelete", "Admin", new { id = item.id }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this?');", style = "display: inline-block" }))
                                 {
                                     @Html.AntiForgeryToken()
                                     @Html.HttpMethodOverride(HttpVerbs.Delete)
