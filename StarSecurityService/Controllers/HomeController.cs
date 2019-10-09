@@ -11,6 +11,7 @@ namespace StarSecurityService.Controllers
     {
         StarSecurityDataDataContext data = new StarSecurityDataDataContext();
 
+
         void ServiceDropDownList()
         {
             Service sv = new Service();
@@ -59,6 +60,22 @@ namespace StarSecurityService.Controllers
         {
             var model = data.Services.ToList();
             return View(model);
+        }
+
+        public ActionResult Recruitment()
+        {
+            var model = data.Vacancies.ToList();
+            return View(model);
+        }
+
+        public ActionResult Network()
+        {
+            return View();
+        }
+
+        public ActionResult Testimonial()
+        {
+            return View();
         }
     }
 }

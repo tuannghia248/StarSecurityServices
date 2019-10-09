@@ -26,6 +26,26 @@ namespace StarSecurityService
            );
 
             routes.MapRoute(
+              name: "Recruitment",
+              url: "Recruitment",
+              defaults: new { controller = "Home", action = "Recruitment", id = UrlParameter.Optional }
+          );
+
+
+            routes.MapRoute(
+              name: "Network",
+              url: "Network",
+              defaults: new { controller = "Home", action = "Network", id = UrlParameter.Optional }
+          );
+
+
+            routes.MapRoute(
+              name: "Testimonial",
+              url: "Testimonial",
+              defaults: new { controller = "Home", action = "Testimonial", id = UrlParameter.Optional }
+          );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
@@ -33,3 +53,4 @@ namespace StarSecurityService
         }
     }
 }
+

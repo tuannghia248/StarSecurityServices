@@ -71,7 +71,7 @@ a {
     cursor: pointer;
     font-size: 18px;
     white-space: nowrap;
-    padding-left: 125px;
+    padding-left: 153px;
 }
 
 .email-input {
@@ -147,4 +147,33 @@ a {
 .text-danger {
     
     padding-left: 114px;
+}
+
+
+
+    .getintouch a {
+        color: #fff !important;
+        text-decoration: unset;
+        border: 1px solid #fff;
+        padding: 14px;
+        border-radius: 25px;
+    }
+
+        .getintouch a:hover {
+            background: #fff;
+            color: #000 !important;
+            text-decoration: unset;
+        }
+
+.black-p table {
+    color: #000 !important;
+    width: 90%;
+    margin-left: 50px;
+    margin-top:30px;
+}
+
+.black-p table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding:10px !important;
 }

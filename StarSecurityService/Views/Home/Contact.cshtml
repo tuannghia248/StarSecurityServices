@@ -18,7 +18,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.name, "Name", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                     @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -26,7 +26,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.address, "Address", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                     @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -34,7 +34,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.number, "Phone number", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.number, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.number, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                     @Html.ValidationMessageFor(model => model.number, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -42,7 +42,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.email, "Email", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                     @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -51,7 +51,7 @@
                 @Html.LabelFor(model => model.service_id, "Services", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
 
-                    @Html.DropDownListFor(model => model.service_id, ViewBag.svlist as SelectList, "Choose your services", new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.service_id, ViewBag.svlist as SelectList, "Choose your services", new { @class = "form-control", required = "required" })
                     @Html.ValidationMessageFor(model => model.service_id, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -60,7 +60,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.description, "Description", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                     @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -69,10 +69,11 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Send" class="btn btn-default" />
+                    <input id="submitButton" onclick="return confirm ('Your order is send , We will contact to you soon');"  type="submit" value="Send" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
 
     </div>
+

@@ -20,7 +20,7 @@
         <p style="font-size:25px;color: #fff;cursor:pointer;margin-bottom: 20px;">STAR SECURITY SERVICES</p>
         <div class="banner"></div>
         <div style="margin-top: 18px;margin-bottom: 20px;" class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-2">
                         <div class="header-menu"> @Html.ActionLink("Home", "Index", "Home")</div>
@@ -32,16 +32,22 @@
                         <div class="header-menu"> @Html.ActionLink("Contact", "Contact", "Home")</div>
                     </div>
                     <div class="col-md-2">
-                        <div class="header-menu"><a href="#testimony">Testimonial</a></div>
+                        <div style="margin-left: 25px;" class="header-menu"> @Html.ActionLink("Testimonial", "Testimonial", "Home")</div>
                     </div>
                     <div class="col-md-2">
-                        <div class="header-menu"><a style="padding-left: 38px;white-space:nowrap;" href="#aboutus">About Us</a></div>
+                        <div style="margin-left: 52px;" class="header-menu"> @Html.ActionLink("Recruitment", "Recruitment", "Home")</div>
+                    </div>
+                    <div class="col-md-2">
+                        <div style="margin-left: 87px;" class="header-menu"> @Html.ActionLink("Network", "Network", "Home")</div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="row">
-                    <div class="col-md-offset-8 col-md-4">
+                    <div class="col-md-offset-4 col-md-8">
+                        <div class="col-md-2">
+                            <div style="margin-left: -71px;" class="header-menu"><a style="white-space:nowrap;" href="#aboutus">About Us</a></div>
+                        </div>
                         <div class="col-md-2">
                             <div class="login-top">
                                 @Html.ActionLink("Log In", "Login", "Login")
