@@ -15,17 +15,34 @@
         <strong><i class="fa fa-phone margin-r-5"></i> @Html.DisplayNameFor(model => model.phone)</strong>
         <p class="text-muted">@Html.DisplayFor(model => model.phone)</p>
         <hr>
+        <strong><i class="fa fa-envelope margin-r-5"></i> @Html.DisplayNameFor(model => model.email)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.email)</p>
+        <hr>
         <strong><i class="fa fa-birthday-cake margin-r-5"></i> @Html.DisplayNameFor(model => model.birthday)</strong>
         <p class="text-muted">@Html.DisplayFor(model => model.birthday)</p>
         <hr>
         <strong><i class="fa fa-black-tie margin-r-5"></i> @Html.DisplayNameFor(model => model.position)</strong>
         <p class="text-muted">@Html.DisplayFor(model => model.position)</p>
         <hr>
-        @*<strong><i class="fa fa-black-tie margin-r-5"></i> @Html.DisplayNameFor(model => model.account_id)</strong>
+        <strong><i class="fa fa-money margin-r-5"></i> @Html.DisplayNameFor(model => model.salary)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.salary)</p>
+        <hr>
+        <strong><i class="fa fa-image margin-r-5"></i> @Html.DisplayNameFor(model => model.image)</strong>
+        <div>
+            <img src="~/Upload/@Model.image" style="width:300px; border: 1px solid #000;" alt="Employee Image">
+        </div>
+        <hr>
+        <strong><i class="fa fa-graduation-cap margin-r-5"></i> @Html.DisplayNameFor(model => model.qualification)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.qualification)</p>
+        <hr>
+        <strong><i class="fa fa-graduation-cap margin-r-5"></i> @Html.DisplayNameFor(model => model.depantment_id)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.Department.name)</p>
+        <hr>
+        <strong><i class="fa fa-graduation-cap margin-r-5"></i> @Html.DisplayNameFor(model => model.account_id)</strong>
         <p class="text-muted">@Html.DisplayFor(model => model.Account.username)</p>
-        <hr>*@
+        <hr>
         <strong><i class="fa fa-file-archive-o margin-r-5"></i> @Html.DisplayNameFor(model => model.contract_id)</strong>
-        <p class="text-muted">@Html.DisplayFor(model => model.contract_id)</p>
+        <p class="text-muted">@Html.DisplayFor(model => model.Contract.code)</p>
         <hr>
         <strong><i class="fa fa-check-circle margin-r-5"></i> @Html.DisplayNameFor(model => model.status)</strong>
         <p class="text-muted">@Html.DisplayFor(model => model.status)</p>

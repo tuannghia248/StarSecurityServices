@@ -11,6 +11,13 @@ namespace StarSecurityService.Controllers
     {
         StarSecurityDataDataContext db = new StarSecurityDataDataContext();
 
+        void DepartmentDropDownList()
+        {
+            var query = db.Departments.ToList();
+            SelectList list = new SelectList(query, "id", "name");
+            ViewBag.departmentList = list;
+        }
+
         void ContractDropDownList()
         {
             var query = db.Contracts.Where(c => c.status == "Hold" || c.status == "Active").Select(c => new { id = c.id, data = $"{c.id} - {c.Service.name} - {c.Client.name}" }).ToList();
@@ -55,7 +62,7 @@ namespace StarSecurityService.Controllers
             return View();
         }
 
-        public ActionResult EmployeeList()
+        public ViewResult EmployeeList()
         {
             var employees = db.Employees.ToList();
             return View(employees);
@@ -63,21 +70,21 @@ namespace StarSecurityService.Controllers
 
         public ActionResult EmployeeInsert()
         {
-            ContractDropDownList();
-            AccountDropDownList();
             return View();
         }
 
         [HttpPost]
         public ActionResult EmployeeInsert(Employee employee)
         {
-            ContractDropDownList();
-            AccountDropDownList();
             try
             {
-                db.Employees.InsertOnSubmit(employee);
-                db.SubmitChanges();
-                return RedirectToAction("EmployeeList");
+                if (ModelState.IsValid)
+                {
+                    db.Employees.InsertOnSubmit(employee);
+                    db.SubmitChanges();
+                    return RedirectToAction("EmployeeInsert");
+                }
+                return View();
             }
             catch
             {
@@ -96,6 +103,7 @@ namespace StarSecurityService.Controllers
             var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
             if (session.Role == "admin")
             {
+                DepartmentDropDownList();
                 ContractDropDownList();
                 AccountDropDownList();
                 var empdetails = db.Employees.Single(e => e.id == id);
@@ -110,6 +118,7 @@ namespace StarSecurityService.Controllers
         [HttpPost]
         public ActionResult EmployeeEdit(int id, Employee employee)
         {
+            DepartmentDropDownList();
             ContractDropDownList();
             AccountDropDownList();
             try
@@ -142,7 +151,7 @@ namespace StarSecurityService.Controllers
             var empToDelete = db.Employees.Single(e => e.id == id);
             db.Employees.DeleteOnSubmit(empToDelete);
             db.SubmitChanges();
-            return RedirectToAction("EmployeeList");
+            return RedirectToAction("EmployeeInsert");
         }
 
         public ActionResult ContractList()

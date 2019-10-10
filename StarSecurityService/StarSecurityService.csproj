@@ -145,6 +145,8 @@
   <ItemGroup>
     <Content Include="Content\AdminLTE.css" />
     <Content Include="Content\AdminLTE.min.css" />
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -172,6 +174,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\adminlte.js" />
     <Content Include="Scripts\adminlte.min.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\FontAwesome.otf" />
@@ -187,6 +191,7 @@
       <LastGenOutput>StarSecurityData.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content\bootstrap-datepicker.css.map" />
     <None Include="Models\StarSecurityData.dbml.layout">
       <DependentUpon>StarSecurityData.dbml</DependentUpon>
     </None>
@@ -220,6 +225,11 @@
     <Content Include="Upload\image\guard1.jpg" />
     <Content Include="Upload\image\guard2.jpg" />
     <Content Include="Upload\image\guard3.jpg" />
+    <Content Include="Upload\instagram_PNG3.png" />
+    <Content Include="Upload\j1.jpg" />
+    <Content Include="Upload\j2.jpg" />
+    <Content Include="Upload\j3.png" />
+    <Content Include="Upload\JOB.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
