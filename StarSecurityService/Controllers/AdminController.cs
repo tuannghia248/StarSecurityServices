@@ -123,7 +123,6 @@ namespace StarSecurityService.Controllers
                 empToEdit.image = employee.image;
                 empToEdit.salary = employee.salary;
                 empToEdit.qualification = employee.qualification;
-                empToEdit.achievement = employee.achievement;
                 empToEdit.depantment_id = employee.depantment_id;
                 empToEdit.account_id = employee.account_id;
                 empToEdit.contract_id = employee.contract_id;
@@ -234,7 +233,7 @@ namespace StarSecurityService.Controllers
             {
                 Contract contractToEdit = db.Contracts.Single(e => e.id == id);
                 contractToEdit.duration = contract.duration;
-                contractToEdit.total = contract.total;
+                contractToEdit.price = contract.price;
                 contractToEdit.service_id = contract.service_id;
                 contractToEdit.client_id = contract.client_id;
                 contractToEdit.created_at = contract.created_at;
@@ -328,7 +327,7 @@ namespace StarSecurityService.Controllers
                 Client clientToEdit = db.Clients.Single(c => c.id == id);
                 clientToEdit.name = client.name;
                 clientToEdit.address = client.address;
-                clientToEdit.number = client.number;
+                clientToEdit.phone = client.phone;
                 clientToEdit.email = client.email;
                 clientToEdit.service_id = client.service_id;
                 clientToEdit.description = client.description;
@@ -503,7 +502,7 @@ namespace StarSecurityService.Controllers
             {
                 Vacancy vacancyToEdit = db.Vacancies.Single(e => e.id == id);
                 vacancyToEdit.job = vacancy.job;
-                vacancyToEdit.position = vacancy.position;
+                vacancyToEdit.description = vacancy.description;
                 vacancyToEdit.quantity = vacancy.quantity;
                 vacancyToEdit.deadline = vacancy.deadline;
                 db.SubmitChanges();
