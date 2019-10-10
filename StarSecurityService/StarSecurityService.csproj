@@ -215,6 +215,11 @@
     <Content Include="Upload\guard1.jpg" />
     <Content Include="Upload\guard2.jpg" />
     <Content Include="Upload\guard3.jpg" />
+    <Content Include="Upload\image\camera.jpg" />
+    <Content Include="Upload\image\guard.jpg" />
+    <Content Include="Upload\image\guard1.jpg" />
+    <Content Include="Upload\image\guard2.jpg" />
+    <Content Include="Upload\image\guard3.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -257,6 +262,11 @@
     <Content Include="Views\Admin\AccountInsert.cshtml" />
     <Content Include="Views\Admin\AccountDetails.cshtml" />
     <Content Include="Views\Admin\AccountEdit.cshtml" />
+    <Content Include="Views\Home\Network.cshtml" />
+    <Content Include="Views\Home\Recruitment.cshtml" />
+    <Content Include="Views\Home\Service.cshtml" />
+    <Content Include="Views\Home\Testimonial.cshtml" />
+    <Content Include="Views\Shared\_Layoutmain.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
