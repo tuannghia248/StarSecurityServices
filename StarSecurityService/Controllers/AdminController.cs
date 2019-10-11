@@ -20,7 +20,7 @@ namespace StarSecurityService.Controllers
 
         void ContractDropDownList()
         {
-            var query = db.Contracts.Where(c => c.status == "Hold" || c.status == "Active").Select(c => new { id = c.id, data = $"{c.id} - {c.Service.name} - {c.Client.name}" }).ToList();
+            var query = db.Contracts.Where(c => c.status == "Hold" || c.status == "Active").Select(c => new { id = c.id, data = $"{c.code} - {c.Service.name} - {c.Client.name}" }).ToList();
             SelectList list = new SelectList(query, "id", "data");
             ViewBag.contractList = list;
         }
@@ -104,14 +104,14 @@ namespace StarSecurityService.Controllers
             if (session.Role == "admin")
             {
                 DepartmentDropDownList();
-                ContractDropDownList();
                 AccountDropDownList();
+                ContractDropDownList();
                 var empdetails = db.Employees.Single(e => e.id == id);
                 return View(empdetails);
             }
             else
             {
-                return RedirectToAction("EmployeeList");
+                return RedirectToAction("EmployeeInsert");
             }
         }
 
@@ -119,25 +119,43 @@ namespace StarSecurityService.Controllers
         public ActionResult EmployeeEdit(int id, Employee employee)
         {
             DepartmentDropDownList();
-            ContractDropDownList();
             AccountDropDownList();
+            ContractDropDownList();
             try
             {
-                Employee empToEdit = db.Employees.Single(e => e.id == id);
-                empToEdit.name = employee.name;
-                empToEdit.address = employee.address;
-                empToEdit.phone = employee.phone;
-                empToEdit.birthday = employee.birthday;
-                empToEdit.position = employee.position;
-                empToEdit.image = employee.image;
-                empToEdit.salary = employee.salary;
-                empToEdit.qualification = employee.qualification;
-                empToEdit.depantment_id = employee.depantment_id;
-                empToEdit.account_id = employee.account_id;
-                empToEdit.contract_id = employee.contract_id;
-                empToEdit.status = employee.status;
-                db.SubmitChanges();
-                return RedirectToAction("EmployeeList");
+                if (ModelState.IsValid)
+                {
+                    Employee empToEdit = db.Employees.Single(e => e.id == id);
+                    empToEdit.name = employee.name;
+                    empToEdit.address = employee.address;
+                    empToEdit.phone = employee.phone;
+                    empToEdit.email = employee.email;
+                    empToEdit.birthday = employee.birthday;
+                    empToEdit.position = employee.position;
+                    empToEdit.salary = employee.salary;
+                    empToEdit.image = employee.image;
+                    empToEdit.qualification = employee.qualification;
+                    empToEdit.depantment_id = employee.depantment_id;
+                    empToEdit.account_id = employee.account_id;
+                    empToEdit.contract_id = employee.contract_id;
+                    empToEdit.join_at = employee.join_at;
+                    empToEdit.resign_at = employee.resign_at;
+                    if (employee.contract_id != null)
+                    {
+                        empToEdit.status = "Active";
+                    }
+                    if (employee.contract_id == null && employee.resign_at == null)
+                    {
+                        empToEdit.status = "Standby";
+                    }
+                    if (employee.contract_id == null && employee.resign_at != null)
+                    {
+                        empToEdit.status = "Resign";
+                    }
+                    db.SubmitChanges();
+                    return RedirectToAction("EmployeeInsert");
+                }
+                return View();
             }
             catch
             {

@@ -5,9 +5,16 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="box box-primary">
+<div class="box box-primary center-block" style="width: 30%">
     <div class="box-body box-profile">
-        <h3 class="profile-username">@Html.DisplayFor(model => model.name)</h3>
+        <div>
+            @if (Model.image != null)
+            {
+                <img class="profile-user-img img-responsive img-circle" src="~/Upload/@Model.image" alt="Employee Image">
+            }
+        </div>
+        <h3 class="profile-username text-center">@Html.DisplayFor(model => model.name)</h3>
+        <p class="text-muted text-center">@Html.DisplayFor(model => model.position)</p>
         <hr>
         <strong><i class="fa fa-address-card margin-r-5"></i> @Html.DisplayNameFor(model => model.address)</strong>
         <p class="text-muted">@Html.DisplayFor(model => model.address)</p>
@@ -21,31 +28,29 @@
         <strong><i class="fa fa-birthday-cake margin-r-5"></i> @Html.DisplayNameFor(model => model.birthday)</strong>
         <p class="text-muted">@Html.DisplayFor(model => model.birthday)</p>
         <hr>
-        <strong><i class="fa fa-black-tie margin-r-5"></i> @Html.DisplayNameFor(model => model.position)</strong>
-        <p class="text-muted">@Html.DisplayFor(model => model.position)</p>
-        <hr>
         <strong><i class="fa fa-money margin-r-5"></i> @Html.DisplayNameFor(model => model.salary)</strong>
         <p class="text-muted">@Html.DisplayFor(model => model.salary)</p>
         <hr>
-        <strong><i class="fa fa-image margin-r-5"></i> @Html.DisplayNameFor(model => model.image)</strong>
-        <div>
-            <img src="~/Upload/@Model.image" style="width:300px; border: 1px solid #000;" alt="Employee Image">
-        </div>
-        <hr>
         <strong><i class="fa fa-graduation-cap margin-r-5"></i> @Html.DisplayNameFor(model => model.qualification)</strong>
-        <p class="text-muted">@Html.DisplayFor(model => model.qualification)</p>
+        <p class="text-muted" style="white-space:pre-wrap">@Html.DisplayFor(model => model.qualification)</p>
         <hr>
-        <strong><i class="fa fa-graduation-cap margin-r-5"></i> @Html.DisplayNameFor(model => model.depantment_id)</strong>
+        <strong><i class="fa fa-briefcase margin-r-5"></i> @Html.DisplayNameFor(model => model.depantment_id)</strong>
         <p class="text-muted">@Html.DisplayFor(model => model.Department.name)</p>
         <hr>
-        <strong><i class="fa fa-graduation-cap margin-r-5"></i> @Html.DisplayNameFor(model => model.account_id)</strong>
+        <strong><i class="fa fa-id-card margin-r-5"></i> @Html.DisplayNameFor(model => model.account_id)</strong>
         <p class="text-muted">@Html.DisplayFor(model => model.Account.username)</p>
         <hr>
-        <strong><i class="fa fa-file-archive-o margin-r-5"></i> @Html.DisplayNameFor(model => model.contract_id)</strong>
-        <p class="text-muted">@Html.DisplayFor(model => model.Contract.code)</p>
+        <strong><i class="fa fa-file-word-o margin-r-5"></i> @Html.DisplayNameFor(model => model.contract_id)</strong>
+        <p class="text-muted"><a href="@Url.Action("ContractDetails", "Admin", new { id = Model.id })">@Html.DisplayFor(model => model.Contract.code)</a></p>
         <hr>
         <strong><i class="fa fa-check-circle margin-r-5"></i> @Html.DisplayNameFor(model => model.status)</strong>
         <p class="text-muted">@Html.DisplayFor(model => model.status)</p>
+        <hr>
+        <strong><i class="fa fa-calendar-check-o margin-r-5"></i> @Html.DisplayNameFor(model => model.join_at)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.join_at)</p>
+        <hr>
+        <strong><i class="fa fa-calendar-times-o margin-r-5"></i> @Html.DisplayNameFor(model => model.resign_at)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.resign_at)</p>
     </div>
     <div class="box-footer">
         @{
@@ -55,6 +60,6 @@
         {
             @Html.ActionLink("Edit", "EmployeeEdit", new { id = Model.id }, new { @class = "btn btn-primary" })
         }
-        @Html.ActionLink("Back to List", "EmployeeList", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Back to List", "EmployeeInsert", null, new { @class = "btn btn-default pull-right" })
     </div>
 </div>

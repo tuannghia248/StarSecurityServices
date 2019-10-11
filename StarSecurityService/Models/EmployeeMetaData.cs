@@ -51,8 +51,10 @@ namespace StarSecurityService.Models
         [Display(Name = "Status")]
         public string status { get; set; }
         [Display(Name = "Join Date")]
+        [RegularExpression(@"(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d", ErrorMessage = "Please enter valid date.")]
         public string join_at { get; set; }
         [Display(Name = "Resign Date")]
+        [RegularExpression(@"(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d", ErrorMessage = "Please enter valid date.")]
         public string resign_at { get; set; }
     }
 }

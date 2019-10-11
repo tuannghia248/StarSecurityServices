@@ -229,6 +229,7 @@
     <Content Include="Upload\j1.jpg" />
     <Content Include="Upload\j2.jpg" />
     <Content Include="Upload\j3.png" />
+    <Content Include="Upload\j4.jpg" />
     <Content Include="Upload\JOB.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
