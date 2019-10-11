@@ -44,42 +44,42 @@
         <elementListCompartment Id="67ef4473-fc8b-4ef9-9982-5cec5d298216" absoluteBounds="0.515, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.5 : 3.37100341796875); (3.625 : 3.37100341796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.5 : 3.37100341796875); (3.625 : 3.37100341796875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/StarSecurityDataDataContext/Client/Client_Contract" />
       <nodes>
         <classShapeMoniker Id="7827011f-2306-4cf1-9e23-6c6f6a05321d" />
         <classShapeMoniker Id="2ff49bb4-cb5d-4aaf-b4bd-df3af3bb8cf4" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(10 : 1.19314697265625); (8.625 : 1.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(10 : 1.19314697265625); (8.625 : 1.19314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/StarSecurityDataDataContext/Department/Department_Employee" />
       <nodes>
         <classShapeMoniker Id="e38425c9-2829-4156-98b3-7ce1ad71a46e" />
         <classShapeMoniker Id="794bbb90-68c0-447d-94fe-3ba3a9947187" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(10 : 3.53929768880208); (8.625 : 3.53929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(10 : 3.53929768880208); (8.625 : 3.53929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/StarSecurityDataDataContext/Account/Account_Employee" />
       <nodes>
         <classShapeMoniker Id="56c6160f-61e0-47b5-a29e-8f2235257307" />
         <classShapeMoniker Id="794bbb90-68c0-447d-94fe-3ba3a9947187" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.625 : 2.05850341796875); (6.625 : 2.05850341796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.625 : 2.05850341796875); (6.625 : 2.05850341796875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/StarSecurityDataDataContext/Contract/Contract_Employee" />
       <nodes>
         <classShapeMoniker Id="2ff49bb4-cb5d-4aaf-b4bd-df3af3bb8cf4" />
         <classShapeMoniker Id="794bbb90-68c0-447d-94fe-3ba3a9947187" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.5 : 2.27089680989583); (1.5 : 3.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.5 : 2.27089680989583); (1.5 : 3.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/StarSecurityDataDataContext/Service/Service_Client" />
       <nodes>
         <classShapeMoniker Id="609e42f9-ec9c-45e2-b106-477613505bf0" />
         <classShapeMoniker Id="7827011f-2306-4cf1-9e23-6c6f6a05321d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.5 : 1.38544840494792); (3.625 : 1.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.5 : 1.38544840494792); (3.625 : 1.38544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/StarSecurityDataDataContext/Service/Service_Contract" />
       <nodes>
         <classShapeMoniker Id="609e42f9-ec9c-45e2-b106-477613505bf0" />

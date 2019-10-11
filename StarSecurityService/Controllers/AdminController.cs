@@ -304,7 +304,7 @@ namespace StarSecurityService.Controllers
             return RedirectToAction("ContractList");
         }
 
-        public ActionResult ClientList()
+        public ViewResult ClientList()
         {
             var clients = db.Clients.ToList();
             return View(clients);
@@ -322,9 +322,13 @@ namespace StarSecurityService.Controllers
             ServiceDropDownList();
             try
             {
-                db.Clients.InsertOnSubmit(client);
-                db.SubmitChanges();
-                return RedirectToAction("ClientList");
+                if (ModelState.IsValid)
+                {
+                    db.Clients.InsertOnSubmit(client);
+                    db.SubmitChanges();
+                    return RedirectToAction("ClientInsert");
+                }
+                return View();
             }
             catch
             {
@@ -351,16 +355,23 @@ namespace StarSecurityService.Controllers
             ServiceDropDownList();
             try
             {
-                Client clientToEdit = db.Clients.Single(c => c.id == id);
-                clientToEdit.name = client.name;
-                clientToEdit.address = client.address;
-                clientToEdit.phone = client.phone;
-                clientToEdit.email = client.email;
-                clientToEdit.service_id = client.service_id;
-                clientToEdit.description = client.description;
-                clientToEdit.status = client.status;
-                db.SubmitChanges();
-                return RedirectToAction("ClientList");
+                if (ModelState.IsValid)
+                {
+                    Client clientToEdit = db.Clients.Single(c => c.id == id);
+                    clientToEdit.name = client.name;
+                    clientToEdit.address = client.address;
+                    clientToEdit.phone = client.phone;
+                    clientToEdit.email = client.email;
+                    clientToEdit.service_id = client.service_id;
+                    clientToEdit.quantity = client.quantity;
+                    clientToEdit.duration = client.duration;
+                    clientToEdit.start_at = client.start_at;
+                    clientToEdit.description = client.description;
+                    clientToEdit.updated_at = client.updated_at;
+                    db.SubmitChanges();
+                    return RedirectToAction("ClientInsert");
+                }
+                return View();
             }
             catch
             {
@@ -385,10 +396,10 @@ namespace StarSecurityService.Controllers
             var clientToDelete = db.Clients.Single(c => c.id == id);
             db.Clients.DeleteOnSubmit(clientToDelete);
             db.SubmitChanges();
-            return RedirectToAction("ClientList");
+            return RedirectToAction("ClientInsert");
         }
 
-        public ActionResult ServiceList()
+        public ViewResult ServiceList()
         {
             var services = db.Services.ToList();
             return View(services);
@@ -404,9 +415,13 @@ namespace StarSecurityService.Controllers
         {
             try
             {
-                db.Services.InsertOnSubmit(service);
-                db.SubmitChanges();
-                return RedirectToAction("ServiceList");
+                if (ModelState.IsValid)
+                {
+                    db.Services.InsertOnSubmit(service);
+                    db.SubmitChanges();
+                    return RedirectToAction("ServiceInsert");
+                }
+                return View();
             }
             catch
             {
@@ -431,13 +446,17 @@ namespace StarSecurityService.Controllers
         {
             try
             {
-                Service serviceToEdit = db.Services.Single(s => s.id == id);
-                serviceToEdit.name = service.name;
-                serviceToEdit.description = service.description;
-                serviceToEdit.image = service.image;
-                serviceToEdit.status = service.status;
-                db.SubmitChanges();
-                return RedirectToAction("ServiceList");
+                if (ModelState.IsValid)
+                {
+                    Service serviceToEdit = db.Services.Single(s => s.id == id);
+                    serviceToEdit.name = service.name;
+                    serviceToEdit.description = service.description;
+                    serviceToEdit.image = service.image;
+                    serviceToEdit.status = service.status;
+                    db.SubmitChanges();
+                    return RedirectToAction("ServiceInsert");
+                }
+                return View();
             }
             catch
             {
@@ -467,7 +486,7 @@ namespace StarSecurityService.Controllers
             var serviceToDelete = db.Services.Single(s => s.id == id);
             db.Services.DeleteOnSubmit(serviceToDelete);
             db.SubmitChanges();
-            return RedirectToAction("ServiceList");
+            return RedirectToAction("ServiceInsert");
         }
 
         //public PartialViewResult GetClient(int id)

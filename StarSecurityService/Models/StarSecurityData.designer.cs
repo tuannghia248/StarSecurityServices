@@ -345,7 +345,7 @@ namespace StarSecurityService.Models
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vacancy")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-    [MetadataType(typeof(Vacancy))]
+    [MetadataType(typeof(VacancyMetaData))]
     public partial class Vacancy : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -572,6 +572,7 @@ namespace StarSecurityService.Models
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Client")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
+    [MetadataType(typeof(ClientMetaData))]
 	public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -2273,7 +2274,8 @@ namespace StarSecurityService.Models
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Service")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class Service : INotifyPropertyChanging, INotifyPropertyChanged
+    [MetadataType(typeof(ServiceMetaData))]
+    public partial class Service : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);

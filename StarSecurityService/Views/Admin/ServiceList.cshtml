@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<StarSecurityService.Models.Service>
 
 @{
-    ViewBag.Title = "Service List";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = null;
 }
 
 <div class="box">
@@ -16,11 +15,8 @@
                     <th>
                         @Html.DisplayNameFor(model => model.name)
                     </th>
-                    <th>
+                    <th style="width: 50%">
                         @Html.DisplayNameFor(model => model.description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.image)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.status)
@@ -42,14 +38,11 @@
                         @Html.DisplayFor(modelItem => item.description)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.image)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.status)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "ServiceEdit", new { id = item.id }, new { @class = "btn btn-primary" })
                         @Html.ActionLink("Details", "ServiceDetails", new { id = item.id }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("Edit", "ServiceEdit", new { id = item.id }, new { @class = "btn btn-primary" })
                         @using (Html.BeginForm("ServiceDelete", "Admin", new { id = item.id }, FormMethod.Post, new { onsubmit = "return confirm('Delete this will also delete related client and contract. Do you wish to continue?');", style = "display: inline-block" }))
                         {
                             @Html.AntiForgeryToken()

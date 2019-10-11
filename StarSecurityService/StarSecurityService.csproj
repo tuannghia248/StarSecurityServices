@@ -133,7 +133,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountMetaData.cs" />
+    <Compile Include="Models\ClientMetaData.cs" />
     <Compile Include="Models\EmployeeMetaData.cs" />
+    <Compile Include="Models\ServiceMetaData.cs" />
     <Compile Include="Models\StarSecurityData.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
