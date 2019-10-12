@@ -26,9 +26,6 @@
                 <a href="" class="sidebar-toggle" data-toggle="push-menu" role="button"><span class="sr-only">Toggle navigation</span></a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <!-- DROPDOWN MESSAGES -->
-                        <!-- DROPDOWN NOTIFICATIONS -->
-                        <!-- DROPDOWN TASKS -->
                         <li class="dropdown user user-menu">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="~/Upload/avatar-default.jpg" class="user-image" alt="User Image">
@@ -68,35 +65,6 @@
                     <li class=""><a href="@Url.Action("DepartmentInsert", "Admin")"><i class="fa fa-briefcase"></i> <span>Department</span></a></li>
                     <li class=""><a href="@Url.Action("VacancyInsert", "Admin")"><i class="fa fa-tasks"></i> <span>Vacancy</span></a></li>
                     <li class=""><a href="@Url.Action("AccountInsert", "Admin")"><i class="fa fa-user-secret"></i> <span>Account</span></a></li>
-
-                    @*<li class="treeview">
-                        <a href="">
-                            <i class="fa fa-user-circle-o"></i> <span>Vacancy</span>
-                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("VacancyList", "Admin")"><i class="fa fa-list"></i> Vacancy list</a></li>
-                            @if (session.Role == "admin" || session.Role == "manager")
-                            {
-                                <li><a href="@Url.Action("VacancyInsert", "Admin")"><i class="fa fa-plus-circle"></i> Add new vacancy</a></li>
-                            }
-                        </ul>
-                    </li>*@
-
-                    @*<li class="treeview">
-                        <a href="">
-                            <i class="fa fa-user-circle-o"></i> <span>Account</span>
-                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("AccountList", "Admin")"><i class="fa fa-list"></i> Account list</a></li>
-                            @if (session.Role == "admin")
-                            {
-                                <li><a href="@Url.Action("AccountInsert", "Admin")"><i class="fa fa-plus-circle"></i> Add new account</a></li>
-                            }
-                        </ul>
-                    </li>*@
-
                 </ul>
             </section>
         </aside>
@@ -109,9 +77,8 @@
             <div class="pull-right hidden-xs">
                 <b>Version</b> 1.0
             </div>
-            <b><a href="@Url.Action("Contact", "Home")">Star Security Service</a> &copy;</b> 2019.
+            <b><a href="@Url.Action("Index", "Home")">Star Security Service</a> &copy;</b> 2019.
         </footer>
-        <!-- CONTROL SIDEBAR -->
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

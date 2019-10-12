@@ -4,28 +4,23 @@
     ViewBag.Title = "Service";
     Layout = "~/Views/Shared/_Layoutmain.cshtml";
 }
+
 <div class="black-p">
     <p style="padding-left: 65px;" class="pp">Our Services</p>
 </div>
-<div class="container black-p" style="height:1500px;">
+<div class="container black-p" style="height: 1500px;">
     <div class="row" style="margin-left: 92px;">
-    @foreach (var item in Model)
+        @foreach (var item in Model)
         {
-            <div class="col-md-4" style="margin-top:80px;">
-                <img src="~/Upload/image/@item.image" style="width:300px; height:200px;border: 1px solid #000;
-    border-bottom: none;" alt="Alternate Text" />
+            <div class="col-md-4" style="margin-top: 80px;">
+                <img src="~/Upload/image/@item.image" style="width: 300px; height: 200px; border: 1px solid #000; border-bottom: none;" alt="Alternate Text" />
                 <div class="des-box">
                     <div class="button-contact"> @Html.ActionLink("Contact us", "Contact", "Home")</div>
                     <p class="header-service">@item.name</p>
                     <div class="banner4"></div>
                     <p class="body-service">@item.description</p>
-
                 </div>
             </div>
-
         }
-
-
     </div>
 </div>
-

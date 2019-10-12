@@ -5,39 +5,58 @@
     Layout = "~/Views/Shared/_Layoutmain.cshtml";
 }
 
-
 <div class="black-p">
-
     <p class="pp">Recruitment</p>
-    <img src="~/Upload/JOB.jpg" style="width: 87%;
-    height: 500px;
-    margin-left: 104px;" alt="Alternate Text" />
+    <img src="~/Upload/JOB.jpg" style="width: 87%; height: 500px; margin-left: 104px;" alt="Alternate Text" />
 </div>
-
-<div class="container black-p" style="height:800px;">
-    <div class="row" style="margin-left: 92px;margin-top:30px">
+<div class="container black-p" style="height: 800px;">
+    <div class="row" style="margin-left: 92px; margin-top: 30px">
         <p>Join our team of security professionals.</p>
         <p>At Star Security, we’re proud of our team!  We’re always looking for great new team members to help us protect homes, workplaces, and communities and continue to impress our customers.</p>
-        
         <table>
             <tr>
-                <th>Quantity</th>
-                <th>Job</th>
-                <th>Position</th>
-                <th>Deadline</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.job)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.requirement)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.salary)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.deadline)
+                </th>
             </tr>
             @foreach (var item in Model)
             {
             <tr>
-                <td>@item.quantity</td>
-                <td>@item.job</td>
-                <td>@item.position</td>
-                <td>@item.deadline</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.job)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.requirement)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.deadline)
+                </td>
             </tr>
             }
-
-
         </table>
-
     </div>
 </div>

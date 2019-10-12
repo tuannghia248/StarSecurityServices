@@ -12,15 +12,15 @@ namespace StarSecurityService.Controllers
     public class LoginController : Controller
     {
         StarSecurityDataDataContext data = new StarSecurityDataDataContext();
-        // GET: Login
+        
         public ActionResult Index()
         {
             return View();
         }
+
         [HttpGet]
         public ActionResult Login()
         {
-
             return View();
         }
 
@@ -28,8 +28,8 @@ namespace StarSecurityService.Controllers
         {
             Session[CommonConstants.USER_SESSION] = null;
             return Redirect("/");
-
         }
+
         [HttpPost]
         public ActionResult Login(Account model)
         {
@@ -62,8 +62,6 @@ namespace StarSecurityService.Controllers
                 }
             }
             return View("Login");
-
         }
     }
-
 }

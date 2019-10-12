@@ -5,31 +5,27 @@
     Layout = "~/Views/Shared/_Layoutmain.cshtml";
 }
 
-<div style="background:#000;">
+<div style="background: #000;">
     @using (Html.BeginForm("Login", "Login", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-
         <div class="form-horizontal">
             <h4 class="head-title-1">Log In is only for Employee</h4>
-            
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div style="margin-top: 50px;" class="form-group">
-                @Html.LabelFor(model => model.username, "UserName", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.username, "Username", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.username, new { Style = "width: 500px;height:30px;border-radius: 5px;color:black; ",required = "required" } )
+                    @Html.TextBoxFor(model => model.username, new { Style = "width: 500px; height: 30px; border-radius: 5px; color: black;", required = "required" })
                     @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.password, "Password", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.PasswordFor(model => model.password, new { Style = "width: 500px;height:30px;border-radius: 5px;color:black; ", required = "required" })
+                    @Html.PasswordFor(model => model.password, new { Style = "width: 500px; height: 30px; border-radius: 5px; color: black;", required = "required" })
                     @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
                 </div>
             </div>
-
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Log In" class="btn btn-default" />
@@ -37,5 +33,4 @@
             </div>
         </div>
     }
-
 </div>

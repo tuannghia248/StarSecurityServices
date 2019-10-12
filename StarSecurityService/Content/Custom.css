@@ -1,5 +1,4 @@
-﻿
-* {
+﻿* {
     font-family: 'Montserrat', sans-serif;
     padding: 0;
 }
@@ -23,7 +22,7 @@ a {
     color: #000 !important;
 }
 
-.banner{
+.banner {
     border-top:solid 1px #fff;
     width:100%;
 }
@@ -58,12 +57,6 @@ a {
     height: 440px;
 }
 
-/*login*/
-/*login-signupbutton*/
-
-
-
-
 .login-top {
     cursor: pointer;
     font-size: 18px;
@@ -81,7 +74,7 @@ a {
     
 }
 
-.des-box{
+.des-box {
     border:1px solid #808080;
     width:300px;
     height:350px;
@@ -123,9 +116,9 @@ a {
     padding:10px 30px 10px 30px;
 }
 
-    .button-contact a:hover {
-        background: gainsboro;
-    }
+.button-contact a:hover {
+    background: gainsboro;
+}
 
 .pp {
     padding-top: 200px;
@@ -139,25 +132,22 @@ a {
 }
 
 .text-danger {
-    
     padding-left: 114px;
 }
 
+.getintouch a {
+    color: #fff !important;
+    text-decoration: unset;
+    border: 1px solid #fff;
+    padding: 14px;
+    border-radius: 25px;
+}
 
-
-    .getintouch a {
-        color: #fff !important;
-        text-decoration: unset;
-        border: 1px solid #fff;
-        padding: 14px;
-        border-radius: 25px;
-    }
-
-        .getintouch a:hover {
-            background: #fff;
-            color: #000 !important;
-            text-decoration: unset;
-        }
+.getintouch a:hover {
+    background: #fff;
+    color: #000 !important;
+    text-decoration: unset;
+}
 
 .black-p table {
     color: #000 !important;

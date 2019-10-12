@@ -11,7 +11,6 @@ namespace StarSecurityService.Controllers
     {
         StarSecurityDataDataContext data = new StarSecurityDataDataContext();
 
-
         void ServiceDropDownList()
         {
             Service sv = new Service();
@@ -19,6 +18,7 @@ namespace StarSecurityService.Controllers
             SelectList list = new SelectList(query, "id", "name");
             ViewBag.svlist = list;
         }
+
         public ActionResult Index()
         {
             return View();
@@ -27,28 +27,36 @@ namespace StarSecurityService.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
+
         [HttpGet]
         public ActionResult Contact()
         {
             ServiceDropDownList();
-
             return View();
         }
 
         [HttpPost]
         public ActionResult Contact(Client cl)
         {
+            //ServiceDropDownList();
             try
             {
+                //if (ModelState.IsValid)
+                //{
+                //    cl.status = "Waiting";
+                //    data.Clients.InsertOnSubmit(cl);
+                //    data.SubmitChanges();
+                //    TempData["Referrer"] = "SaveRegister";
+                //    return RedirectToAction("Contact");
+                //}
+                //return View();
 
-                cl.status = "waiting";
+                cl.status = "Waiting";
                 data.Clients.InsertOnSubmit(cl);
                 data.SubmitChanges();
                 TempData["Referrer"] = "SaveRegister";
-                //TempData["SuccessMessage"] = "Your Success Message";
                 return RedirectToAction("Contact");
             }
             catch
@@ -56,7 +64,6 @@ namespace StarSecurityService.Controllers
                 return View();
             }
         }
-
 
         public ActionResult Service()
         {

@@ -9,6 +9,7 @@ namespace StarSecurityService.Dao
     public class UserDao
     {
         StarSecurityDataDataContext db = null;
+
         public UserDao()
         {
             db = new StarSecurityDataDataContext();
@@ -18,6 +19,7 @@ namespace StarSecurityService.Dao
         {
             return db.Accounts.SingleOrDefault(x => x.username == userName);
         }
+
         public int Login(string userName, string passWord)
         {
             var result = db.Accounts.SingleOrDefault(x => x.username == userName);
