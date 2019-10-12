@@ -45,6 +45,7 @@ namespace StarSecurityService.Controllers
                     userSession.UserID = user.id;
                     userSession.Role = user.role;
                     Session.Add(CommonConstants.USER_SESSION, userSession);
+                  
                     return RedirectToAction("Dashboard", "Admin");
                 }
                 else if(result == 0)

@@ -43,11 +43,13 @@ namespace StarSecurityService.Controllers
         {
             try
             {
+
                 cl.status = "waiting";
                 data.Clients.InsertOnSubmit(cl);
                 data.SubmitChanges();
-
-                return RedirectToAction("Index");
+                TempData["Referrer"] = "SaveRegister";
+                //TempData["SuccessMessage"] = "Your Success Message";
+                return RedirectToAction("Contact");
             }
             catch
             {
