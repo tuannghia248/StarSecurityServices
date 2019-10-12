@@ -1,7 +1,4 @@
-﻿.container{
-    width:1350px !important;
-}
-
+﻿
 * {
     font-family: 'Montserrat', sans-serif;
     padding: 0;
@@ -71,7 +68,7 @@ a {
     cursor: pointer;
     font-size: 18px;
     white-space: nowrap;
-    padding-left: 153px;
+    padding-left: 122px;
 }
 
 .email-input {
@@ -121,12 +118,9 @@ a {
 .button-contact a {
     border: 1px solid transparent;
     background: whitesmoke;
-    padding-right: 30px;
-    padding-left: 30px;
     margin-left: 79px;
-    padding-bottom: 10px;
-    padding-top: 10px;
     text-decoration: unset !important;
+    padding:10px 30px 10px 30px;
 }
 
     .button-contact a:hover {
@@ -141,7 +135,7 @@ a {
 
 .head-title-1 {
     padding-top: 20px;
-    padding-left: 100px;
+    padding-left: 188px;
 }
 
 .text-danger {
@@ -176,4 +170,10 @@ a {
     border: 1px solid black;
     border-collapse: collapse;
     padding:10px !important;
+}
+
+.bannerx {
+    border: 1px solid transparent;
+    width: 50.6% !important;
+    height: 440px;
 }
