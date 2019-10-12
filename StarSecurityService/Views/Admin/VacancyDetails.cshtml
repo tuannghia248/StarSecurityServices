@@ -5,19 +5,25 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="box box-primary">
+<div class="box box-primary center-block" style="width: 30%">
     <div class="box-body box-profile">
-        <h3 class="profile-username">@Html.DisplayFor(model => model.job)</h3>
-        <hr />
-        <strong><i class="fa fa-address-card margin-r-5"></i> @Html.DisplayNameFor(model => model.description)</strong>
+        <strong><i class="fa fa-tasks margin-r-5"></i> @Html.DisplayNameFor(model => model.job)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.job)</p>
+        <hr>
+        <strong><i class="fa fa-file-text margin-r-5"></i> @Html.DisplayNameFor(model => model.description)</strong>
         <p class="text-muted">@Html.DisplayFor(model => model.description)</p>
         <hr>
-        <strong><i class="fa fa-address-card margin-r-5"></i> @Html.DisplayNameFor(model => model.quantity)</strong>
+        <strong><i class="fa fa-user margin-r-5"></i> @Html.DisplayNameFor(model => model.quantity)</strong>
         <p class="text-muted">@Html.DisplayFor(model => model.quantity)</p>
         <hr>
-        <strong><i class="fa fa-address-card margin-r-5"></i> @Html.DisplayNameFor(model => model.deadline)</strong>
-        <p class="text-muted">@Html.DisplayFor(model => model.deadline)</p>
+        <strong><i class="fa fa-file-text-o margin-r-5"></i> @Html.DisplayNameFor(model => model.requirement)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.requirement)</p>
         <hr>
+        <strong><i class="fa fa-money margin-r-5"></i> @Html.DisplayNameFor(model => model.salary)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.salary)</p>
+        <hr>
+        <strong><i class="fa fa-calendar margin-r-5"></i> @Html.DisplayNameFor(model => model.deadline)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.deadline)</p>
     </div>
     <div class="box-footer">
         @{
@@ -27,7 +33,7 @@
         {
             @Html.ActionLink("Edit", "VacancyEdit", new { id = Model.id }, new { @class = "btn btn-primary" })
         }
-        @Html.ActionLink("Back to List", "VacancyList", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Back to List", "VacancyInsert", null, new { @class = "btn btn-default pull-right" })
     </div>
 </div>
 

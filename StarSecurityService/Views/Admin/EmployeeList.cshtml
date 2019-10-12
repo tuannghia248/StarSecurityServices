@@ -59,7 +59,7 @@
                             @Html.DisplayFor(modelItem => item.position)
                         </td>
                         <td>
-                            <a href="@Url.Action("ContractDetails", "Admin", new { id = item.id })">@Html.DisplayFor(modelItem => item.Contract.code)</a>
+                            <a href="@Url.Action("ContractDetails", "Admin", new { id = item.contract_id })">@Html.DisplayFor(modelItem => item.Contract.code)</a>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.status)

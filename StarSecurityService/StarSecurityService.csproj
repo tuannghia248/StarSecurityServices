@@ -123,6 +123,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SessionTimeoutAttribute.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -134,6 +135,8 @@
     </Compile>
     <Compile Include="Models\AccountMetaData.cs" />
     <Compile Include="Models\ClientMetaData.cs" />
+    <Compile Include="Models\ContractMetaData.cs" />
+    <Compile Include="Models\DepartmentMetaData.cs" />
     <Compile Include="Models\EmployeeMetaData.cs" />
     <Compile Include="Models\ServiceMetaData.cs" />
     <Compile Include="Models\StarSecurityData.designer.cs">
@@ -280,6 +283,9 @@
     <Content Include="Views\Home\Service.cshtml" />
     <Content Include="Views\Home\Testimonial.cshtml" />
     <Content Include="Views\Shared\_Layoutmain.cshtml" />
+    <Content Include="Views\Admin\DepartmentList.cshtml" />
+    <Content Include="Views\Admin\DepartmentInsert.cshtml" />
+    <Content Include="Views\Admin\DepartmentEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

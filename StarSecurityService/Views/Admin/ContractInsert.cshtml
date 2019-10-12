@@ -1,11 +1,10 @@
 ﻿@model StarSecurityService.Models.Contract
 
 @{
-    ViewBag.Title = "New Contract";
+    ViewBag.Title = "Contract";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 
     var listStatus = new SelectList(new List<SelectListItem> {
-        new SelectListItem { Text = "Hold", Value = "Hold"},
         new SelectListItem { Text = "Active", Value = "Active"},
         new SelectListItem { Text = "Complete", Value = "Complete"},
         new SelectListItem { Text = "Null", Value = "Null"}
@@ -16,50 +15,128 @@
 {
     @Html.AntiForgeryToken()
     <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Information</h3>
+        <div class="center-block" style="width: 30%">
+            <div class="box-header with-border text-center">
+                <h3 class="box-title">Add New Contract</h3>
+            </div>
+            <form role="form">
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.created_at, new { @Value = DateTime.Now.ToString("MM/dd/yyyy") })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.client_id)
+                        @Html.DropDownListFor(model => model.client_id, ViewBag.clientList as SelectList, "", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.client_id, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.service_id)
+                        @Html.DropDownListFor(model => model.service_id, ViewBag.serviceList as SelectList, "", new { @class = "form-control", @id = "sv" })
+                        @Html.ValidationMessageFor(model => model.service_id, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.quantity)
+                                @if (ViewBag.quantity != null)
+                                {
+                                    @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control", @id = "qty", @Value = ViewBag.quantity } })
+                                }
+                                else
+                                {
+                                    @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control", @id = "qty" } })
+                                }
+                                @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.duration)
+                                @if (ViewBag.duration != null)
+                                {
+                                    @Html.EditorFor(model => model.duration, new { htmlAttributes = new { @class = "form-control", @id = "dur", @Value = ViewBag.duration } })
+                                }
+                                else
+                                {
+                                    @Html.EditorFor(model => model.duration, new { htmlAttributes = new { @class = "form-control", @id = "dur" } })
+                                }
+                                @Html.ValidationMessageFor(model => model.duration, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.price)
+                        @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control", @id = "total", @Value = ViewBag.price } })
+                        @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.start_at)
+                                @if (ViewBag.start_at != null)
+                                {
+                                    @Html.EditorFor(model => model.start_at, new { htmlAttributes = new { @class = "form-control", @id = "datepicker", @Value = ViewBag.start_at } })
+                                }
+                                else
+                                {
+                                    @Html.EditorFor(model => model.start_at, new { htmlAttributes = new { @class = "form-control", @id = "datepicker" } })
+                                }
+                                @Html.ValidationMessageFor(model => model.start_at, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.end_at)
+                                @Html.EditorFor(model => model.end_at, new { htmlAttributes = new { @class = "form-control", @id = "datepicker2" } })
+                                @Html.ValidationMessageFor(model => model.end_at, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group hidden">
+                        @Html.LabelFor(model => model.status)
+                        @Html.DropDownListFor(model => model.status, listStatus, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="~/Admin/ContractInsert" class="btn btn-default pull-right">Clear</a>
+                </div>
+            </form>
         </div>
-        <form role="form">
-            <div class="box-body">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.duration)
-                    @Html.EditorFor(model => model.duration, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.duration, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.price)
-                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.service_id)
-                    @Html.DropDownListFor(model => model.service_id, ViewBag.serviceList as SelectList, "", new { @class = "form-control"})
-                    @Html.ValidationMessageFor(model => model.service_id, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.client_id)
-                    @Html.DropDownListFor(model => model.client_id, ViewBag.clientList as SelectList, "", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.client_id, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.created_at)
-                    @Html.EditorFor(model => model.created_at, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.created_at, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.end_at)
-                    @Html.EditorFor(model => model.end_at, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.end_at, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.status)
-                    @Html.DropDownListFor(model => model.status, listStatus, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
     </div>
+}
+
+@{Html.RenderAction("ContractList", "Admin");}
+
+@section scripts {
+    <script type="text/javascript">
+        function calculate() {
+            var sv = $("#sv").val();
+            var qty = $("#qty").val();
+            var dur = $("#dur").val();
+            var total = $("#total").val();
+
+            if (sv == 0) {
+                $("#total").val("");
+            }
+            else if (sv == 1) {
+                $("#total").val(1000000 * qty * dur);
+            }
+            else if (sv == 2) {
+                $("#total").val(1500000 * qty * dur);
+            }
+            else if (sv == 3) {
+                $("#total").val(2000000 * qty * dur);
+            }
+            else {
+                $("#total").val(2500000 * qty * dur);
+            }
+        }
+
+        $(document).ready(function () {
+            $("#sv").change(calculate);
+            $("#qty").change(calculate);
+            $("#dur").change(calculate);
+            $("#total").change(calculate);
+        });
+    </script>
 }

@@ -1,7 +1,7 @@
 ﻿@model StarSecurityService.Models.Employee
 
 @{
-    ViewBag.Title = "Employee Information";
+    ViewBag.Title = "Employee";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 
     var listStatus = new SelectList(new List<SelectListItem> {
@@ -62,4 +62,3 @@
 }
 
 @{Html.RenderAction("EmployeeList", "Admin");}
-

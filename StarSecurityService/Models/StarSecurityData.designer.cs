@@ -1040,6 +1040,7 @@ namespace StarSecurityService.Models
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Contract")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
+    [MetadataType(typeof(ContractMetaData))]
 	public partial class Contract : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -1523,7 +1524,8 @@ namespace StarSecurityService.Models
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Department")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class Department : INotifyPropertyChanging, INotifyPropertyChanged
+    [MetadataType(typeof(DepartmentMetaData))]
+    public partial class Department : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);

@@ -1,13 +1,8 @@
-﻿@model StarSecurityService.Models.Service
+﻿@model StarSecurityService.Models.Department
 
 @{
-    ViewBag.Title = "Service";
+    ViewBag.Title = "Department";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-
-    var listStatus = new SelectList(new List<SelectListItem> {
-        new SelectListItem { Text = "Active", Value = "Active"},
-        new SelectListItem { Text = "Inactive", Value = "Inactive"}
-    }, "Value", "Text");
 }
 
 @using (Html.BeginForm())
@@ -16,24 +11,19 @@
     <div class="box box-primary">
         <div class="center-block" style="width: 30%">
             <div class="box-header with-border text-center">
-                <h3 class="box-title">Add New Service</h3>
+                <h3 class="box-title">Add New Department</h3>
             </div>
             <form role="form">
                 <div class="box-body">
                     <div class="form-group">
                         @Html.LabelFor(model => model.name)
-                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter service name" } })
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter name" } })
                         @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.description)
-                        @Html.TextAreaFor(model => model.description, new { @class = "form-control", @rows = 3, placeholder = "Enter description" })
+                        @Html.TextAreaFor(model => model.description, new { @class = "form-control", @rows = 3, placeholder = "Description" })
                         @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group hidden">
-                        @Html.LabelFor(model => model.status)
-                        @Html.DropDownListFor(model => model.status, listStatus, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="box-footer">
@@ -45,4 +35,4 @@
     </div>
 }
 
-@{Html.RenderAction("ServiceList", "Admin");}
+@{Html.RenderAction("DepartmentList", "Admin");}

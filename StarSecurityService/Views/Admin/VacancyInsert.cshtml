@@ -1,46 +1,69 @@
 ﻿@model StarSecurityService.Models.Vacancy
 
 @{
-    ViewBag.Title = "New Vacancy";
+    ViewBag.Title = "Vacancy";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
 }
 
-@using (Html.BeginForm())
+@if (session.Role == "admin" || session.Role == "manager")
 {
-    @Html.AntiForgeryToken()
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Information</h3>
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="box box-primary">
+            <div class="center-block" style="width: 30%">
+                <div class="box-header with-border text-center">
+                    <h3 class="box-title">Add New Vacancy</h3>
+                </div>
+                <form role="form">
+                    <div class="box-body">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.job)
+                            @Html.EditorFor(model => model.job, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.job, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.description)
+                            @Html.TextAreaFor(model => model.description, new { @class = "form-control", @rows = 3 })
+                            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.quantity)
+                                    @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.salary)
+                                    @Html.EditorFor(model => model.salary, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.salary, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.requirement)
+                            @Html.TextAreaFor(model => model.requirement, new { @class = "form-control", @rows = 3 })
+                            @Html.ValidationMessageFor(model => model.requirement, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.deadline)
+                            @Html.EditorFor(model => model.deadline, new { htmlAttributes = new { @class = "form-control", @id = "datepicker" } })
+                            @Html.ValidationMessageFor(model => model.deadline, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-default pull-right">Clear</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <form role="form">
-            <div class="box-body">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.job)
-                    @Html.EditorFor(model => model.job, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.job, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.description)
-                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.quantity)
-                    @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.deadline)
-                    @Html.EditorFor(model => model.deadline, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.deadline, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-        </form>
-    </div>
+    }
 }
+
+@{Html.RenderAction("VacancyList", "Admin");}

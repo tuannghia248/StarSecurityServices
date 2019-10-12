@@ -2,5 +2,5 @@
 
 @foreach (var item in Model)
 {
-    <div>@Html.DisplayFor(modelItem => item.name)</div>
+    <div><a href="@Url.Action("EmployeeDetails", "Admin", new { id = item.id })">@Html.DisplayFor(modelItem => item.name)</a></div>
 }

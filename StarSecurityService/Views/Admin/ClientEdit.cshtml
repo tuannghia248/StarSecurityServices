@@ -16,7 +16,6 @@
             <form role="form">
                 <div class="box-body">
                     @Html.HiddenFor(model => model.id)
-                    @Html.HiddenFor(model => model.updated_at, new { @Value = DateTime.Now.ToString("MM/dd/yyyy") })
                     <div class="form-group">
                         @Html.LabelFor(model => model.name)
                         @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })

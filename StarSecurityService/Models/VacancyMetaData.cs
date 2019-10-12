@@ -14,15 +14,28 @@ namespace StarSecurityService.Models
         [Display(Name = "ID")]
         public int id;
 
+        [Required]
         [Display(Name = "Job Title")]
         public string job { get; set; }
 
-        [Display(Name = "Position")]
-        public string position { get; set; }
+        [Required]
+        [Display(Name = "Job Description")]
+        public string description { get; set; }
 
-        [Display(Name = "Quantity")]
+        [Required]
+        [Display(Name = "Quantity Needed")]
         public int quantity { get; set; }
 
+        [Required]
+        [Display(Name = "Requirement")]
+        public string requirement { get; set; }
+
+        [Required]
+        [Display(Name = "Salary (VND)")]
+        [DisplayFormat(DataFormatString = "{0:N0}")]
+        public float salary { get; set; }
+
+        [Required]
         [Display(Name = "Deadline")]
         public string deadline { get; set; }
     }

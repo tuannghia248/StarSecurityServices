@@ -9,49 +9,44 @@ namespace StarSecurityService.Models
 {
     [System.Runtime.Serialization.DataContract(IsReference = true)]
     [System.ComponentModel.DataAnnotations.ScaffoldTable(true)]
-    public class ClientMetaData
+    public class ContractMetaData
     {
         [Display(Name = "ID")]
         public int id { get; set; }
 
-        [Required]
-        [Display(Name = "Full Name")]
-        [StringLength(255, MinimumLength = 6, ErrorMessage = "Full name must be at least 6 characters.")]
-        public string name { get; set; }
-
-        [Required]
-        [Display(Name = "Address")]
-        public string address { get; set; }
-
-        [Required]
-        [Display(Name = "Phone Number")]
-        [StringLength(11, MinimumLength = 10, ErrorMessage = "Phone number must be 10 or 11 numbers.")]
-        [RegularExpression("([0-9]+)", ErrorMessage = "Please enter valid phone number.")]
-        public string phone { get; set; }
-
-        [Required]
-        [Display(Name = "Email")]
-        [MaxLength(50)]
-        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Please enter correct email address.")]
-        public string email { get; set; }
+        [Display(Name = "Code")]
+        public string code { get; set; }
 
         [Required]
         [Display(Name = "Service")]
         public int service_id { get; set; }
 
-        [Display(Name = "Expected Employee Quantity")]
+        [Required]
+        [Display(Name = "Client")]
+        public int client_id { get; set; }
+
+        [Required(ErrorMessage = "The Quantity field is required.")]
+        [Display(Name = "Hired Employee Quantity")]
         [RegularExpression(@"^[1-9][0-9]*$", ErrorMessage = "Employee quantity must be greater than 0.")]
         public int quantity { get; set; }
 
-        [Display(Name = "Intend Time Hiring")]
+        [Required(ErrorMessage = "The Duration field is required.")]
+        [Display(Name = "Time Hiring (Day)")]
         [RegularExpression(@"^[1-9][0-9]*$", ErrorMessage = "Time hiring must be greater than 0.")]
         public int duration { get; set; }
 
-        [Display(Name = "Expected Date")]
+        [Required]
+        [Display(Name = "Total Price (VND)")]
+        [DisplayFormat(DataFormatString = "{0:N0}")]
+        public float price { get; set; }
+
+        [Required]
+        [Display(Name = "Start Date")]
         public string start_at { get; set; }
 
-        [Display(Name = "Description")]
-        public string description { get; set; }
+        [Required]
+        [Display(Name = "End Date")]
+        public string end_at { get; set; }
 
         [Display(Name = "Status")]
         public string status { get; set; }

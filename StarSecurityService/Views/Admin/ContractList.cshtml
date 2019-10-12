@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<StarSecurityService.Models.Contract>
 
 @{
-    ViewBag.Title = "Contract List";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = null;
 }
 
 <div class="box">
@@ -14,19 +13,16 @@
                         @Html.DisplayNameFor(model => model.id)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.duration)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.price)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.service_id)
+                        @Html.DisplayNameFor(model => model.code)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.client_id)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.created_at)
+                        @Html.DisplayNameFor(model => model.service_id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.start_at)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.end_at)
@@ -48,19 +44,16 @@
                         @Html.DisplayFor(modelItem => item.id)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.duration)
+                        @Html.DisplayFor(modelItem => item.code)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.price)
+                        <a href="@Url.Action("ClientDetails", "Admin", new { id = item.client_id })">@Html.DisplayFor(modelItem => item.Client.name)</a>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Service.name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Client.name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.created_at)
+                        @Html.DisplayFor(modelItem => item.start_at)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.end_at)
@@ -72,8 +65,8 @@
                         @Html.DisplayFor(modelItem => item.status)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "ContractEdit", new { id = item.id }, new { @class = "btn btn-primary" })
                         @Html.ActionLink("Details", "ContractDetails", new { id = item.id }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("Edit", "ContractEdit", new { id = item.id }, new { @class = "btn btn-primary" })
                         @using (Html.BeginForm("ContractDelete", "Admin", new { id = item.id }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this?');", style = "display: inline-block" }))
                         {
                             @Html.AntiForgeryToken()

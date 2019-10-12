@@ -62,32 +62,14 @@
                     <li class="header">MAIN NAVIGATION</li>
                     <li class=""><a href="@Url.Action("Dashboard", "Admin")"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
                     <li class=""><a href="@Url.Action("EmployeeInsert", "Admin")"><i class="fa fa-user-circle"></i> <span>Employee</span></a></li>
-                    @*<li class="treeview">
-                        <a href="">
-                            <i class="fa fa-user-circle"></i> <span>Employee</span>
-                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("EmployeeList", "Admin")"><i class="fa fa-list"></i> Employee list</a></li>
-                            @if (session.Role == "admin")
-                            {
-                                <li><a href="@Url.Action("EmployeeInsert", "Admin")"><i class="fa fa-plus-circle"></i> Add new employee</a></li>
-                            }
-                        </ul>
-                    </li>*@
-                    <li class="treeview">
-                        <a href="">
-                            <i class="fa fa-file-word-o"></i> <span>Contract</span>
-                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("ContractList", "Admin")"><i class="fa fa-list"></i> Contract list</a></li>
-                            <li><a href="@Url.Action("ContractInsert", "Admin")"><i class="fa fa-plus-circle"></i> Add new contract</a></li>
-                        </ul>
-                    </li>
+                    <li class=""><a href="@Url.Action("ContractInsert", "Admin")"><i class="fa fa-file-word-o"></i> <span>Contract</span></a></li>
                     <li class=""><a href="@Url.Action("ClientInsert", "Admin")"><i class="fa fa-user-circle-o"></i> <span>Client</span></a></li>
                     <li class=""><a href="@Url.Action("ServiceInsert", "Admin")"><i class="fa fa-cogs"></i> <span>Service</span></a></li>
-                    <li class="treeview">
+                    <li class=""><a href="@Url.Action("DepartmentInsert", "Admin")"><i class="fa fa-briefcase"></i> <span>Department</span></a></li>
+                    <li class=""><a href="@Url.Action("VacancyInsert", "Admin")"><i class="fa fa-tasks"></i> <span>Vacancy</span></a></li>
+                    <li class=""><a href="@Url.Action("AccountInsert", "Admin")"><i class="fa fa-user-secret"></i> <span>Account</span></a></li>
+
+                    @*<li class="treeview">
                         <a href="">
                             <i class="fa fa-user-circle-o"></i> <span>Vacancy</span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
@@ -99,9 +81,9 @@
                                 <li><a href="@Url.Action("VacancyInsert", "Admin")"><i class="fa fa-plus-circle"></i> Add new vacancy</a></li>
                             }
                         </ul>
-                    </li>
+                    </li>*@
 
-                    <li class="treeview">
+                    @*<li class="treeview">
                         <a href="">
                             <i class="fa fa-user-circle-o"></i> <span>Account</span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
@@ -113,14 +95,12 @@
                                 <li><a href="@Url.Action("AccountInsert", "Admin")"><i class="fa fa-plus-circle"></i> Add new account</a></li>
                             }
                         </ul>
-                    </li>
+                    </li>*@
+
                 </ul>
             </section>
         </aside>
         <div class="content-wrapper">
-            @*<section class="content-header">
-                <h1>@ViewBag.Title</h1>
-            </section>*@
             <section class="content container-fluid">
                 @RenderBody()
             </section>
@@ -145,6 +125,9 @@
         $(".textarea").wysihtml5();
         $("#datatable").DataTable();
         $('#datepicker').datepicker({
+            autoclose: true
+        });
+        $('#datepicker2').datepicker({
             autoclose: true
         });
     </script>
