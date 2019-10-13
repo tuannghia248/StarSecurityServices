@@ -220,7 +220,7 @@ namespace StarSecurityService.Controllers
         public ActionResult EmployeeEdit(int id)
         {
             var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
-            if (session.Role == "admin")
+            if (session.Role == "admin" || session.Role == "manager")
             {
                 DepartmentDropDownList();
                 AccountDropDownList();

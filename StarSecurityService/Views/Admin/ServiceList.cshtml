@@ -2,6 +2,8 @@
 
 @{
     Layout = null;
+
+    var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
 }
 
 <div class="box">
@@ -25,40 +27,43 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.description)
-                    </td>
-                    <td>
-                        @if (item.status == "Active")
-                        {
-                            <span class="label label-info">@item.status</span>
-                        }
-                        else
-                        {
-                            <span class="label label-danger">@item.status</span>
-                        }
-                    </td>
-                    <td>
-                        @Html.ActionLink("Details", "ServiceDetails", new { id = item.id }, new { @class = "btn btn-info" })
-                        @Html.ActionLink("Edit", "ServiceEdit", new { id = item.id }, new { @class = "btn btn-primary" })
-                        @using (Html.BeginForm("ServiceDelete", "Admin", new { id = item.id }, FormMethod.Post, new { onsubmit = "return confirm('Delete this will also delete related client and contract. Do you wish to continue?');", style = "display: inline-block" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.HttpMethodOverride(HttpVerbs.Delete)
-                            <button class="btn btn-danger" type="submit">Delete</button>
-                        }
-                    </td>
-                </tr>
-            }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
+                        <td>
+                            @if (item.status == "Active")
+                            {
+                                <span class="label label-info">@item.status</span>
+                            }
+                            else
+                            {
+                                <span class="label label-danger">@item.status</span>
+                            }
+                        </td>
+                        <td>
+                            @if (session.Role == "admin" || session.Role == "manager")
+                            {
+                                @Html.ActionLink("Edit", "ServiceEdit", new { id = item.id }, new { @class = "btn btn-primary" })
+                                using (Html.BeginForm("ServiceDelete", "Admin", new { id = item.id }, FormMethod.Post, new { onsubmit = "return confirm('Delete this will also delete related client and contract. Do you wish to continue?');", style = "display: inline-block" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                }
+                            }
+                            @Html.ActionLink("Details", "ServiceDetails", new { id = item.id }, new { @class = "btn btn-info" })
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

@@ -2,6 +2,8 @@
 
 @{
     Layout = null;
+
+    var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
 }
 
 <div class="box">
@@ -18,12 +20,15 @@
                     <th>
                         @Html.DisplayNameFor(model => model.description)
                     </th>
-                    <th></th>
+                    @if (session.Role == "admin" || session.Role == "manager")
+                    {
+                        <th></th>
+                    }
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
-            {
+                {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.id)
@@ -34,15 +39,18 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.description)
                         </td>
-                        <td>
-                            @Html.ActionLink("Edit", "DepartmentEdit", new { id = item.id }, new { @class = "btn btn-primary" })
-                            @using (Html.BeginForm("DepartmentDelete", "Admin", new { id = item.id }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this?');", style = "display: inline-block" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                @Html.HttpMethodOverride(HttpVerbs.Delete)
-                                <button class="btn btn-danger" type="submit">Delete</button>
-                            }
-                        </td>
+                        @if (session.Role == "admin")
+                        {
+                            <td>
+                                @Html.ActionLink("Edit", "DepartmentEdit", new { id = item.id }, new { @class = "btn btn-primary" })
+                                @using (Html.BeginForm("DepartmentDelete", "Admin", new { id = item.id }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this?');", style = "display: inline-block" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                }
+                            </td>
+                        }
                     </tr>
                 }
             </tbody>
