@@ -6,6 +6,7 @@
 }
 
 <div style="background: #000;">
+    <div class="container">
     @using (Html.BeginForm("Login", "Login", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
@@ -33,4 +34,5 @@
             </div>
         </div>
     }
+</div>
 </div>
