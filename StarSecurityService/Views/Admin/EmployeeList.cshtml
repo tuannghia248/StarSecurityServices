@@ -62,7 +62,18 @@
                             <a href="@Url.Action("ContractDetails", "Admin", new { id = item.contract_id })">@Html.DisplayFor(modelItem => item.Contract.code)</a>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.status)
+                            @if (item.status == "Standby")
+                            {
+                                <span class="label label-warning">@item.status</span>
+                            }
+                            else if (item.status == "Active")
+                            {
+                                <span class="label label-success">@item.status</span>
+                            }
+                            else
+                            {
+                                <span class="label label-danger">@item.status</span>
+                            }
                         </td>
                         <td>
                             @{

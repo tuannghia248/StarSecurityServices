@@ -38,7 +38,14 @@
                         @Html.DisplayFor(modelItem => item.description)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.status)
+                        @if (item.status == "Active")
+                        {
+                            <span class="label label-info">@item.status</span>
+                        }
+                        else
+                        {
+                            <span class="label label-danger">@item.status</span>
+                        }
                     </td>
                     <td>
                         @Html.ActionLink("Details", "ServiceDetails", new { id = item.id }, new { @class = "btn btn-info" })

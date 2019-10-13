@@ -62,7 +62,18 @@
                         @Html.Action("GetEmployeeOfContract", new { id = item.id })
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.status)
+                        @if (item.status == "Active")
+                        {
+                            <span class="label label-success">@item.status</span>
+                        }
+                        else if (item.status == "Complete")
+                        {
+                            <span class="label label-info">@item.status</span>
+                        }
+                        else
+                        {
+                            <span class="label label-danger">@item.status</span>
+                        }
                     </td>
                     <td>
                         @Html.ActionLink("Details", "ContractDetails", new { id = item.id }, new { @class = "btn btn-info" })

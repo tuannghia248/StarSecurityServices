@@ -57,7 +57,18 @@
                         @Html.DisplayFor(modelItem => item.Service.name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.status)
+                        @if (item.status == "Waiting")
+                        {
+                            <span class="label label-warning">@item.status</span>
+                        }
+                        else if (item.status == "Ongoing")
+                        {
+                            <span class="label label-success">@item.status</span>
+                        }
+                        else
+                        {
+                            <span class="label label-info">@item.status</span>
+                        }
                     </td>
                     <td>
                         @Html.ActionLink("New Contract", "ContractInsert", new { id = item.id }, new { @class = "btn btn-primary" })

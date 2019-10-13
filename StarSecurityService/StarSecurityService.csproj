@@ -163,6 +163,8 @@
     <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\ionicons.css" />
+    <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\skin-blue.css" />
     <Content Include="Content\skin-blue.min.css" />
     <Content Include="Content\tether\tether-theme-arrows-dark.css" />
@@ -197,6 +199,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\bootstrap-datepicker.css.map" />
+    <Content Include="fonts\ionicons.eot" />
+    <Content Include="fonts\ionicons.svg" />
+    <Content Include="fonts\ionicons.ttf" />
+    <Content Include="fonts\ionicons.woff" />
     <None Include="Models\StarSecurityData.dbml.layout">
       <DependentUpon>StarSecurityData.dbml</DependentUpon>
     </None>

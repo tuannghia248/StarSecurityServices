@@ -168,6 +168,16 @@ namespace StarSecurityService.Controllers
 
         public ActionResult Dashboard()
         {
+            var clients = db.Clients.Where(c => c.status == "Waiting").Count();
+            var contracts = db.Contracts.Where(c => c.status == "Active").Count();
+            var dispatch = db.Employees.Where(e => e.contract_id != null).Count();
+            var training = db.Employees.Where(e => e.depantment_id == 4).Count();
+            var list = db.Contracts.OrderByDescending(c => c.id).Take(5);
+            ViewBag.clients = clients;
+            ViewBag.contracts = contracts;
+            ViewBag.dispatch = dispatch;
+            ViewBag.training = training;
+            ViewBag.list = list;
             return View();
         }
 
@@ -823,9 +833,16 @@ namespace StarSecurityService.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.Accounts.InsertOnSubmit(account);
-                    db.SubmitChanges();
-                    return RedirectToAction("AccountInsert");
+                    if(db.Accounts.Any(a => a.username == account.username))
+                    {
+                        ModelState.AddModelError("UsernameExits", "Username already exists.");
+                    }
+                    else
+                    {
+                        db.Accounts.InsertOnSubmit(account);
+                        db.SubmitChanges();
+                        return RedirectToAction("AccountInsert");
+                    }
                 }
                 return View();
             }
