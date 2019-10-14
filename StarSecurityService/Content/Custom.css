@@ -28,7 +28,7 @@ a {
 }
 
 .banner1 {
-    border: 1px solid transparent;
+    border: 1px solid #fff;
     width: 49.4% !important;
     height: 820px;
 }
@@ -166,4 +166,8 @@ a {
     border: 1px solid transparent;
     width: 50.6% !important;
     height: 440px;
+}
+
+#contact-form .form-control{
+    width:55%;
 }
