@@ -60,8 +60,30 @@
                     <li class="header">MAIN NAVIGATION</li>
                     <li class=""><a href="@Url.Action("Dashboard", "Admin")"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
                     <li class=""><a href="@Url.Action("EmployeeInsert", "Admin")"><i class="fa fa-user-circle"></i> <span>Employee</span></a></li>
-                    <li class=""><a href="@Url.Action("ContractInsert", "Admin")"><i class="fa fa-file-word-o"></i> <span>Contract</span></a></li>
-                    <li class=""><a href="@Url.Action("ClientInsert", "Admin")"><i class="fa fa-user-circle-o"></i> <span>Client</span></a></li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-file-word-o"></i> <span>Contract</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("ContractList", "Admin")"><i class="fa fa-circle-o"></i> Contract List</a></li>
+                            <li><a href="@Url.Action("ContractInsert", "Admin")"><i class="fa fa-circle-o"></i> New Contract</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-user-circle-o"></i> <span>Client</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("ClientList", "Admin")"><i class="fa fa-circle-o"></i> Client List</a></li>
+                            <li><a href="@Url.Action("ClientInsert", "Admin")"><i class="fa fa-circle-o"></i> New Client</a></li>
+                        </ul>
+                    </li>
                     <li class=""><a href="@Url.Action("ServiceInsert", "Admin")"><i class="fa fa-cogs"></i> <span>Service</span></a></li>
                     <li class=""><a href="@Url.Action("DepartmentInsert", "Admin")"><i class="fa fa-briefcase"></i> <span>Department</span></a></li>
                     <li class=""><a href="@Url.Action("VacancyInsert", "Admin")"><i class="fa fa-tasks"></i> <span>Vacancy</span></a></li>

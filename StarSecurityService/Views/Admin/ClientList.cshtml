@@ -1,13 +1,37 @@
 ﻿@model IEnumerable<StarSecurityService.Models.Client>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Client List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
     var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
 }
 
+<div class="box box-primary" style="width: 26%">
+    <div class="box-header">
+        <i class="fa fa-edit"></i>
+
+        <h3 class="box-title">Filter</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.ActionLink("All", "ClientList", null, new { @class = "btn btn-default", @style = "width: 80px" })
+            </div>
+            <div class="col-md-3">
+                @Html.ActionLink("Waiting", "ClientList", new { status = "Waiting" }, new { @class = "btn btn-warning", @style = "width: 80px" })
+            </div>
+            <div class="col-md-3">
+                @Html.ActionLink("Ongoing", "ClientList", new { status = "Ongoing" }, new { @class = "btn btn-success", @style = "width: 80px" })
+            </div>
+            <div class="col-md-3">
+                @Html.ActionLink("Fulfill", "ClientList", new { status = "Fulfill" }, new { @class = "btn btn-info", @style = "width: 80px" })
+            </div>
+        </div>
+    </div>
+</div>
 <div class="box">
     <div class="box-body">
-        <table id="datatable" class="table table-bordered table-striped">
+        <table id="datatable" class="table table-bordered table-striped" data-order="[[ 0, &quot;desc&quot; ]]">
             <thead>
                 <tr>
                     <th>
@@ -81,7 +105,7 @@
                             @Html.ActionLink("Details", "ClientDetails", new { id = item.id }, new { @class = "btn btn-info" })
                             @if (session.Role == "admin")
                             {
-                                @Html.ActionLink("Edit", "ClientEdit", new { id = item.id }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Edit", "ClientEdit", new { id = item.id }, new { @class = "btn btn-primary", @style = "margin-right: 3px" })
                                 using (Html.BeginForm("ClientDelete", "Admin", new { id = item.id }, FormMethod.Post, new { onsubmit = "return confirm('Delete this will also delete related contract. Do you wish to continue?');", style = "display: inline-block" }))
                                 {
                                     @Html.AntiForgeryToken()

@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 
     var listStatus = new SelectList(new List<SelectListItem> {
+        new SelectListItem { Text = "Pending", Value = "Pending"},
         new SelectListItem { Text = "Active", Value = "Active"},
         new SelectListItem { Text = "Complete", Value = "Complete"},
         new SelectListItem { Text = "Null", Value = "Null"}
@@ -83,7 +84,7 @@
                 </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Save</button>
-                    @Html.ActionLink("Back to List", "ContractInsert", null, new { @class = "btn btn-default pull-right" })
+                    @Html.ActionLink("Back to List", "ContractList", null, new { @class = "btn btn-default pull-right" })
                 </div>
             </form>
         </div>

@@ -96,6 +96,7 @@
       <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="image" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="status" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="price" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="Service_Client" Member="Clients" ThisKey="id" OtherKey="service_id" Type="Client" />
       <Association Name="Service_Contract" Member="Contracts" ThisKey="id" OtherKey="service_id" Type="Contract" />
     </Type>

@@ -53,7 +53,7 @@
                             @Html.ActionLink("Details", "ServiceDetails", new { id = item.id }, new { @class = "btn btn-info" })
                             @if (session.Role == "admin")
                             {
-                                @Html.ActionLink("Edit", "ServiceEdit", new { id = item.id }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Edit", "ServiceEdit", new { id = item.id }, new { @class = "btn btn-primary", @style = "margin-right: 3px" })
                                 using (Html.BeginForm("ServiceDelete", "Admin", new { id = item.id }, FormMethod.Post, new { onsubmit = "return confirm('Delete this will also delete related client and contract. Do you wish to continue?');", style = "display: inline-block" }))
                                 {
                                     @Html.AntiForgeryToken()

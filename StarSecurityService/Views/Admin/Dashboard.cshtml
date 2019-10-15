@@ -13,7 +13,7 @@
             <div class="icon">
                 <i class="ion ion-ios-contact"></i>
             </div>
-            <a href="@Url.Action("ClientInsert", "Admin")" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="@Url.Action("ClientList", "Admin")" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <div class="col-lg-3 col-xs-6">
@@ -25,7 +25,7 @@
             <div class="icon">
                 <i class="ion ion-document-text"></i>
             </div>
-            <a href="@Url.Action("ContractInsert", "Admin")" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="@Url.Action("ContractList", "Admin", new { status = "Active" })" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <div class="col-lg-3 col-xs-6">
@@ -87,7 +87,11 @@
                         <td>@item.start_at</td>
                         <td>@item.end_at</td>
                         <td>
-                            @if (item.status == "Active")
+                            @if (item.status == "Pending")
+                            {
+                                <span class="label label-warning">@item.status</span>
+                            }
+                            else if (item.status == "Active")
                             {
                                 <span class="label label-success">@item.status</span>
                             }
@@ -107,6 +111,6 @@
         </div>
     </div>
     <div class="box-footer clearfix">
-        <a href="@Url.Action("ContractInsert", "Admin")" class="btn btn-sm btn-info btn-flat">View All Contracts</a>
+        <a href="@Url.Action("ContractList", "Admin")" class="btn btn-sm btn-info btn-flat">View All Contracts</a>
     </div>
 </div>

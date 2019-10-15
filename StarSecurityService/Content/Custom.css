@@ -83,8 +83,8 @@ a {
 .banner4 {
     border-bottom: 1px solid #000;
     margin-top: 9px;
-    margin-right: 30px;
-    margin-left: 30px;
+    margin-right: 11px;
+    margin-left: 11px;
 }
 
 .black-p p {
@@ -101,6 +101,7 @@ a {
     text-align: justify;
     padding: 20px 10px 0 10px;
     line-height: 1.7;
+    font-size: 12px;
 }
 
 .button-contact {

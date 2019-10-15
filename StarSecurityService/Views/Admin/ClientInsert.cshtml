@@ -1,7 +1,7 @@
 ﻿@model StarSecurityService.Models.Client
 
 @{
-    ViewBag.Title = "Client";
+    ViewBag.Title = "New Client";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
 
@@ -90,4 +90,59 @@
     }
 }
 
-@{Html.RenderAction("ClientList", "Admin");}
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">Newest Client</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="table-responsive">
+            <table class="table no-margin">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Service</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.list)
+                    {
+                        <tr>
+                            <td>@item.name</td>
+                            <td>@item.address</td>
+                            <td>@item.phone</td>
+                            <td>@item.email</td>
+                            <td>@item.Service.name</td>
+                            <td>
+                                @if (item.status == "Waiting")
+                                {
+                                    <span class="label label-warning">@item.status</span>
+                                }
+                                else if (item.status == "Ongoing")
+                                {
+                                    <span class="label label-success">@item.status</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-info">@item.status</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="box-footer clearfix">
+        <a href="@Url.Action("ClientList", "Admin")" class="btn btn-sm btn-info btn-flat">View All Clients</a>
+    </div>
+</div>

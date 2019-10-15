@@ -28,5 +28,8 @@ namespace StarSecurityService.Models
 
         [Display(Name = "Status")]
         public string status { get; set; }
+
+        [Display(Name = "Price")]
+        public string price { get; set; }
     }
 }

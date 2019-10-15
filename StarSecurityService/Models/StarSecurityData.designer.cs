@@ -144,7 +144,7 @@ namespace StarSecurityService.Models
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Account")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
     [MetadataType(typeof(AccountMetaData))]
-    public partial class Account : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Account : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -573,7 +573,7 @@ namespace StarSecurityService.Models
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Client")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
     [MetadataType(typeof(ClientMetaData))]
-	public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged
+    public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1041,7 +1041,7 @@ namespace StarSecurityService.Models
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Contract")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
     [MetadataType(typeof(ContractMetaData))]
-	public partial class Contract : INotifyPropertyChanging, INotifyPropertyChanged
+    public partial class Contract : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1702,7 +1702,7 @@ namespace StarSecurityService.Models
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Employee")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
     [MetadataType(typeof(EmployeeMetaData))]
-	public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
+    public partial class Employee : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -2292,6 +2292,8 @@ namespace StarSecurityService.Models
 		
 		private string _status;
 		
+		private string _price;
+		
 		private EntitySet<Client> _Clients;
 		
 		private EntitySet<Contract> _Contracts;
@@ -2312,6 +2314,8 @@ namespace StarSecurityService.Models
     partial void OnimageChanged();
     partial void OnstatusChanging(string value);
     partial void OnstatusChanged();
+    partial void OnpriceChanging(string value);
+    partial void OnpriceChanged();
     #endregion
 		
 		public Service()
@@ -2424,8 +2428,29 @@ namespace StarSecurityService.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="NVarChar(255)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
+		public string price
+		{
+			get
+			{
+				return this._price;
+			}
+			set
+			{
+				if ((this._price != value))
+				{
+					this.OnpriceChanging(value);
+					this.SendPropertyChanging();
+					this._price = value;
+					this.SendPropertyChanged("price");
+					this.OnpriceChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_Client", Storage="_Clients", ThisKey="id", OtherKey="service_id")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6, EmitDefaultValue=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7, EmitDefaultValue=false)]
 		public EntitySet<Client> Clients
 		{
 			get
@@ -2444,7 +2469,7 @@ namespace StarSecurityService.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_Contract", Storage="_Contracts", ThisKey="id", OtherKey="service_id")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7, EmitDefaultValue=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8, EmitDefaultValue=false)]
 		public EntitySet<Contract> Contracts
 		{
 			get

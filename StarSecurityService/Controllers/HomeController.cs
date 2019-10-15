@@ -14,8 +14,15 @@ namespace StarSecurityService.Controllers
         void ServiceDropDownList()
         {
             Service sv = new Service();
-            var query = data.Services.ToList();
+            var query = data.Services.Where(s => s.status == "Active").ToList();
             SelectList list = new SelectList(query, "id", "name");
+            ViewBag.svlist = list;
+        }
+
+        void ServiceToContactDDLSelected(int? id)
+        {
+            var query = data.Services.Where(s => s.status == "Active").ToList();
+            SelectList list = new SelectList(query, "id", "name", id);
             ViewBag.svlist = list;
         }
 
@@ -31,43 +38,68 @@ namespace StarSecurityService.Controllers
         }
 
         [HttpGet]
-        public ActionResult Contact()
+        public ActionResult Contact(int? id)
         {
-            ServiceDropDownList();
-            return View();
+            if (id == null)
+            {
+                ServiceDropDownList();
+                return View();
+            }
+            else
+            {
+                ServiceToContactDDLSelected(id);
+                return View();
+            }
         }
 
         [HttpPost]
-        public ActionResult Contact(Client cl)
+        public ActionResult Contact(int? id, Client cl)
         {
-            //ServiceDropDownList();
-            try
+            if (id == null)
             {
-                //if (ModelState.IsValid)
-                //{
-                //    cl.status = "Waiting";
-                //    data.Clients.InsertOnSubmit(cl);
-                //    data.SubmitChanges();
-                //    TempData["Referrer"] = "SaveRegister";
-                //    return RedirectToAction("Contact");
-                //}
-                //return View();
-
-                cl.status = "Waiting";
-                data.Clients.InsertOnSubmit(cl);
-                data.SubmitChanges();
-                TempData["Referrer"] = "SaveRegister";
-                return RedirectToAction("Contact");
+                ServiceDropDownList();
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        cl.status = "Waiting";
+                        data.Clients.InsertOnSubmit(cl);
+                        data.SubmitChanges();
+                        TempData["Referrer"] = "SaveRegister";
+                        return RedirectToAction("Contact");
+                    }
+                    return View();
+                }
+                catch
+                {
+                    return View();
+                }
             }
-            catch
+            else
             {
-                return View();
+                ServiceToContactDDLSelected(id);
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        cl.status = "Waiting";
+                        data.Clients.InsertOnSubmit(cl);
+                        data.SubmitChanges();
+                        TempData["Referrer"] = "SaveRegister";
+                        return RedirectToAction("Contact");
+                    }
+                    return View();
+                }
+                catch
+                {
+                    return View();
+                }
             }
         }
 
         public ActionResult Service()
         {
-            var model = data.Services.ToList();
+            var model = data.Services.Where(s => s.status == "Active").ToList();
             return View(model);
         }
 

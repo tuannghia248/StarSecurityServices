@@ -48,6 +48,7 @@ namespace StarSecurityService.Models
         public int duration { get; set; }
 
         [Display(Name = "Expected Date")]
+        [RegularExpression(@"(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d", ErrorMessage = "Please enter valid date.")]
         public string start_at { get; set; }
 
         [Display(Name = "Description")]

@@ -22,7 +22,7 @@ namespace StarSecurityService.Controllers
 
         void ContractDropDownList()
         {
-            var query = db.Contracts.Where(c => c.status == "Active").Select(c => new { id = c.id, data = $"{c.code} - {c.Service.name} - {c.Client.name}" }).ToList();
+            var query = db.Contracts.Where(c => c.status == "Active" || c.status == "Pending").Select(c => new { id = c.id, data = $"{c.code} - {c.Service.name} - {c.Client.name}" }).ToList();
             SelectList list = new SelectList(query, "id", "data");
             ViewBag.contractList = list;
         }
@@ -291,10 +291,33 @@ namespace StarSecurityService.Controllers
             return RedirectToAction("EmployeeInsert");
         }
 
-        public ViewResult ContractList()
+        public ActionResult ContractList(string status)
         {
-            var contracts = db.Contracts.ToList();
-            return View(contracts);
+            if (status == null)
+            {
+                var contracts = db.Contracts.ToList();
+                return View(contracts);
+            }
+            else if (status == "Pending")
+            {
+                var contracts = db.Contracts.Where(c => c.status == "Pending").ToList();
+                return View(contracts);
+            }
+            else if (status == "Active")
+            {
+                var contracts = db.Contracts.Where(c => c.status == "Active").ToList();
+                return View(contracts);
+            }
+            else if (status == "Complete")
+            {
+                var contracts = db.Contracts.Where(c => c.status == "Complete").ToList();
+                return View(contracts);
+            }
+            else
+            {
+                var contracts = db.Contracts.Where(c => c.status == "Null").ToList();
+                return View(contracts);
+            }
         }
 
         public PartialViewResult GetEmployeeOfContract(int id)
@@ -305,6 +328,8 @@ namespace StarSecurityService.Controllers
 
         public ActionResult ContractInsert(int? id)
         {
+            var list = db.Contracts.OrderByDescending(c => c.id).Take(5);
+            ViewBag.list = list;
             if (id == null)
             {
                 ServiceDropDownList();
@@ -321,6 +346,8 @@ namespace StarSecurityService.Controllers
         [HttpPost]
         public ActionResult ContractInsert(int? id, Contract contract)
         {
+            var list = db.Contracts.OrderByDescending(c => c.id).Take(5);
+            ViewBag.list = list;
             if (id == null)
             {
                 ServiceDropDownList();
@@ -414,12 +441,12 @@ namespace StarSecurityService.Controllers
                             var clientCheck = db.Clients.Single(c => c.id == contract.client_id);
                             clientCheck.status = "Fulfill";
                             db.SubmitChanges();
-                            return RedirectToAction("ContractInsert");
+                            return RedirectToAction("ContractList");
                         }
                         else
                         {
                             db.SubmitChanges();
-                            return RedirectToAction("ContractInsert");
+                            return RedirectToAction("ContractList");
                         }
                     }
                     else
@@ -429,12 +456,12 @@ namespace StarSecurityService.Controllers
                         {
                             clientCheck.status = "Ongoing";
                             db.SubmitChanges();
-                            return RedirectToAction("ContractInsert");
+                            return RedirectToAction("ContractList");
                         }
                         else
                         {
                             db.SubmitChanges();
-                            return RedirectToAction("ContractInsert");
+                            return RedirectToAction("ContractList");
                         }
                     }
                 }
@@ -465,29 +492,49 @@ namespace StarSecurityService.Controllers
                 {
                     clientCheck.status = "Waiting";
                     db.SubmitChanges();
-                    return RedirectToAction("ContractInsert");
+                    return RedirectToAction("ContractList");
                 }
                 else
                 {
                     db.SubmitChanges();
-                    return RedirectToAction("ContractInsert");
+                    return RedirectToAction("ContractList");
                 }
             }
             else
             {
                 db.SubmitChanges();
-                return RedirectToAction("ContractInsert");
+                return RedirectToAction("ContractList");
             }
         }
 
-        public ViewResult ClientList()
+        public ActionResult ClientList(string status)
         {
-            var clients = db.Clients.ToList();
-            return View(clients);
+            if (status == null)
+            {
+                var clients = db.Clients.ToList();
+                return View(clients);
+            }
+            else if (status == "Waiting")
+            {
+                var clients = db.Clients.Where(c => c.status == "Waiting").ToList();
+                return View(clients);
+            }
+            else if (status == "Ongoing")
+            {
+                var clients = db.Clients.Where(c => c.status == "Ongoing").ToList();
+                return View(clients);
+            }
+            else
+            {
+                var clients = db.Clients.Where(c => c.status == "Fulfill").ToList();
+                return View(clients);
+            }
         }
 
         public ActionResult ClientInsert()
         {
+            var list = db.Clients.OrderByDescending(c => c.id).Take(5);
+            ViewBag.list = list;
             ServiceDropDownList();
             return View();
         }
@@ -495,6 +542,8 @@ namespace StarSecurityService.Controllers
         [HttpPost]
         public ActionResult ClientInsert(Client client)
         {
+            var list = db.Clients.OrderByDescending(c => c.id).Take(5);
+            ViewBag.list = list;
             ServiceDropDownList();
             try
             {
@@ -545,7 +594,7 @@ namespace StarSecurityService.Controllers
                     clientToEdit.description = client.description;
                     clientToEdit.updated_at = DateTime.Now.ToString("MM/dd/yyyy");
                     db.SubmitChanges();
-                    return RedirectToAction("ClientInsert");
+                    return RedirectToAction("ClientList");
                 }
                 return View();
             }
@@ -572,7 +621,7 @@ namespace StarSecurityService.Controllers
             var clientToDelete = db.Clients.Single(c => c.id == id);
             db.Clients.DeleteOnSubmit(clientToDelete);
             db.SubmitChanges();
-            return RedirectToAction("ClientInsert");
+            return RedirectToAction("ClientList");
         }
 
         public ViewResult ServiceList()
@@ -629,6 +678,7 @@ namespace StarSecurityService.Controllers
                     serviceToEdit.description = service.description;
                     serviceToEdit.image = service.image;
                     serviceToEdit.status = service.status;
+                    serviceToEdit.price = service.price;
                     db.SubmitChanges();
                     return RedirectToAction("ServiceInsert");
                 }

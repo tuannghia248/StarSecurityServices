@@ -25,6 +25,9 @@
         <hr>
         <strong><i class="fa fa-check-circle margin-r-5"></i> @Html.DisplayNameFor(model => model.status)</strong>
         <p class="text-muted">@Html.DisplayFor(model => model.status)</p>
+        <hr>
+        <strong><i class="fa fa-money margin-r-5"></i> @Html.DisplayNameFor(model => model.price)</strong>
+        <p class="text-muted">@Html.DisplayFor(model => model.price)</p>
     </div>
     <div class="box-footer">
         @if (session.Role == "admin" || session.Role == "manager")

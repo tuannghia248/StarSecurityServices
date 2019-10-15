@@ -20,62 +20,68 @@
                 {
                     @Html.AntiForgeryToken()
                     <div style="margin-top: 50px;margin-left: 270px;}" class="form-horizontal">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.created_at, new { @Value = DateTime.Now.ToString("MM/dd/yyyy") })
                         <div class="form-group">
                             @Html.LabelFor(model => model.name, "Full Name *", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger", @style = "padding-left: 1px" })
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.address, "Address *", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger", @style = "padding-left: 1px" })
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.phone, "Phone Number *", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger", @style = "padding-left: 1px" })
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.email, "Email *", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "example@domain.com" } })
-                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger", @style = "padding-left: 1px" })
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.service_id, "Service *", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.DropDownListFor(model => model.service_id, ViewBag.svlist as SelectList, "Choose service", new { @class = "form-control", required = "required" })
-                                @Html.ValidationMessageFor(model => model.service_id, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(model => model.service_id, ViewBag.svlist as SelectList, "Choose service", new { @class = "form-control", @id = "sv", required = "required" })
+                                @Html.ValidationMessageFor(model => model.service_id, "", new { @class = "text-danger", @style = "padding-left: 1px" })
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.quantity, "Employee Qty", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.quantity, "Employee Qty *", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control", @id = "qty", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger", @style = "padding-left: 1px" })
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.duration, "Duration (Day)", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.duration, "Duration (Day) *", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.duration, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.duration, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.duration, new { htmlAttributes = new { @class = "form-control", @id = "dur", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.duration, "", new { @class = "text-danger", @style = "padding-left: 1px" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="price">Expected Cost</label>
+                            <div class="col-md-10">
+                                <input class="form-control text-box single-line" id="total" name="price" type="text" disabled />
+                                <span style="padding-left: 1px"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.start_at, "Expected Date", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.start_at, new { htmlAttributes = new { @class = "form-control", placeholder = "MM/DD/YYYY" } })
-                                @Html.ValidationMessageFor(model => model.start_at, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.start_at, "", new { @class = "text-danger", @style = "padding-left: 1px" })
                             </div>
                         </div>
                         <div class="form-group">
@@ -103,5 +109,36 @@
                 $(this).remove();
             });
         }, 5000);
+    </script>
+    <script type="text/javascript">
+        function calculate() {
+            var sv = $("#sv").val();
+            var qty = $("#qty").val();
+            var dur = $("#dur").val();
+            var total = $("#total").val();
+
+            if (sv == 0) {
+                $("#total").val("");
+            }
+            else if (sv == 1) {
+                $("#total").val((1000000 * qty * dur) + " VND");
+            }
+            else if (sv == 2) {
+                $("#total").val((1500000 * qty * dur) + " VND");
+            }
+            else if (sv == 3) {
+                $("#total").val((2000000 * qty * dur) + " VND");
+            }
+            else {
+                $("#total").val((2500000 * qty * dur) + " VND");
+            }
+        }
+
+        $(document).ready(function () {
+            $("#sv").change(calculate);
+            $("#qty").change(calculate);
+            $("#dur").change(calculate);
+            $("#total").change(calculate);
+        });
     </script>
 }
