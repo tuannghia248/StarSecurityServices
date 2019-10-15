@@ -823,7 +823,15 @@ namespace StarSecurityService.Controllers
 
         public ActionResult AccountInsert()
         {
-            return View();
+            var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
+            if (session.Role == "admin" || session.Role == "manager")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Dashboard");
+            }
         }
 
         [HttpPost]
@@ -833,7 +841,7 @@ namespace StarSecurityService.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if(db.Accounts.Any(a => a.username == account.username))
+                    if (db.Accounts.Any(a => a.username == account.username))
                     {
                         ModelState.AddModelError("UsernameExits", "Username already exists.");
                     }
@@ -854,8 +862,16 @@ namespace StarSecurityService.Controllers
 
         public ActionResult AccountDetails(int id)
         {
-            var accountDetails = db.Accounts.Single(e => e.id == id);
-            return View(accountDetails);
+            var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
+            if (session.Role == "admin" || session.Role == "manager")
+            {
+                var accountDetails = db.Accounts.Single(e => e.id == id);
+                return View(accountDetails);
+            }
+            else
+            {
+                return RedirectToAction("Dashboard");
+            }
         }
 
         public ActionResult AccountEdit(int id)
@@ -870,7 +886,6 @@ namespace StarSecurityService.Controllers
             {
                 return RedirectToAction("AccountInsert");
             }
-
         }
 
         [HttpPost]

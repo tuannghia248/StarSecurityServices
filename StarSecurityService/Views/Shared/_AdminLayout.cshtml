@@ -65,7 +65,11 @@
                     <li class=""><a href="@Url.Action("ServiceInsert", "Admin")"><i class="fa fa-cogs"></i> <span>Service</span></a></li>
                     <li class=""><a href="@Url.Action("DepartmentInsert", "Admin")"><i class="fa fa-briefcase"></i> <span>Department</span></a></li>
                     <li class=""><a href="@Url.Action("VacancyInsert", "Admin")"><i class="fa fa-tasks"></i> <span>Vacancy</span></a></li>
-                    <li class=""><a href="@Url.Action("AccountInsert", "Admin")"><i class="fa fa-user-secret"></i> <span>Account</span></a></li>
+                    @if (session.Role == "admin" || session.Role == "manager")
+                    {
+                        <li class=""><a href="@Url.Action("AccountInsert", "Admin")"><i class="fa fa-user-secret"></i> <span>Account</span></a></li>
+
+                    }
                 </ul>
             </section>
         </aside>

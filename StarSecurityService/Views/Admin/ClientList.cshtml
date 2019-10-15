@@ -2,6 +2,7 @@
 
 @{
     Layout = null;
+    var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
 }
 
 <div class="box">
@@ -35,56 +36,66 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.phone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Service.name)
-                    </td>
-                    <td>
-                        @if (item.status == "Waiting")
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Service.name)
+                        </td>
+                        <td>
+                            @if (item.status == "Waiting")
+                            {
+                                <span class="label label-warning">@item.status</span>
+                            }
+                            else if (item.status == "Ongoing")
+                            {
+                                <span class="label label-success">@item.status</span>
+                            }
+                            else
+                            {
+                                <span class="label label-info">@item.status</span>
+                            }
+                        </td>
+                        @if (session.Role == "admin" || session.Role == "manager")
                         {
-                            <span class="label label-warning">@item.status</span>
+                            <td>
+                                @Html.ActionLink("New Contract", "ContractInsert", new { id = item.id }, new { @class = "btn btn-primary" })
+                            </td>
                         }
-                        else if (item.status == "Ongoing")
-                        {
-                            <span class="label label-success">@item.status</span>
-                        }
-                        else
-                        {
-                            <span class="label label-info">@item.status</span>
-                        }
-                    </td>
-                    <td>
-                        @Html.ActionLink("New Contract", "ContractInsert", new { id = item.id }, new { @class = "btn btn-primary" })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Details", "ClientDetails", new { id = item.id }, new { @class = "btn btn-info" })
-                        @Html.ActionLink("Edit", "ClientEdit", new { id = item.id }, new { @class = "btn btn-primary" })
-                        @using (Html.BeginForm("ClientDelete", "Admin", new { id = item.id }, FormMethod.Post, new { onsubmit = "return confirm('Delete this will also delete related contract. Do you wish to continue?');", style = "display: inline-block" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.HttpMethodOverride(HttpVerbs.Delete)
-                            <button class="btn btn-danger" type="submit">Delete</button>
-                        }
-                    </td>
-                </tr>
-            }
+                        <td>
+                            @Html.ActionLink("Details", "ClientDetails", new { id = item.id }, new { @class = "btn btn-info" })
+                            @if (session.Role == "admin")
+                            {
+                                @Html.ActionLink("Edit", "ClientEdit", new { id = item.id }, new { @class = "btn btn-primary" })
+                                using (Html.BeginForm("ClientDelete", "Admin", new { id = item.id }, FormMethod.Post, new { onsubmit = "return confirm('Delete this will also delete related contract. Do you wish to continue?');", style = "display: inline-block" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                }
+                            }
+                            else if (session.Role == "manager")
+                            {
+                                @Html.ActionLink("Edit", "ClientEdit", new { id = item.id }, new { @class = "btn btn-primary" })
+                            }
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

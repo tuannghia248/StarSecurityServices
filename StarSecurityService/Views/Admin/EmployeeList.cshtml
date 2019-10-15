@@ -84,7 +84,7 @@
                                 }
                             }
                             @Html.ActionLink("Details", "EmployeeDetails", new { id = item.id }, new { @class = "btn btn-info" })
-                            @if (session.Role == "admin" || session.Role == "manager")
+                            @if (session.Role == "admin")
                             {
                                 @Html.ActionLink("Edit", "EmployeeEdit", new { id = item.id }, new { @class = "btn btn-primary", @style = "margin-right: 3px" })
                                 using (Html.BeginForm("EmployeeDelete", "Admin", new { id = item.id }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this?');", style = "display: inline-block" }))
@@ -93,6 +93,10 @@
                                     @Html.HttpMethodOverride(HttpVerbs.Delete)
                                     <button class="btn btn-danger" type="submit">Delete</button>
                                 }
+                            }
+                            else if (session.Role == "manager")
+                            {
+                                @Html.ActionLink("Edit", "EmployeeEdit", new { id = item.id }, new { @class = "btn btn-primary", @style = "margin-right: 3px" })
                             }
                         </td>
                     </tr>

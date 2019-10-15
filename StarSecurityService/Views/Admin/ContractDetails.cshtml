@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Contract Details";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var session = (StarSecurityService.Common.UserLogin)Session[StarSecurityService.Common.CommonConstants.USER_SESSION];
 }
 
 <div class="box box-primary center-block" style="width: 30%">
@@ -42,7 +43,10 @@
         <hr>
     </div>
     <div class="box-footer">
-        @Html.ActionLink("Edit", "ContractEdit", new { id = Model.id }, new { @class = "btn btn-primary" })
+        @if (session.Role == "admin" || session.Role == "manager")
+        {
+            @Html.ActionLink("Edit", "ContractEdit", new { id = Model.id }, new { @class = "btn btn-primary" })
+        }
         @Html.ActionLink("Back to List", "ContractInsert", null, new { @class = "btn btn-default pull-right" })
     </div>
 </div>
