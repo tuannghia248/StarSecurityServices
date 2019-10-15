@@ -171,3 +171,14 @@ a {
 #contact-form .form-control{
     width:55%;
 }
+
+.fix-menu {
+    position: fixed;
+    width: 76.6%;
+    top: 0px;
+    z-index: 99;
+    border: 1px solid transparent;
+    background: black;
+    padding: 10px;
+    margin-left: -12px;
+}
